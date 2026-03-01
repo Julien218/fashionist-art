@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cream: #FFF8F0;
+  --nude: #F5E6D8;
+  --rose-pastel: #F2C4CE;
+  --rose-poudre: #E8A0B4;
+  --terracotta: #C97B6B;
+  --or-doux: #D4AF37;
+  --champagne: #F7E7CE;
+  --fuchsia: #C2185B;
+  --ivoire: #FFFFF0;
+  --sable: #F5F0E8;
+}
+
+body {
+  font-family: 'Inter', 'Montserrat', sans-serif;
+  background: linear-gradient(135deg, var(--cream) 0%, var(--nude) 35%, var(--rose-pastel) 70%, var(--sable) 100%);
+  min-height: 100vh;
+  color: #2D2024;
+}
+
+.font-script {
+  font-family: 'Dancing Script', cursive;
+}
+
+.font-display {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.font-body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Grain texture overlay */
+.grain-overlay::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Background logo watermark */
+.bg-watermark {
+  position: relative;
+}
+.bg-watermark::after {
+  content: '';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vmin;
+  height: 80vmin;
+  background-image: url('https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_68ae1c019dacc474a322f2b2/742499905_Capturedecran2026-02-26a175005.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Glow effects */
+.glow-soft {
+  box-shadow: 0 0 60px rgba(194, 24, 91, 0.08), 0 0 120px rgba(212, 175, 55, 0.05);
+}
+
+.glow-card {
+  box-shadow: 0 4px 30px rgba(0,0,0,0.04), 0 0 40px rgba(194, 24, 91, 0.04);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glow-card:hover {
+  box-shadow: 0 8px 40px rgba(0,0,0,0.08), 0 0 60px rgba(194, 24, 91, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Premium button */
+.btn-premium {
+  background: linear-gradient(135deg, var(--fuchsia), var(--rose-poudre));
+  color: white;
+  border-radius: 9999px;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(194, 24, 91, 0.25);
+}
+.btn-premium:hover {
+  box-shadow: 0 6px 30px rgba(194, 24, 91, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, var(--or-doux), var(--champagne));
+  color: #2D2024;
+  border-radius: 9999px;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
+}
+.btn-gold:hover {
+  box-shadow: 0 6px 30px rgba(212, 175, 55, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Badge gratuit */
+.badge-free {
+  background: linear-gradient(135deg, var(--or-doux), #E8C547);
+  color: #2D2024;
+  font-weight: 700;
+  padding: 0.25rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Glass effect */
+.glass {
+  background: rgba(255, 248, 240, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Section divider */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rose-pastel), var(--or-doux), var(--rose-pastel), transparent);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+}
