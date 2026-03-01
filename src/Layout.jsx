@@ -28,6 +28,8 @@ export default function Layout({ children, currentPageName }) {
   const isAdmin = user && ['super_admin', 'admin'].includes(user.role);
   const isAdminPage = currentPageName === 'Admin';
 
+  const bgImage = "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a460cb984c65f748b49e7d/4e6bd1871_fashionist_art_cinematic_poster_index_0403072x5504.jpg";
+
   if (isAdminPage) {
     return (
       <div className="min-h-screen bg-[#0A0A0F] text-white">
@@ -38,7 +40,7 @@ export default function Layout({ children, currentPageName }) {
   }
 
   return (
-    <div className="min-h-screen bg-[#0A0A0F] text-white flex flex-col">
+    <div className="min-h-screen bg-[#0A0A0F] text-white flex flex-col" style={{position:'relative'}}>
       {/* Top rainbow bar */}
       <div className="rainbow-bar fixed top-0 left-0 right-0 z-50" />
 
