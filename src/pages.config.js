@@ -53,6 +53,9 @@ import Artists from './pages/Artists';
 import Gallery from './pages/Gallery';
 import Infos from './pages/Infos';
 import Billetterie from './pages/Billetterie';
+import Legal from './pages/Legal';
+import Privacy from './pages/Privacy';
+import Admin from './pages/Admin';
 import __Layout from './Layout.jsx';
 
 
@@ -63,6 +66,9 @@ export const PAGES = {
     "Gallery": Gallery,
     "Infos": Infos,
     "Billetterie": Billetterie,
+    "Legal": Legal,
+    "Privacy": Privacy,
+    "Admin": Admin,
 }
 
 export const pagesConfig = {
