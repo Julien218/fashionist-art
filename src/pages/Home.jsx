@@ -54,12 +54,12 @@ export default function Home() {
 
       <div className="divider max-w-4xl mx-auto" />
 
-      {/* Countdown section — light background like screenshot */}
-      <section className="py-20 px-4" style={{ background: 'linear-gradient(180deg, #FDF0F3 0%, #FAE8EC 100%)' }}>
+      {/* Countdown section */}
+      <section className="py-20 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <span className="text-[#FF2D8A] text-xs font-display font-semibold uppercase tracking-widest block mb-4">Compte à rebours</span>
-          <h2 className="font-display font-black text-[clamp(1.4rem,3.5vw,2.5rem)] text-[#2D2024] mb-2 tracking-tight uppercase">L'événement commence dans</h2>
-          <p className="text-[#2D2024]/50 text-sm mb-10">18 avril 2026 · Centre Sportif d'Élouges, Dour</p>
+          <h2 className="font-display font-black text-[clamp(1.4rem,3.5vw,2.5rem)] text-white mb-2 tracking-tight uppercase">L'événement commence dans</h2>
+          <p className="text-white/40 text-sm mb-10">18 avril 2026 · Centre Sportif d'Élouges, Dour</p>
           <Countdown />
         </div>
       </section>
