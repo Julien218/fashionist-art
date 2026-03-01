@@ -180,6 +180,20 @@ nav a, .nav-link {
   gap: 0.3rem;
 }
 
+/* Hero title — Fashionist' */
+.hero-title-fashionist {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-weight: 700;
+}
+
+/* Hero title — ART */
+.hero-title-art {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+
 /* Top rainbow bar */
 .rainbow-bar {
   height: 3px;
