@@ -49,8 +49,7 @@ export default function Layout({ children, currentPageName }) {
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat',
-          opacity: 0.10,
-          mixBlendMode: 'screen',
+          opacity: 0.12,
         }}
       />
       {/* Subtle color overlay to preserve dark theme */}
