@@ -124,7 +124,7 @@ export default function Layout({ children, currentPageName }) {
               <div className="px-4 py-4 space-y-1">
                 {NAV_ITEMS.map((item) => (
                   <Link key={item.page} to={createPageUrl(item.page)} onClick={() => setMenuOpen(false)}
-                    className="flex items-center justify-between px-4 py-3 rounded-xl text-white/80 hover:bg-white/5 transition-colors">
+                    className="flex items-center justify-between px-4 py-3 rounded-xl text-gray-700 hover:bg-gray-100 transition-colors">
                     <span>{item.label}</span>
                     <ChevronRight className="w-4 h-4 opacity-40" />
                   </Link>
