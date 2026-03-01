@@ -28,7 +28,7 @@ export default function Layout({ children, currentPageName }) {
   const isAdmin = user && ['super_admin', 'admin'].includes(user.role);
   const isAdminPage = currentPageName === 'Admin';
 
-  const bgImage = "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a460cb984c65f748b49e7d/4e6bd1871_fashionist_art_cinematic_poster_index_0403072x5504.jpg";
+  const bgImage = "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a460cb984c65f748b49e7d/ef497c4fd_artisteimageb.jpg";
 
   if (isAdminPage) {
     return (
