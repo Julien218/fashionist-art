@@ -49,11 +49,11 @@ export default function Layout({ children, currentPageName }) {
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat',
-          opacity: 0.12,
+          opacity: 0.25,
         }}
       />
-      {/* Subtle color overlay to preserve dark theme */}
-      <div className="fixed inset-0 z-0 pointer-events-none" style={{background: 'radial-gradient(ellipse at center, rgba(10,10,15,0.7) 0%, rgba(10,10,15,0.92) 100%)'}} />
+      {/* Dark overlay to preserve readability */}
+      <div className="fixed inset-0 z-0 pointer-events-none" style={{background: 'rgba(10,10,15,0.72)'}} />
 
       {/* Top rainbow bar */}
       <div className="rainbow-bar fixed top-0 left-0 right-0 z-50" />
