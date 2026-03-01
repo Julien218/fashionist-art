@@ -63,19 +63,12 @@ export default function Layout({ children, currentPageName }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-[72px]">
             {/* Logo */}
-            <Link to={createPageUrl('Home')} className="flex items-center gap-3">
+            <Link to={createPageUrl('Home')} className="flex items-center">
               <img
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_68ae1c019dacc474a322f2b2/742499905_Capturedecran2026-02-26a175005.png"
                 alt="Fashionist'ART"
                 className="w-10 h-10 rounded-full object-cover ring-2 ring-[#FF2D8A]/40"
               />
-              <div className="flex flex-col leading-none">
-                <div className="flex items-baseline gap-0">
-                  <span className="font-script text-xl text-[#FF2D8A]" style={{fontWeight:700}}>Fashionist'</span>
-                  <span className="font-display font-black text-lg text-gray-900 tracking-tight">ART</span>
-                </div>
-                <span className="text-[9px] font-display font-semibold uppercase tracking-[0.12em] text-gray-400 mt-0.5">Centre Sportif d'Élouges · Dour</span>
-              </div>
             </Link>
 
             {/* Desktop nav */}
