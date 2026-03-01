@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { motion } from 'framer-motion';
 import Countdown from '../shared/Countdown';
-import { CalendarPlus, ArrowRight, Facebook, Twitter, Linkedin, Link as LinkIcon, Check, Ticket, ChevronDown } from 'lucide-react';
+import { CalendarPlus, ArrowRight, Facebook, Instagram, Link as LinkIcon, Check, Ticket, ChevronDown } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function HeroSection() {
