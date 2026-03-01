@@ -59,11 +59,11 @@ export default function Countdown() {
         ))}
       </div>
 
-      <p className="text-center text-[#2D2024]/50 text-sm mt-4 mb-6">18 avril 2026 · Centre Sportif d'Élouges, Dour</p>
+      <p className="text-center text-white/40 text-sm mt-4 mb-6">18 avril 2026 · Centre Sportif d'Élouges, Dour</p>
 
       <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
         <a href={googleCalUrl} target="_blank" rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#2D2024]/20 bg-white text-sm text-[#2D2024]/70 hover:bg-[#2D2024]/5 transition-all">
+          className="btn-outline text-sm py-2.5 px-5">
           <CalendarPlus className="w-4 h-4" /> Ajouter à mon agenda
         </a>
         <button onClick={() => { navigator.clipboard.writeText(window.location.origin); }}
