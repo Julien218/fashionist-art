@@ -70,8 +70,8 @@ export default function HeroSection() {
           transition={{ duration: 0.7, delay: 0.2 }}
         >
           <h1 className="leading-none mb-2">
-            <span className="font-script text-[clamp(3.5rem,9vw,6.5rem)] text-[#FF2D8A] block" style={{fontWeight:700}}>Fashionist'</span>
-            <span className="font-display font-black text-[clamp(3.5rem,9vw,6.5rem)] text-white block tracking-tight">ART</span>
+            <span className="font-script text-[clamp(3rem,8vw,5.5rem)] text-[#FF2D8A] block" style={{fontWeight:700, fontStyle:'italic'}}>Fashionist'</span>
+            <span className="font-display font-black text-[clamp(4.5rem,12vw,9rem)] text-white block" style={{letterSpacing:'-0.02em', lineHeight:0.9}}>ART</span>
           </h1>
         </motion.div>
 
