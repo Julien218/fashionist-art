@@ -94,7 +94,7 @@ export default function Layout({ children, currentPageName }) {
                 </Link>
               ))}
               {isAdmin && (
-                <Link to={createPageUrl('Admin')} className="px-4 py-2 rounded-full text-sm font-medium text-[#D4AF37] hover:bg-[#D4AF37]/10 transition-all">
+                <Link to={createPageUrl('Admin')} className="px-4 py-2 rounded-full text-sm font-medium text-[#D4AF37] hover:bg-[#D4AF37]/10 transition-all text-gray-700">
                   Admin
                 </Link>
               )}
