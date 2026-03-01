@@ -12,10 +12,12 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
+import ParticipantsTab from '@/components/admin/ParticipantsTab';
+import StripeTab from '@/components/admin/StripeTab';
 import { 
   Users, Calendar, Palette, Handshake, Image, Mail, 
   Plus, Pencil, Trash2, LogOut, Shield, Loader2,
-  Eye, UserPlus, Home, ChevronRight
+  Eye, UserPlus, Home, ChevronRight, CreditCard, ClipboardList
 } from 'lucide-react';
 
 export default function Admin() {
