@@ -35,11 +35,11 @@ export default function Admin() {
   if (!user || !['super_admin', 'admin'].includes(user.role)) {
     return (
       <div className="min-h-screen flex items-center justify-center px-4">
-        <div className="glass glow-card rounded-3xl p-10 text-center max-w-md">
-          <Shield className="w-16 h-16 text-[#C2185B]/30 mx-auto mb-4" />
-          <h2 className="font-display font-bold text-xl mb-2">Accès réservé</h2>
-          <p className="text-sm text-[#2D2024]/50 mb-6">Cette section est réservée aux administrateurs.</p>
-          <Link to={createPageUrl('Home')} className="btn-premium inline-flex items-center gap-2 text-sm">
+        <div className="glass-dark neon-border rounded-3xl p-10 text-center max-w-md">
+          <Shield className="w-16 h-16 text-[#FF2D8A]/30 mx-auto mb-4" />
+          <h2 className="font-display font-bold text-xl text-white mb-2">Accès réservé</h2>
+          <p className="text-sm text-white/50 mb-6">Cette section est réservée aux administrateurs.</p>
+          <Link to={createPageUrl('Home')} className="btn-primary inline-flex items-center gap-2 text-sm">
             <Home className="w-4 h-4" /> Retour à l'accueil
           </Link>
         </div>
