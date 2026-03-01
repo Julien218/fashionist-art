@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { CalendarPlus, Share2 } from 'lucide-react';
 
 const EVENT_DATE = new Date('2026-04-18T10:00:00+02:00');
 
@@ -31,26 +32,44 @@ export default function Countdown() {
     { label: 'Secondes', value: time.seconds },
   ];
 
+  const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent("Fashionist'ART – Mode & Art")}&dates=20260418T100000/20260418T220000&details=${encodeURIComponent("Événement mode & art au Centre Sportif d'Élouges (Dour). Entrée gratuite !")}&location=${encodeURIComponent("Centre Sportif d'Élouges, Rue du Stade, 7370 Dour, Belgique")}`;
+
   return (
-    <div className="flex gap-3 sm:gap-5 justify-center">
-      {blocks.map((b, i) => (
-        <motion.div
-          key={b.label}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: i * 0.1, duration: 0.5 }}
-          className="flex flex-col items-center"
-        >
-          <div className="glass glow-card rounded-2xl w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center">
-            <span className="font-display font-bold text-2xl sm:text-3xl text-[#C2185B]">
-              {pad(b.value)}
+    <div>
+      <div className="flex gap-4 sm:gap-6 justify-center">
+        {blocks.map((b, i) => (
+          <motion.div
+            key={b.label}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.1 }}
+            className="flex flex-col items-center"
+          >
+            <div className="glass-dark neon-border rounded-2xl w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center">
+              <span className="font-display font-black text-2xl sm:text-3xl text-[#FF2D8A]">
+                {pad(b.value)}
+              </span>
+            </div>
+            <span className="mt-2 text-xs sm:text-sm text-white/40 uppercase tracking-wider font-display">
+              {b.label}
             </span>
-          </div>
-          <span className="mt-2 text-xs sm:text-sm font-body text-[#2D2024]/50 uppercase tracking-wider">
-            {b.label}
-          </span>
-        </motion.div>
-      ))}
+          </motion.div>
+        ))}
+      </div>
+
+      <p className="text-center text-white/30 text-xs mt-4 mb-6">18 avril 2026 · Centre Sportif d'Élouges, Dour</p>
+
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href={googleCalUrl} target="_blank" rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass-dark border border-white/10 text-sm text-white/70 hover:text-white hover:bg-white/10 transition-all">
+          <CalendarPlus className="w-4 h-4 text-[#D4AF37]" /> Ajouter à mon agenda
+        </a>
+        <button onClick={() => { navigator.clipboard.writeText(window.location.origin); }}
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass-dark border border-white/10 text-sm text-white/70 hover:text-white hover:bg-white/10 transition-all">
+          <Share2 className="w-4 h-4 text-[#FF2D8A]" /> Partager le compte à rebours
+        </button>
+      </div>
     </div>
   );
 }
