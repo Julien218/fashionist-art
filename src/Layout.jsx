@@ -55,10 +55,10 @@ export default function Layout({ children, currentPageName }) {
               />
               <div className="flex flex-col leading-none">
                 <div className="flex items-baseline gap-0">
-                  <span className="font-script text-lg text-[#FF2D8A]">Fashionist'</span>
-                  <span className="font-display font-black text-base text-white">ART</span>
+                  <span className="font-script text-xl text-[#FF2D8A]" style={{fontWeight:700}}>Fashionist'</span>
+                  <span className="font-display font-black text-lg text-white tracking-tight">ART</span>
                 </div>
-                <span className="text-[9px] font-display font-semibold uppercase tracking-widest text-white/30 mt-0.5">Centre Sportif d'Élouges · Dour</span>
+                <span className="text-[9px] font-display font-semibold uppercase tracking-[0.12em] text-white/30 mt-0.5">Centre Sportif d'Élouges · Dour</span>
               </div>
             </Link>
 
