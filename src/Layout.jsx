@@ -146,7 +146,7 @@ export default function Layout({ children, currentPageName }) {
       </header>
 
       {/* Content */}
-      <main className="flex-1 pt-[75px]">
+      <main className="flex-1 pt-[75px] relative z-10">
         {children}
       </main>
 
