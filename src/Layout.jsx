@@ -119,7 +119,7 @@ export default function Layout({ children, currentPageName }) {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden bg-black/95 backdrop-blur-xl border-t border-white/10"
+              className="lg:hidden bg-white border-t border-gray-200 shadow-lg"
             >
               <div className="px-4 py-4 space-y-1">
                 {NAV_ITEMS.map((item) => (
