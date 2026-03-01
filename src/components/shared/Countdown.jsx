@@ -46,28 +46,30 @@ export default function Countdown() {
             transition={{ delay: i * 0.1 }}
             className="flex flex-col items-center"
           >
-            <div className="glass-dark neon-border rounded-2xl w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center">
-              <span className="font-display font-black text-2xl sm:text-3xl text-[#FF2D8A]">
+            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl flex items-center justify-center"
+              style={{ background: 'linear-gradient(135deg, #D4836A, #E8967A, #D4AF8A)' }}>
+              <span className="font-display font-black text-3xl sm:text-4xl text-white drop-shadow">
                 {pad(b.value)}
               </span>
             </div>
-            <span className="mt-2 text-xs sm:text-sm text-white/40 uppercase tracking-wider font-display">
+            <span className="mt-3 text-xs sm:text-sm text-[#2D2024]/60 uppercase tracking-wider font-display">
               {b.label}
             </span>
           </motion.div>
         ))}
       </div>
 
-      <p className="text-center text-white/30 text-xs mt-4 mb-6">18 avril 2026 · Centre Sportif d'Élouges, Dour</p>
+      <p className="text-center text-[#2D2024]/50 text-sm mt-4 mb-6">18 avril 2026 · Centre Sportif d'Élouges, Dour</p>
 
       <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
         <a href={googleCalUrl} target="_blank" rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass-dark border border-white/10 text-sm text-white/70 hover:text-white hover:bg-white/10 transition-all">
-          <CalendarPlus className="w-4 h-4 text-[#D4AF37]" /> Ajouter à mon agenda
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#2D2024]/20 bg-white text-sm text-[#2D2024]/70 hover:bg-[#2D2024]/5 transition-all">
+          <CalendarPlus className="w-4 h-4" /> Ajouter à mon agenda
         </a>
         <button onClick={() => { navigator.clipboard.writeText(window.location.origin); }}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass-dark border border-white/10 text-sm text-white/70 hover:text-white hover:bg-white/10 transition-all">
-          <Share2 className="w-4 h-4 text-[#FF2D8A]" /> Partager le compte à rebours
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm text-white transition-all"
+          style={{ background: 'linear-gradient(135deg, #FF2D8A, #C2185B)' }}>
+          <Share2 className="w-4 h-4" /> Partager le compte à rebours
         </button>
       </div>
     </div>
