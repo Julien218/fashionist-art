@@ -41,6 +41,21 @@ export default function Layout({ children, currentPageName }) {
 
   return (
     <div className="min-h-screen bg-[#0A0A0F] text-white flex flex-col" style={{position:'relative'}}>
+      {/* Global background image — semi-transparent */}
+      <div
+        className="fixed inset-0 z-0 pointer-events-none select-none"
+        style={{
+          backgroundImage: `url("${bgImage}")`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center center',
+          backgroundRepeat: 'no-repeat',
+          opacity: 0.08,
+          mixBlendMode: 'screen',
+        }}
+      />
+      {/* Subtle color overlay to preserve dark theme */}
+      <div className="fixed inset-0 z-0 pointer-events-none" style={{background: 'radial-gradient(ellipse at center, rgba(10,10,15,0.7) 0%, rgba(10,10,15,0.92) 100%)'}} />
+
       {/* Top rainbow bar */}
       <div className="rainbow-bar fixed top-0 left-0 right-0 z-50" />
 
