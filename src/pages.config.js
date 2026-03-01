@@ -54,9 +54,9 @@ import Gallery from './pages/Gallery';
 import Home from './pages/Home';
 import Infos from './pages/Infos';
 import Legal from './pages/Legal';
+import ParticipantFormPage from './pages/ParticipantFormPage';
 import Privacy from './pages/Privacy';
 import Programme from './pages/Programme';
-import ParticipantFormPage from './pages/ParticipantFormPage';
 import __Layout from './Layout.jsx';
 
 
@@ -68,9 +68,9 @@ export const PAGES = {
     "Home": Home,
     "Infos": Infos,
     "Legal": Legal,
+    "ParticipantFormPage": ParticipantFormPage,
     "Privacy": Privacy,
     "Programme": Programme,
-    "ParticipantFormPage": ParticipantFormPage,
 }
 
 export const pagesConfig = {
