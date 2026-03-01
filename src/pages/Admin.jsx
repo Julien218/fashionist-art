@@ -82,6 +82,8 @@ export default function Admin() {
             )}
           </TabsList>
 
+          <TabsContent value="participants"><ParticipantsTab user={user} /></TabsContent>
+
           <TabsContent value="artists"><AdminCRUD entity="Artist" queryClient={queryClient} fields={[
             { key: 'name', label: 'Nom', type: 'text', required: true },
             { key: 'discipline', label: 'Discipline', type: 'text', required: true },
