@@ -54,11 +54,12 @@ export default function Home() {
 
       <div className="divider max-w-4xl mx-auto" />
 
-      {/* Countdown section */}
-      <section className="py-20 px-4">
+      {/* Countdown section — light background like screenshot */}
+      <section className="py-20 px-4" style={{ background: 'linear-gradient(180deg, #FDF0F3 0%, #FAE8EC 100%)' }}>
         <div className="max-w-3xl mx-auto text-center">
           <span className="text-[#FF2D8A] text-xs font-display font-semibold uppercase tracking-widest block mb-4">Compte à rebours</span>
-          <h2 className="font-display font-bold text-3xl md:text-4xl text-white mb-8">L'événement commence dans</h2>
+          <h2 className="font-display font-black text-3xl md:text-5xl text-[#2D2024] mb-2">L'ÉVÉNEMENT COMMENCE DANS</h2>
+          <p className="text-[#2D2024]/50 text-sm mb-10">18 avril 2026 · Centre Sportif d'Élouges, Dour</p>
           <Countdown />
         </div>
       </section>
@@ -70,20 +71,24 @@ export default function Home() {
 
       <div className="divider max-w-4xl mx-auto" />
 
-      {/* Newsletter */}
-      <section className="py-20 px-4">
-        <div className="max-w-xl mx-auto">
-          <SectionTitle
-            title="Restez informé"
-            subtitle="Inscrivez-vous à notre newsletter pour recevoir les dernières actualités et ne manquer aucune information sur Fashionist'ART."
-          />
+      {/* Newsletter — light background like screenshot */}
+      <section className="py-20 px-4" style={{ background: 'linear-gradient(180deg, #FDF0F3 0%, #FAE8EC 100%)' }}>
+        <div className="max-w-xl mx-auto text-center">
+          {/* Icon */}
+          <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}
+            className="w-16 h-16 rounded-full mx-auto mb-6 flex items-center justify-center"
+            style={{ background: 'linear-gradient(135deg, #FF2D8A, #D4836A)' }}>
+            <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </motion.div>
+          <h2 className="font-display font-bold text-3xl md:text-4xl text-[#2D2024] mb-3">Restez informé</h2>
+          <p className="text-[#2D2024]/50 mb-10">Inscrivez-vous à notre newsletter pour recevoir les dernières actualités et ne manquer aucune information sur Fashionist'ART.</p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="glass-dark neon-border rounded-3xl p-8"
+            className="bg-white rounded-2xl p-8 shadow-sm"
           >
-            <NewsletterForm />
+            <NewsletterForm light />
           </motion.div>
         </div>
       </section>
