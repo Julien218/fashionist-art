@@ -68,14 +68,18 @@ export default function Admin() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-8">
-        <Tabs defaultValue="artists">
-          <TabsList className="glass mb-8 flex flex-wrap">
+        <Tabs defaultValue="participants">
+          <TabsList className="glass mb-8 flex flex-wrap gap-1">
+            <TabsTrigger value="participants" className="gap-2"><ClipboardList className="w-4 h-4" /> Participants</TabsTrigger>
             <TabsTrigger value="artists" className="gap-2"><Palette className="w-4 h-4" /> Artistes</TabsTrigger>
             <TabsTrigger value="program" className="gap-2"><Calendar className="w-4 h-4" /> Programme</TabsTrigger>
             <TabsTrigger value="partners" className="gap-2"><Handshake className="w-4 h-4" /> Partenaires</TabsTrigger>
             <TabsTrigger value="media" className="gap-2"><Image className="w-4 h-4" /> Médias</TabsTrigger>
             <TabsTrigger value="registrations" className="gap-2"><Mail className="w-4 h-4" /> Inscriptions</TabsTrigger>
             <TabsTrigger value="users" className="gap-2"><Users className="w-4 h-4" /> Utilisateurs</TabsTrigger>
+            {user.role === 'super_admin' && (
+              <TabsTrigger value="stripe" className="gap-2"><CreditCard className="w-4 h-4" /> Stripe</TabsTrigger>
+            )}
           </TabsList>
 
           <TabsContent value="artists"><AdminCRUD entity="Artist" queryClient={queryClient} fields={[
