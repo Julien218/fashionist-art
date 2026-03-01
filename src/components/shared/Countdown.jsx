@@ -45,7 +45,7 @@ export default function Countdown() {
             viewport={{ once: true }}
             transition={{ delay: i * 0.1 }}
             className="flex flex-col items-center"
-          >
+        >
             <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl flex items-center justify-center"
               style={{ background: 'linear-gradient(135deg, #D4836A, #E8967A, #D4AF8A)' }}>
               <span className="font-display font-black text-3xl sm:text-4xl text-white drop-shadow">
