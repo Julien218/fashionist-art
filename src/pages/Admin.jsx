@@ -122,6 +122,9 @@ export default function Admin() {
           <TabsContent value="registrations"><AdminReadOnly entity="Registration" queryClient={queryClient} columns={['first_name', 'last_name', 'email', 'accepts_terms', 'accepts_contact', 'created_date']} /></TabsContent>
 
           <TabsContent value="users"><AdminUsers user={user} /></TabsContent>
+          {user.role === 'super_admin' && (
+            <TabsContent value="stripe"><StripeTab /></TabsContent>
+          )}
         </Tabs>
       </div>
     </div>
