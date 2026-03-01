@@ -49,7 +49,7 @@ export default function Layout({ children, currentPageName }) {
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat',
-          opacity: 0.08,
+          opacity: 0.10,
           mixBlendMode: 'screen',
         }}
       />
