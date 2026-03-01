@@ -58,7 +58,7 @@ export default function Home() {
       <section className="py-20 px-4" style={{ background: 'linear-gradient(180deg, #FDF0F3 0%, #FAE8EC 100%)' }}>
         <div className="max-w-3xl mx-auto text-center">
           <span className="text-[#FF2D8A] text-xs font-display font-semibold uppercase tracking-widest block mb-4">Compte à rebours</span>
-          <h2 className="font-display font-black text-3xl md:text-5xl text-[#2D2024] mb-2">L'ÉVÉNEMENT COMMENCE DANS</h2>
+          <h2 className="font-display font-black text-[clamp(1.4rem,3.5vw,2.5rem)] text-[#2D2024] mb-2 tracking-tight uppercase">L'événement commence dans</h2>
           <p className="text-[#2D2024]/50 text-sm mb-10">18 avril 2026 · Centre Sportif d'Élouges, Dour</p>
           <Countdown />
         </div>
@@ -80,7 +80,7 @@ export default function Home() {
             style={{ background: 'linear-gradient(135deg, #FF2D8A, #D4836A)' }}>
             <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
           </motion.div>
-          <h2 className="font-display font-bold text-3xl md:text-4xl text-[#2D2024] mb-3">Restez informé</h2>
+          <h2 className="font-display font-black text-[clamp(1.6rem,3vw,2.2rem)] text-[#2D2024] mb-3 tracking-tight">Restez informé</h2>
           <p className="text-[#2D2024]/50 mb-10">Inscrivez-vous à notre newsletter pour recevoir les dernières actualités et ne manquer aucune information sur Fashionist'ART.</p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
