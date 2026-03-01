@@ -70,8 +70,8 @@ export default function HeroSection() {
           transition={{ duration: 0.7, delay: 0.2 }}
         >
           <h1 className="leading-none mb-2">
-            <span className="font-script text-6xl md:text-8xl text-[#FF2D8A] block">Fashionist'</span>
-            <span className="font-display font-black text-6xl md:text-8xl text-white block">ART</span>
+            <span className="font-script text-[clamp(3.5rem,9vw,6.5rem)] text-[#FF2D8A] block" style={{fontWeight:700}}>Fashionist'</span>
+            <span className="font-display font-black text-[clamp(3.5rem,9vw,6.5rem)] text-white block tracking-tight">ART</span>
           </h1>
         </motion.div>
 
@@ -80,7 +80,7 @@ export default function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.35 }}
-          className="text-white/60 text-lg md:text-xl mt-4 mb-6"
+          className="text-white/60 text-base md:text-lg mt-4 mb-6 font-display font-normal tracking-wide"
         >
           Quand la mode rencontre l'art
         </motion.p>

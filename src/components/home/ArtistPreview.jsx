@@ -33,9 +33,9 @@ export default function ArtistPreview() {
         <div className="flex items-center justify-between mb-10">
           <div>
             <span className="text-[#FF2D8A] text-xs font-display font-semibold uppercase tracking-widest block mb-2">Artistes</span>
-            <h2 className="font-display font-black text-3xl md:text-5xl text-white leading-tight">
+            <h2 className="font-display font-black text-[clamp(1.5rem,3.5vw,2.6rem)] text-white leading-tight tracking-tight">
               LES TALENTS DE{' '}
-              <span className="font-script text-3xl md:text-5xl text-[#FF2D8A] italic">L'ÉDITION 2026</span>
+              <span className="font-script text-[clamp(1.5rem,3.5vw,2.6rem)] text-[#FF2D8A]" style={{fontStyle:'italic'}}>L'ÉDITION 2026</span>
             </h2>
           </div>
           <div className="flex items-center gap-2">

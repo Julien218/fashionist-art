@@ -15,11 +15,11 @@ export default function SectionTitle({ title, subtitle, tag, align = "center" })
           {tag}
         </span>
       )}
-      <h2 className="font-display font-bold text-3xl md:text-4xl text-white mb-3">
+      <h2 className="font-display font-black text-2xl md:text-4xl text-white mb-3 tracking-tight">
         {title}
       </h2>
       {subtitle && (
-        <p className="text-white/50 text-base md:text-lg max-w-2xl mx-auto">
+        <p className="text-white/50 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
           {subtitle}
         </p>
       )}
