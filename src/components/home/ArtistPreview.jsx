@@ -7,64 +7,63 @@ import { motion } from 'framer-motion';
 import SectionTitle from '../shared/SectionTitle';
 import { ArrowRight, User } from 'lucide-react';
 
+const PLACEHOLDER_PHOTOS = [
+  'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80',
+  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
+  'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80',
+  'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80',
+];
+
 export default function ArtistPreview() {
   const { data: artists = [] } = useQuery({
     queryKey: ['artists-preview'],
-    queryFn: () => base44.entities.Artist.list('display_order', 6),
+    queryFn: () => base44.entities.Artist.list('display_order', 4),
   });
 
   return (
     <section className="py-20 px-4">
-      <SectionTitle title="Artistes à l'affiche" subtitle="Découvrez les talents qui feront vibrer Fashionist'ART" />
-      
-      <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-        {artists.length === 0 ? (
-          Array.from({ length: 6 }).map((_, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="glass glow-card rounded-2xl p-6 text-center"
-            >
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#F2C4CE] to-[#E8A0B4] mx-auto mb-4 flex items-center justify-center">
-                <User className="w-8 h-8 text-white" />
-              </div>
-              <p className="font-display font-semibold text-[#2D2024]/40">À découvrir</p>
-              <p className="text-xs text-[#2D2024]/30 mt-1">Bientôt annoncé</p>
-            </motion.div>
-          ))
-        ) : (
-          artists.map((artist, i) => (
-            <motion.div
-              key={artist.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="glass glow-card rounded-2xl p-6 text-center group cursor-pointer"
-            >
-              <div className="w-20 h-20 rounded-full mx-auto mb-4 overflow-hidden bg-gradient-to-br from-[#F2C4CE] to-[#E8A0B4]">
-                {artist.photo_url ? (
-                  <img src={artist.photo_url} alt={artist.name} className="w-full h-full object-cover" loading="lazy" />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center">
-                    <User className="w-8 h-8 text-white" />
-                  </div>
-                )}
-              </div>
-              <p className="font-display font-semibold text-[#2D2024] group-hover:text-[#C2185B] transition-colors">{artist.name}</p>
-              <p className="text-xs text-[#2D2024]/50 mt-1">{artist.discipline}</p>
-            </motion.div>
-          ))
-        )}
-      </div>
+      <div className="max-w-6xl mx-auto">
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <span className="text-[#FF2D8A] text-xs font-display font-semibold uppercase tracking-widest block mb-2">Artistes</span>
+            <h2 className="font-display font-bold text-3xl md:text-4xl text-white">Les talents de l'édition 2026</h2>
+          </div>
+          <Link to={createPageUrl('Artists')} className="hidden sm:inline-flex items-center gap-2 text-white/50 hover:text-white text-sm transition-colors">
+            Voir tous <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
 
-      <div className="text-center mt-10">
-        <Link to={createPageUrl('Artists')} className="inline-flex items-center gap-2 text-[#C2185B] font-display font-semibold hover:gap-3 transition-all">
-          Voir tous les artistes <ArrowRight className="w-4 h-4" />
-        </Link>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+          {(artists.length > 0 ? artists : Array.from({ length: 4 })).map((artist, i) => (
+            <motion.div
+              key={artist?.id || i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="glass-dark card-hover neon-border rounded-2xl overflow-hidden group cursor-pointer"
+            >
+              <div className="aspect-square overflow-hidden">
+                <img
+                  src={artist?.photo_url || PLACEHOLDER_PHOTOS[i % PLACEHOLDER_PHOTOS.length]}
+                  alt={artist?.name || `Artiste ${i + 1}`}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </div>
+              <div className="p-4">
+                <p className="text-[#FF2D8A] text-xs font-semibold">{artist?.discipline || 'Mode & Design'}</p>
+                <h3 className="font-display font-bold text-sm text-white mt-1">{artist?.name || `Artiste ${i + 1}`}</h3>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="text-center mt-8 sm:hidden">
+          <Link to={createPageUrl('Artists')} className="inline-flex items-center gap-2 text-[#FF2D8A] font-semibold text-sm">
+            Voir tous les artistes <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
       </div>
     </section>
   );
