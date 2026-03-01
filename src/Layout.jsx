@@ -74,7 +74,7 @@ export default function Layout({ children, currentPageName }) {
                   <span className="font-script text-xl text-[#FF2D8A]" style={{fontWeight:700}}>Fashionist'</span>
                   <span className="font-display font-black text-lg text-gray-900 tracking-tight">ART</span>
                 </div>
-                <span className="text-[9px] font-display font-semibold uppercase tracking-[0.12em] text-white/30 mt-0.5">Centre Sportif d'Élouges · Dour</span>
+                <span className="text-[9px] font-display font-semibold uppercase tracking-[0.12em] text-gray-400 mt-0.5">Centre Sportif d'Élouges · Dour</span>
               </div>
             </Link>
 
