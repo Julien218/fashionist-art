@@ -26,6 +26,13 @@ export default function Home() {
 
   return (
     <div>
+      {isAdmin && (
+        <div className="fixed bottom-6 right-6 z-50">
+          <Link to={createPageUrl('Admin')} className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#D4AF37]/90 hover:bg-[#D4AF37] text-black font-display font-bold text-sm shadow-lg transition-all hover:scale-105">
+            <Shield className="w-4 h-4" /> Admin
+          </Link>
+        </div>
+      )}
       <HeroSection />
 
       {/* About section */}
