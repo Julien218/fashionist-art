@@ -60,9 +60,9 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="flex justify-center mb-6"
         >
-          <img
-            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_68ae1c019dacc474a322f2b2/742499905_Capturedecran2026-02-26a175005.png"
-            alt="Fashionist'ART"
+          <video
+            src="https://assets.grok.com/users/3ef75749-2099-4161-a474-e0338be673cc/generated/4bf863f4-8003-4a9a-ae98-723464297c7f/generated_video.mp4?cache=1"
+            autoPlay loop muted playsInline
             className="w-40 h-40 md:w-48 md:h-48 rounded-2xl object-cover ring-2 ring-[#FF2D8A]/30 shadow-2xl shadow-[#FF2D8A]/20"
           />
         </motion.div>
