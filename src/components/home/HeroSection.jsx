@@ -55,6 +55,21 @@ export default function HeroSection() {
 
 
 
+        {/* Video */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="flex justify-center mb-6"
+        >
+          <iframe
+            src="https://drive.google.com/file/d/1eD37FaEnMv0ZOcsPdqqlWHvkzdegnYm0/preview"
+            className="w-72 h-72 md:w-96 md:h-96 rounded-2xl shadow-2xl shadow-[#FF2D8A]/20 ring-2 ring-[#FF2D8A]/30"
+            allow="autoplay"
+            allowFullScreen
+          />
+        </motion.div>
+
         {/* Subtitle */}
         <motion.p
           initial={{ opacity: 0 }}
