@@ -139,6 +139,7 @@ export default function ArtistImportDialog({ open, onOpenChange, onImported }) {
       }
       if (!record.name) record.name = record.stage_name || `${record.first_name || ''} ${record.last_name || ''}`.trim() || record.first_name || record.last_name;
       if (!record.status) record.status = 'active';
+      if (!record.discipline) record.discipline = record.category || 'Non précisé';
 
       // UPSERT logic
       const existingByEmail = record.email ? emailMap[record.email.toLowerCase()] : null;
