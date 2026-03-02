@@ -19,6 +19,34 @@ const EMPTY = {
 export default function ArtistFormDialog({ open, onOpenChange, artist, onSaved }) {
   const [form, setForm] = useState(EMPTY);
   const [saving, setSaving] = useState(false);
+  const [uploadingPortrait, setUploadingPortrait] = useState(false);
+  const [uploadingWork, setUploadingWork] = useState(null); // index or null
+
+  const handleUploadPortrait = async (file) => {
+    if (!file) return;
+    setUploadingPortrait(true);
+    const { file_url } = await base44.integrations.Core.UploadFile({ file });
+    set('photo_url', file_url);
+    setUploadingPortrait(false);
+  };
+
+  const handleUploadWork = async (file, idx) => {
+    if (!file) return;
+    setUploadingWork(idx);
+    const { file_url } = await base44.integrations.Core.UploadFile({ file });
+    const works = [...(form.works || [])];
+    works[idx] = { ...works[idx], image_url: file_url };
+    set('works', works);
+    setUploadingWork(null);
+  };
+
+  const addWork = () => set('works', [...(form.works || []), { title: '', image_url: '', description: '' }]);
+  const removeWork = (idx) => set('works', (form.works || []).filter((_, i) => i !== idx));
+  const updateWork = (idx, key, val) => {
+    const works = [...(form.works || [])];
+    works[idx] = { ...works[idx], [key]: val };
+    set('works', works);
+  };
 
   useEffect(() => {
     if (artist) setForm({ ...EMPTY, ...artist });
