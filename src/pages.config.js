@@ -57,6 +57,7 @@ import Legal from './pages/Legal';
 import ParticipantFormPage from './pages/ParticipantFormPage';
 import Privacy from './pages/Privacy';
 import Programme from './pages/Programme';
+import ArtistComplete from './pages/ArtistComplete';
 import __Layout from './Layout.jsx';
 
 
@@ -71,6 +72,7 @@ export const PAGES = {
     "ParticipantFormPage": ParticipantFormPage,
     "Privacy": Privacy,
     "Programme": Programme,
+    "ArtistComplete": ArtistComplete,
 }
 
 export const pagesConfig = {
