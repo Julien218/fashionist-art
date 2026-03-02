@@ -63,14 +63,7 @@ export default function Layout({ children, currentPageName }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-[72px]">
             {/* Logo */}
-            <Link to={createPageUrl('Home')} className="flex items-center gap-3">
-              <img
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_68ae1c019dacc474a322f2b2/742499905_Capturedecran2026-02-26a175005.png"
-                alt="Fashionist'ART"
-                className="w-10 h-10 rounded-full object-cover ring-2 ring-[#FF2D8A]/40"
-              />
-
-            </Link>
+            <Link to={createPageUrl('Home')} />
 
             {/* Desktop nav */}
             <nav className="hidden lg:flex items-center gap-1">
