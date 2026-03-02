@@ -63,7 +63,7 @@ export default function HeroSection() {
           className="flex justify-center mb-6"
         >
           <iframe
-            src="https://drive.google.com/file/d/14wGViV3Bc-0zfoZUs0Ycnd-_F5vHIv6Q/preview"
+            src="https://drive.google.com/file/d/14wGViV3Bc-0zfoZUs0Ycnd-_F5vHIv6Q/preview?loop=1"
             className="w-72 h-72 md:w-96 md:h-96 rounded-2xl shadow-2xl shadow-[#FF2D8A]/20 ring-2 ring-[#FF2D8A]/30"
             allow="autoplay"
             allowFullScreen
