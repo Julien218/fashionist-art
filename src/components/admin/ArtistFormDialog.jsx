@@ -146,6 +146,48 @@ export default function ArtistFormDialog({ open, onOpenChange, artist, onSaved }
             </div>
             <F label="Ordre d'affichage" k="display_order" type="number" />
           </div>
+          {/* Œuvres */}
+          <div>
+            <div className="flex items-center justify-between mb-2">
+              <label className="text-xs text-white/40">Œuvres / Photos des travaux</label>
+              <Button type="button" onClick={addWork} variant="outline" className="h-7 text-xs border-white/10 text-white/50 gap-1 px-2">
+                <Plus className="w-3 h-3" /> Ajouter une œuvre
+              </Button>
+            </div>
+            <div className="space-y-3">
+              {(form.works || []).map((work, idx) => (
+                <div key={idx} className="flex gap-3 items-start bg-white/5 rounded-xl p-3 border border-white/5">
+                  {/* Image */}
+                  <div className="flex-shrink-0">
+                    {work.image_url
+                      ? <img src={work.image_url} className="w-16 h-16 rounded-lg object-cover border border-white/10" alt={work.title} />
+                      : <div className="w-16 h-16 rounded-lg bg-white/5 border border-dashed border-white/10 flex items-center justify-center"><Image className="w-5 h-5 text-white/20" /></div>
+                    }
+                    <label className="mt-1 cursor-pointer flex items-center justify-center gap-1 text-[10px] text-white/40 hover:text-white/60 transition-colors">
+                      {uploadingWork === idx ? <Loader2 className="w-3 h-3 animate-spin" /> : <Upload className="w-3 h-3" />}
+                      {uploadingWork === idx ? '...' : 'Upload'}
+                      <input type="file" accept="image/*" className="hidden" onChange={e => handleUploadWork(e.target.files[0], idx)} />
+                    </label>
+                  </div>
+                  <div className="flex-1 space-y-1.5">
+                    <Input value={work.title || ''} onChange={e => updateWork(idx, 'title', e.target.value)}
+                      placeholder="Titre de l'œuvre" className="bg-white/5 border-white/10 text-white placeholder:text-white/20 h-8 text-xs" />
+                    <Input value={work.image_url || ''} onChange={e => updateWork(idx, 'image_url', e.target.value)}
+                      placeholder="URL de l'image..." className="bg-white/5 border-white/10 text-white placeholder:text-white/20 h-8 text-xs" />
+                    <Input value={work.description || ''} onChange={e => updateWork(idx, 'description', e.target.value)}
+                      placeholder="Description (optionnel)" className="bg-white/5 border-white/10 text-white placeholder:text-white/20 h-8 text-xs" />
+                  </div>
+                  <button onClick={() => removeWork(idx)} className="text-white/20 hover:text-red-400 transition-colors mt-1">
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              ))}
+              {(form.works || []).length === 0 && (
+                <p className="text-xs text-white/20 text-center py-3">Aucune œuvre ajoutée</p>
+              )}
+            </div>
+          </div>
+
           <div className="flex items-center gap-2">
             <Checkbox id="consent_d" checked={form.consent_diffusion} onCheckedChange={v => set('consent_diffusion', v)} className="border-white/20" />
             <label htmlFor="consent_d" className="text-sm text-white/60 cursor-pointer">Consentement diffusion</label>
