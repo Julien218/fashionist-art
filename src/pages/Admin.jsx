@@ -85,16 +85,7 @@ export default function Admin() {
 
           <TabsContent value="participants"><ParticipantsTab user={user} /></TabsContent>
 
-          <TabsContent value="artists"><AdminCRUD entity="Artist" queryClient={queryClient} fields={[
-            { key: 'name', label: 'Nom', type: 'text', required: true },
-            { key: 'discipline', label: 'Discipline', type: 'text', required: true },
-            { key: 'short_bio', label: 'Mini bio', type: 'textarea' },
-            { key: 'full_bio', label: 'Bio complète', type: 'textarea' },
-            { key: 'photo_url', label: 'Photo URL', type: 'text' },
-            { key: 'website', label: 'Site web', type: 'text' },
-            { key: 'instagram', label: 'Instagram', type: 'text' },
-            { key: 'display_order', label: 'Ordre', type: 'number' },
-          ]} /></TabsContent>
+          <TabsContent value="artists"><ArtistsTab user={user} /></TabsContent>
 
           <TabsContent value="program"><AdminCRUD entity="ProgramEvent" queryClient={queryClient} fields={[
             { key: 'title', label: 'Titre', type: 'text', required: true },
