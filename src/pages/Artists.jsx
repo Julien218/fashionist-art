@@ -22,7 +22,10 @@ export default function Artists() {
 
   const { data: artists = [], isLoading } = useQuery({
     queryKey: ['artists'],
-    queryFn: () => base44.entities.Artist.list('display_order'),
+    queryFn: async () => {
+      const all = await base44.entities.Artist.list('display_order');
+      return all.filter(a => !a.status || a.status === 'active');
+    },
   });
 
   const { data: partners = [] } = useQuery({

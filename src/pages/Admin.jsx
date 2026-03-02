@@ -14,6 +14,7 @@ import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
 import ParticipantsTab from '@/components/admin/ParticipantsTab';
 import StripeTab from '@/components/admin/StripeTab';
+import ArtistsTab from '@/components/admin/ArtistsTab';
 import { 
   Users, Calendar, Palette, Handshake, Image, Mail, 
   Plus, Pencil, Trash2, LogOut, Shield, Loader2,
