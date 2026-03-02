@@ -19,6 +19,11 @@ const HIGHLIGHTS = [
 ];
 
 export default function Home() {
+  const [isAdmin, setIsAdmin] = useState(false);
+  useEffect(() => {
+    base44.auth.me().then(u => { if (u && ['super_admin', 'admin'].includes(u.role)) setIsAdmin(true); }).catch(() => {});
+  }, []);
+
   return (
     <div>
       <HeroSection />
