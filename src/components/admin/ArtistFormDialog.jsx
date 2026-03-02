@@ -98,8 +98,25 @@ export default function ArtistFormDialog({ open, onOpenChange, artist, onSaved }
             <F label="Catégorie" k="category" placeholder="ex: Musique" />
             <F label="Discipline" k="discipline" placeholder="ex: Chanteur" />
           </div>
-          <F label="Photo URL" k="photo_url" placeholder="https://..." />
-          {form.photo_url && <img src={form.photo_url} className="w-16 h-16 rounded-full object-cover border border-white/10" alt="preview" />}
+          {/* Photo portrait */}
+          <div>
+            <label className="text-xs text-white/40 mb-2 block">Photo portrait</label>
+            <div className="flex items-center gap-3">
+              {form.photo_url
+                ? <img src={form.photo_url} className="w-16 h-16 rounded-full object-cover border border-white/10 flex-shrink-0" alt="portrait" />
+                : <div className="w-16 h-16 rounded-full bg-white/5 border border-dashed border-white/10 flex items-center justify-center flex-shrink-0"><Image className="w-6 h-6 text-white/20" /></div>
+              }
+              <div className="flex flex-col gap-1.5 flex-1">
+                <label className="cursor-pointer inline-flex items-center gap-2 text-xs text-white/60 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg px-3 py-2 transition-colors w-fit">
+                  {uploadingPortrait ? <Loader2 className="w-3 h-3 animate-spin" /> : <Upload className="w-3 h-3" />}
+                  {uploadingPortrait ? 'Upload...' : 'Uploader une photo'}
+                  <input type="file" accept="image/*" className="hidden" onChange={e => handleUploadPortrait(e.target.files[0])} />
+                </label>
+                <Input value={form.photo_url || ''} onChange={e => set('photo_url', e.target.value)}
+                  placeholder="ou coller un lien URL..." className="bg-white/5 border-white/10 text-white placeholder:text-white/20 h-8 text-xs" />
+              </div>
+            </div>
+          </div>
           <div>
             <label className="text-xs text-white/40 mb-1 block">Bio courte</label>
             <Textarea value={form.short_bio} onChange={e => set('short_bio', e.target.value)} className="bg-white/5 border-white/10 text-white h-16 text-sm" />
