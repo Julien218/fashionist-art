@@ -7,7 +7,9 @@ import NewsletterForm from '@/components/shared/NewsletterForm';
 import SectionTitle from '@/components/shared/SectionTitle';
 import Countdown from '@/components/shared/Countdown';
 import { motion } from 'framer-motion';
-import { Palette, Shirt, Users, Zap } from 'lucide-react';
+import { Palette, Shirt, Users, Zap, Shield } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { base44 } from '@/api/base44Client';
 
 const HIGHLIGHTS = [
   { icon: Palette, title: 'Expositions artistiques', desc: "Découvrez des œuvres uniques mêlant art contemporain et inspiration mode." },
