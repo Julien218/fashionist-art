@@ -132,12 +132,12 @@ export default function ArtistImportDialog({ open, onOpenChange, onImported }) {
       }
 
       // Validation
-      const hasId = record.name || record.stage_name || (record.first_name && record.last_name);
+      const hasId = record.name || record.stage_name || record.first_name || record.last_name;
       if (!hasId) { errors.push({ row: i + 2, reason: 'Pas d\'identifiant (nom/prénom ou nom de scène)' }); continue; }
       if (record.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(record.email)) {
         errors.push({ row: i + 2, reason: `Email invalide: ${record.email}` }); continue;
       }
-      if (!record.name) record.name = record.stage_name || `${record.first_name || ''} ${record.last_name || ''}`.trim();
+      if (!record.name) record.name = record.stage_name || `${record.first_name || ''} ${record.last_name || ''}`.trim() || record.first_name || record.last_name;
       if (!record.status) record.status = 'active';
 
       // UPSERT logic
