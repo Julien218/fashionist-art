@@ -53,31 +53,7 @@ export default function HeroSection() {
           Événement gratuit • 18 avril 2026
         </motion.div>
 
-        {/* Logo image */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex justify-center mb-6"
-        >
-          <img
-            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_68ae1c019dacc474a322f2b2/742499905_Capturedecran2026-02-26a175005.png"
-            alt="Fashionist'ART"
-            className="w-40 h-40 md:w-48 md:h-48 rounded-2xl object-cover ring-2 ring-[#FF2D8A]/30 shadow-2xl shadow-[#FF2D8A]/20"
-          />
-        </motion.div>
 
-        {/* Title */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-        >
-          <h1 className="leading-none mb-2">
-            <span className="text-[clamp(3rem,8vw,5.5rem)] text-[#FF2D8A] block" style={{fontFamily:'"Playfair Display", serif', fontStyle:'italic', fontWeight:700}}>Fashionist'</span>
-            <span className="text-[clamp(4.5rem,12vw,9rem)] text-white block" style={{fontFamily:'"Montserrat", sans-serif', fontWeight:900, letterSpacing:'0.02em', lineHeight:0.9}}>ART</span>
-          </h1>
-        </motion.div>
 
         {/* Subtitle */}
         <motion.p
