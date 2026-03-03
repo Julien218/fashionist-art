@@ -34,6 +34,11 @@ export default function Layout({ children, currentPageName }) {
 
   const bgImage = "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a460cb984c65f748b49e7d/ef497c4fd_artisteimageb.jpg";
 
+  const handleSplashDone = () => {
+    sessionStorage.setItem('splashSeen', '1');
+    setShowSplash(false);
+  };
+
   if (isAdminPage) {
     return (
       <div className="min-h-screen bg-[#0A0A0F] text-white">
