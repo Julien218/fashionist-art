@@ -53,7 +53,7 @@ export default function Layout({ children, currentPageName }) {
         }}
       />
       {/* Dark overlay to preserve readability */}
-      <div className="fixed inset-0 z-0 pointer-events-none" style={{background: 'rgba(10,10,15,0.72)'}} />
+      <div className="fixed inset-0 z-0 pointer-events-none" style={{background: 'rgba(10,10,15,0)'}} />
 
       {/* Top rainbow bar */}
       <div className="rainbow-bar fixed top-0 left-0 right-0 z-50" />
