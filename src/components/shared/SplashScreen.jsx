@@ -1,21 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
-// Google Drive embed with autoplay
-const IFRAME_SRC = "https://drive.google.com/file/d/1KJsOcAV_tOdlq1dx-P4W18o9gipgXSlj/preview";
+// Lien de streaming direct Google Drive (pas d'iframe, pas de bouton play)
+const VIDEO_SRC = "https://drive.google.com/uc?export=download&id=1KJsOcAV_tOdlq1dx-P4W18o9gipgXSlj";
 
 export default function SplashScreen({ onDone }) {
   const [visible, setVisible] = useState(true);
+  const videoRef = useRef(null);
 
   const handleSkip = () => {
     setVisible(false);
     setTimeout(onDone, 700);
   };
 
-  // Auto-dismiss after 40 seconds (full video 38s + buffer)
   useEffect(() => {
-    const timer = setTimeout(handleSkip, 40000);
+    // Auto-dismiss après 45 secondes max
+    const timer = setTimeout(handleSkip, 45000);
+
+    // Force autoplay dès que le composant est monté
+    const video = videoRef.current;
+    if (video) {
+      video.muted = true; // muted obligatoire pour autoplay sans interaction
+      video.play().then(() => {
+        // Une fois lancée, on peut tenter d'activer le son
+        video.muted = false;
+      }).catch(() => {
+        // Si autoplay bloqué, on reste muet mais la vidéo tourne
+        video.muted = true;
+        video.play().catch(() => {});
+      });
+    }
+
     return () => clearTimeout(timer);
   }, []);
 
@@ -31,28 +47,28 @@ export default function SplashScreen({ onDone }) {
             inset: 0,
             zIndex: 99999,
             background: '#000',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
             width: '100vw',
             height: '100vh',
+            overflow: 'hidden',
           }}
         >
-          <iframe
-            src={IFRAME_SRC}
+          <video
+            ref={videoRef}
+            src={VIDEO_SRC}
+            autoPlay
+            playsInline
+            muted
+            onEnded={handleSkip}
             style={{
               position: 'absolute',
-              top: '-60px',
-              left: '-60px',
-              width: 'calc(100% + 120px)',
-              height: 'calc(100% + 120px)',
-              border: 'none',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
             }}
-            allow="autoplay; fullscreen"
-            allowFullScreen
           />
 
-          {/* Skip button — toujours visible par-dessus l'iframe */}
+          {/* Bouton passer */}
           <button
             onClick={handleSkip}
             style={{ position: 'absolute', top: '24px', right: '24px', zIndex: 100000 }}
