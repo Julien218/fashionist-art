@@ -62,12 +62,14 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="flex justify-center mb-6"
         >
-          <iframe
-            src="https://drive.google.com/file/d/1e5qAhksuz6HfzNZyPPl45ZldnRVuQcHs/preview?loop=1"
-            className="w-72 h-72 md:w-96 md:h-96 rounded-2xl shadow-2xl shadow-[#FF2D8A]/20 ring-2 ring-[#FF2D8A]/30"
-            allow="autoplay"
-            allowFullScreen
-          />
+          <div className="w-72 h-72 md:w-96 md:h-96 rounded-2xl overflow-hidden shadow-2xl shadow-[#FF2D8A]/20 ring-2 ring-[#FF2D8A]/30 relative">
+            <iframe
+              src="https://drive.google.com/file/d/1e5qAhksuz6HfzNZyPPl45ZldnRVuQcHs/preview?loop=1"
+              className="absolute -inset-4 w-[calc(100%+32px)] h-[calc(100%+32px)]"
+              allow="autoplay"
+              allowFullScreen
+            />
+          </div>
         </motion.div>
 
         {/* Subtitle */}
