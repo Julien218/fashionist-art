@@ -99,7 +99,7 @@ export default function Layout({ children, currentPageName }) {
 
             {/* CTA */}
             <div className="flex items-center gap-3">
-              <Link to={createPageUrl('Billetterie')} className="hidden sm:inline-flex items-center gap-2 btn-primary text-sm py-2.5 px-6">
+              <Link to={createPageUrl('Billetterie')} className="hidden sm:inline-flex items-center gap-2 btn-primary text-sm py-2.5 px-6 ring-2 ring-[#FF2D8A] ring-offset-2 ring-offset-transparent">
                 <Ticket className="w-4 h-4" /> Réserver
               </Link>
               <button onClick={() => setMenuOpen(!menuOpen)} className="lg:hidden p-2 rounded-full hover:bg-white/10 transition-colors">
