@@ -2,51 +2,54 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
+const VIDEO_ID = '1KJsOcAV_tOdlq1dx-P4W18o9gipgXSlj';
+// Direct streaming link from Google Drive
+const VIDEO_SRC = `https://drive.google.com/uc?export=download&id=${VIDEO_ID}`;
+
 export default function SplashScreen({ onDone }) {
   const [visible, setVisible] = useState(true);
-  const containerRef = useRef(null);
+  const videoRef = useRef(null);
 
   const handleSkip = () => {
     setVisible(false);
     setTimeout(onDone, 600);
   };
 
-  // Auto-dismiss after 40 seconds (38s video + 2s buffer)
+  // Auto-dismiss after 40 seconds
   useEffect(() => {
     const timer = setTimeout(handleSkip, 40000);
     return () => clearTimeout(timer);
   }, []);
 
-  // Request fullscreen on mount
+  // Autoplay on mount
   useEffect(() => {
-    const el = containerRef.current;
-    if (el && el.requestFullscreen) {
-      el.requestFullscreen().catch(() => {});
-    } else if (el && el.webkitRequestFullscreen) {
-      el.webkitRequestFullscreen();
+    const video = videoRef.current;
+    if (video) {
+      video.play().catch(() => {});
     }
-    return () => {
-      if (document.fullscreenElement) {
-        document.exitFullscreen().catch(() => {});
-      }
-    };
   }, []);
+
+  const handleEnded = () => {
+    handleSkip();
+  };
 
   return (
     <AnimatePresence>
       {visible && (
         <motion.div
-          ref={containerRef}
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
           className="fixed inset-0 z-[9999] bg-black flex items-center justify-center"
         >
-          <iframe
-            src="https://drive.google.com/file/d/1KJsOcAV_tOdlq1dx-P4W18o9gipgXSlj/preview?autoplay=1&controls=0"
-            className="w-full h-full"
-            allow="autoplay; fullscreen"
-            allowFullScreen
+          <video
+            ref={videoRef}
+            src={VIDEO_SRC}
+            autoPlay
+            playsInline
+            muted={false}
+            onEnded={handleEnded}
+            className="w-full h-full object-cover"
           />
 
           {/* Skip button */}
