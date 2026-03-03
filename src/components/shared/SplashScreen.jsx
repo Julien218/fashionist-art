@@ -1,34 +1,51 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
 export default function SplashScreen({ onDone }) {
   const [visible, setVisible] = useState(true);
+  const containerRef = useRef(null);
 
   const handleSkip = () => {
     setVisible(false);
     setTimeout(onDone, 600);
   };
 
-  // Auto-dismiss after 12 seconds
+  // Auto-dismiss after 40 seconds (38s video + 2s buffer)
   useEffect(() => {
-    const timer = setTimeout(handleSkip, 12000);
+    const timer = setTimeout(handleSkip, 40000);
     return () => clearTimeout(timer);
+  }, []);
+
+  // Request fullscreen on mount
+  useEffect(() => {
+    const el = containerRef.current;
+    if (el && el.requestFullscreen) {
+      el.requestFullscreen().catch(() => {});
+    } else if (el && el.webkitRequestFullscreen) {
+      el.webkitRequestFullscreen();
+    }
+    return () => {
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(() => {});
+      }
+    };
   }, []);
 
   return (
     <AnimatePresence>
       {visible && (
         <motion.div
+          ref={containerRef}
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.6 }}
           className="fixed inset-0 z-[9999] bg-black flex items-center justify-center"
         >
           <iframe
-            src="https://drive.google.com/file/d/1KJsOcAV_tOdlq1dx-P4W18o9gipgXSlj/preview"
+            src="https://drive.google.com/file/d/1KJsOcAV_tOdlq1dx-P4W18o9gipgXSlj/preview?autoplay=1&controls=0"
             className="w-full h-full"
-            allow="autoplay"
+            allow="autoplay; fullscreen"
             allowFullScreen
           />
 
