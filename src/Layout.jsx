@@ -50,6 +50,7 @@ export default function Layout({ children, currentPageName }) {
 
   return (
     <div className="min-h-screen bg-[#0A0A0F] text-white flex flex-col" style={{position:'relative'}}>
+      {showSplash && <SplashScreen onDone={handleSplashDone} />}
       {/* Global background image — semi-transparent */}
       <div
         className="fixed inset-0 z-0 pointer-events-none select-none"
