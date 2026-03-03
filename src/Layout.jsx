@@ -49,7 +49,7 @@ export default function Layout({ children, currentPageName }) {
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat',
-          opacity: 0.50,
+          opacity: 0.60,
         }}
       />
       {/* Dark overlay to preserve readability */}

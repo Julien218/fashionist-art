@@ -48,6 +48,7 @@
  * The mainPage value must match a key in the PAGES object exactly.
  */
 import Admin from './pages/Admin';
+import ArtistComplete from './pages/ArtistComplete';
 import Artists from './pages/Artists';
 import Billetterie from './pages/Billetterie';
 import Gallery from './pages/Gallery';
@@ -57,12 +58,12 @@ import Legal from './pages/Legal';
 import ParticipantFormPage from './pages/ParticipantFormPage';
 import Privacy from './pages/Privacy';
 import Programme from './pages/Programme';
-import ArtistComplete from './pages/ArtistComplete';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
     "Admin": Admin,
+    "ArtistComplete": ArtistComplete,
     "Artists": Artists,
     "Billetterie": Billetterie,
     "Gallery": Gallery,
@@ -72,7 +73,6 @@ export const PAGES = {
     "ParticipantFormPage": ParticipantFormPage,
     "Privacy": Privacy,
     "Programme": Programme,
-    "ArtistComplete": ArtistComplete,
 }
 
 export const pagesConfig = {
