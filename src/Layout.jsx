@@ -18,6 +18,9 @@ export default function Layout({ children, currentPageName }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [user, setUser] = useState(null);
   const [scrolled, setScrolled] = useState(false);
+  const [showSplash, setShowSplash] = useState(() => {
+    return !sessionStorage.getItem('splashSeen');
+  });
 
   useEffect(() => {
     base44.auth.me().then(setUser).catch(() => {});
