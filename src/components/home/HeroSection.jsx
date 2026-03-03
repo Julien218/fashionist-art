@@ -64,7 +64,7 @@ export default function HeroSection() {
         >
           <div className="w-72 h-72 md:w-96 md:h-96 rounded-2xl overflow-hidden shadow-2xl shadow-[#FF2D8A]/20 ring-2 ring-[#FF2D8A]/30 relative">
             <iframe
-              src="https://drive.google.com/file/d/1e5qAhksuz6HfzNZyPPl45ZldnRVuQcHs/preview?loop=1"
+              src="https://drive.google.com/file/d/1KJsOcAV_tOdlq1dx-P4W18o9gipgXSlj/preview?loop=1"
               className="absolute -inset-4 w-[calc(100%+32px)] h-[calc(100%+32px)]"
               allow="autoplay"
               allowFullScreen
