@@ -15,10 +15,11 @@ import { toast } from 'sonner';
 import ParticipantsTab from '@/components/admin/ParticipantsTab';
 import StripeTab from '@/components/admin/StripeTab';
 import ArtistsTab from '@/components/admin/ArtistsTab';
+import NewsletterTab from '@/components/admin/NewsletterTab';
 import { 
   Users, Calendar, Palette, Handshake, Image, Mail, 
   Plus, Pencil, Trash2, LogOut, Shield, Loader2,
-  Eye, UserPlus, Home, ChevronRight, CreditCard, ClipboardList
+  Eye, UserPlus, Home, ChevronRight, CreditCard, ClipboardList, Send
 } from 'lucide-react';
 
 export default function Admin() {
