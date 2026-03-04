@@ -36,7 +36,10 @@ export default function NewsletterTab({ user }) {
 
   const { data: subscribers = [] } = useQuery({
     queryKey: ['NewsletterSubscribers'],
-    queryFn: () => base44.entities.NewsletterSubscriber.filter({ unsubscribed: false }),
+    queryFn: async () => {
+      const all = await base44.entities.NewsletterSubscriber.list();
+      return all.filter(s => !s.unsubscribed);
+    },
   });
 
   const handleGenerate = async () => {
