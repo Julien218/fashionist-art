@@ -47,15 +47,11 @@ export default function Artists() {
 
         <SectionTitle title="Artistes" subtitle="Les talents qui façonnent Fashionist'ART" />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mb-20">
           {isLoading ? (
-            Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="glass-dark rounded-2xl overflow-hidden animate-pulse">
-                <div className="aspect-square bg-white/5" />
-                <div className="p-4 space-y-2">
-                  <div className="h-3 bg-white/5 rounded w-1/2" />
-                  <div className="h-4 bg-white/5 rounded w-3/4" />
-                </div>
+            Array.from({ length: 10 }).map((_, i) => (
+              <div key={i} className="rounded-2xl overflow-hidden animate-pulse bg-white/5">
+                <div className="aspect-[3/4] bg-white/5" />
               </div>
             ))
           ) : artists.length === 0 ? (
@@ -65,33 +61,52 @@ export default function Artists() {
             </div>
           ) : (
             artists.map((artist, i) => (
-              <motion.div key={artist.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }} transition={{ delay: i * 0.08 }}
+              <motion.div
+                key={artist.id}
+                initial={{ opacity: 0, scale: 0.85, y: 30 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ delay: i * 0.06, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                whileHover={{ y: -6, scale: 1.03 }}
                 onClick={() => setSelectedArtist(artist)}
-                className="glass-dark card-hover neon-border rounded-2xl overflow-hidden cursor-pointer group"
+                className="relative rounded-2xl overflow-hidden cursor-pointer group aspect-[3/4]"
+                style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.4)' }}
               >
-                <div className="aspect-square overflow-hidden">
-                  {artist.photo_url ? (
-                    <img
-                      src={artist.photo_url}
-                      alt={artist.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-[#FF2D8A]/10 flex items-center justify-center">
-                      <User className="w-16 h-16 text-[#FF2D8A]/30" />
-                    </div>
-                  )}
-                </div>
-                <div className="p-5">
-                  <p className="text-[#FF2D8A] text-xs font-semibold uppercase tracking-wide">{artist.discipline}</p>
-                  <h3 className="font-display font-bold text-white mt-1 group-hover:text-[#FF2D8A] transition-colors">{artist.name}</h3>
-                  {artist.short_bio && <p className="text-xs text-white/40 mt-2 line-clamp-2">{artist.short_bio}</p>}
-                  <div className="mt-3">
-                    <SocialShare title={`${artist.name} — Fashionist'ART`} description={`Découvrez ${artist.name} (${artist.discipline}) à Fashionist'ART — 18 avril 2026`} />
+                {/* Image */}
+                {artist.photo_url ? (
+                  <img
+                    src={artist.photo_url}
+                    alt={artist.name}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#FF2D8A]/20 to-[#9B26AF]/20 flex items-center justify-center">
+                    <User className="w-12 h-12 text-[#FF2D8A]/30" />
                   </div>
+                )}
+
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+
+                {/* Animated fuchsia shimmer on hover */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-tr from-[#FF2D8A]/0 to-[#FF2D8A]/0 group-hover:from-[#FF2D8A]/10 group-hover:to-transparent transition-all duration-500"
+                />
+
+                {/* Bottom info */}
+                <div className="absolute bottom-0 left-0 right-0 p-3">
+                  <motion.div
+                    initial={false}
+                    className="overflow-hidden"
+                  >
+                    <p className="text-[#FF2D8A] text-[10px] font-bold uppercase tracking-widest leading-none mb-1 opacity-80">{artist.discipline}</p>
+                    <h3 className="font-display font-bold text-white text-sm leading-tight">{artist.name}</h3>
+                  </motion.div>
                 </div>
+
+                {/* Top neon border appear on hover */}
+                <div className="absolute inset-0 rounded-2xl border border-white/0 group-hover:border-[#FF2D8A]/40 transition-all duration-400" />
               </motion.div>
             ))
           )}
