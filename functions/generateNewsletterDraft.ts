@@ -19,7 +19,8 @@ Deno.serve(async (req) => {
         if (events.length > 0) {
           eventsContext = 'Événements au programme: ' + events.map(e => `${e.title} (${e.start_time})`).join(', ');
         }
-        const artists = await base44.asServiceRole.entities.Artist.filter({ status: 'active' });
+        const allArtists = await base44.asServiceRole.entities.Artist.list();
+        const artists = allArtists.filter(a => a.status === 'active');
         if (artists.length > 0) {
           artistsContext = 'Artistes participants: ' + artists.slice(0, 10).map(a => a.name).join(', ');
         }
