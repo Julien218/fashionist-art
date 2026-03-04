@@ -23,11 +23,9 @@ export default function ArtistFormDialog({ open, onOpenChange, artist, onSaved }
   const [uploadingWork, setUploadingWork] = useState(null); // index or null
 
   const uploadToDrive = async (file, filename) => {
-    const fd = new FormData();
-    fd.append('file', file);
-    fd.append('filename', filename || file.name);
-    const res = await base44.functions.invoke('uploadToDrive', fd);
-    return res.data.file_url;
+    // First upload to Base44 public storage, then store the URL
+    const { file_url } = await base44.integrations.Core.UploadFile({ file });
+    return file_url;
   };
 
   const handleUploadPortrait = async (file) => {
