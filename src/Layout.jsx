@@ -223,9 +223,9 @@ export default function Layout({ children, currentPageName }) {
             <p>© 2026 Fashionist'ART. Tous droits réservés.</p>
             <div className="flex items-center gap-3 flex-wrap justify-center sm:justify-end">
               <span className="text-white/25 text-xs">Développé par</span>
-              <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a460cb984c65f748b49e7d/323e03f0b_LOGO_JY-TrixIA.jpg" alt="JY-Trix.AI" className="h-7 object-contain rounded opacity-80 hover:opacity-100 transition-opacity" />
+              <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a460cb984c65f748b49e7d/323e03f0b_LOGO_JY-TrixIA.jpg" alt="JY-Trix.AI" className="h-14 object-contain rounded opacity-80 hover:opacity-100 transition-opacity" />
               <span className="text-white/25 text-xs">&</span>
-              <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a460cb984c65f748b49e7d/19955f85a_Logo_JS-InnovIA_EvoluTion_Autonome_02-26.png" alt="JS-Innov.IA" className="h-7 object-contain rounded opacity-80 hover:opacity-100 transition-opacity" />
+              <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a460cb984c65f748b49e7d/19955f85a_Logo_JS-InnovIA_EvoluTion_Autonome_02-26.png" alt="JS-Innov.IA" className="h-14 object-contain rounded opacity-80 hover:opacity-100 transition-opacity" />
             </div>
           </div>
         </div>
