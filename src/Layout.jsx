@@ -48,6 +48,7 @@ export default function Layout({ children, currentPageName }) {
 
   return (
     <div className="min-h-screen bg-[#0A0A0F] text-white flex flex-col" style={{position:'relative'}}>
+      <SEOHead pageName={currentPageName} />
       {showSplash && <SplashScreen onDone={handleSplashDone} />}
       {/* Global background image — semi-transparent */}
       <div
