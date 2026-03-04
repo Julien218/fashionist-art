@@ -46,13 +46,18 @@ export default function Countdown() {
             transition={{ delay: i * 0.1 }}
             className="flex flex-col items-center"
         >
-            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl glass-dark neon-border flex items-center justify-center"
-              style={{ background: 'linear-gradient(135deg, rgba(255,45,138,0.15), rgba(212,175,55,0.1))' }}>
-              <span className="font-display font-black text-3xl sm:text-4xl text-white drop-shadow">
+            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl flex items-center justify-center"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255,45,138,0.35), rgba(212,175,55,0.2))',
+                border: '2px solid rgba(255,45,138,0.6)',
+                boxShadow: '0 0 30px rgba(255,45,138,0.3), inset 0 0 20px rgba(255,45,138,0.08)'
+              }}>
+              <span className="font-display font-black text-4xl sm:text-5xl text-white"
+                style={{ textShadow: '0 0 20px rgba(255,255,255,0.6)' }}>
                 {pad(b.value)}
               </span>
             </div>
-            <span className="mt-3 text-xs sm:text-sm text-white/50 uppercase tracking-wider font-display">
+            <span className="mt-3 text-sm font-bold text-white/80 uppercase tracking-widest font-display">
               {b.label}
             </span>
           </motion.div>
