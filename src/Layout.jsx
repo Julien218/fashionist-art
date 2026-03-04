@@ -5,6 +5,7 @@ import { base44 } from '@/api/base44Client';
 import { Menu, X, ChevronRight, Ticket } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SplashScreen from './components/shared/SplashScreen';
+import SEOHead from './components/shared/SEOHead';
 
 const NAV_ITEMS = [
   { label: 'Accueil', page: 'Home' },
