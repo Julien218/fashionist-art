@@ -9,7 +9,8 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Token et email requis' }, { status: 400 });
     }
 
-    const subs = await base44.asServiceRole.entities.NewsletterSubscriber.filter({ unsubscribe_token: token, email: email.toLowerCase() });
+    const allSubs = await base44.asServiceRole.entities.NewsletterSubscriber.list();
+    const subs = allSubs.filter(s => s.unsubscribe_token === token && s.email === email.toLowerCase());
     if (!subs || subs.length === 0) {
       return Response.json({ error: 'Abonné introuvable ou token invalide' }, { status: 404 });
     }
