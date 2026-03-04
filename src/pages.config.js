@@ -58,6 +58,7 @@ import Legal from './pages/Legal';
 import ParticipantFormPage from './pages/ParticipantFormPage';
 import Privacy from './pages/Privacy';
 import Programme from './pages/Programme';
+import Unsubscribe from './pages/Unsubscribe';
 import __Layout from './Layout.jsx';
 
 
@@ -73,6 +74,7 @@ export const PAGES = {
     "ParticipantFormPage": ParticipantFormPage,
     "Privacy": Privacy,
     "Programme": Programme,
+    "Unsubscribe": Unsubscribe,
 }
 
 export const pagesConfig = {
