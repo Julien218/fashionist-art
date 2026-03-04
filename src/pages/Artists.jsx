@@ -133,7 +133,10 @@ export default function Artists() {
               <DialogHeader>
                 <div className="flex items-center gap-4">
                   <div className="w-16 h-16 rounded-full overflow-hidden bg-white/5 flex-shrink-0">
-                    <img src={selectedArtist.photo_url || PLACEHOLDER_PHOTOS[0]} alt={selectedArtist.name} className="w-full h-full object-cover" />
+                    {selectedArtist.photo_url
+                    ? <img src={selectedArtist.photo_url} alt={selectedArtist.name} className="w-full h-full object-cover" />
+                    : <User className="w-8 h-8 text-white/30 m-auto" />
+                  }
                   </div>
                   <div>
                     <DialogTitle className="text-white font-display font-bold text-xl">{selectedArtist.name}</DialogTitle>
