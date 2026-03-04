@@ -10,8 +10,8 @@ export default function HeroSection() {
   const [copied, setCopied] = useState(false);
 
   const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent("Fashionist'ART")}&dates=20260418T080000Z/20260418T200000Z&details=${encodeURIComponent("Fashionist'ART — Exposition art & mode. Entrée gratuite.")}&location=${encodeURIComponent("Centre Sportif d'Élouges, Dour, Belgique")}`;
-  const shareUrl = typeof window !== 'undefined' ? window.location.origin : '';
-  const shareText = encodeURIComponent("Fashionist'ART – 18 avril 2026, Centre Sportif d'Élouges (Dour). Mode & Art. Entrée gratuite !");
+  const shareUrl = 'https://fashionistart.base44.app';
+  const shareText = encodeURIComponent("Fashionist'ART – 18 avril 2026, Centre Sportif d'Élouges (Dour). Mode & Art. Entrée gratuite ! 🎨👗");
 
   const copyLink = () => {
     navigator.clipboard.writeText(shareUrl);
@@ -25,9 +25,21 @@ export default function HeroSection() {
   );
 
   const socialLinks = [
-    { icon: Facebook, href: `https://www.facebook.com/61575203516618/`, label: 'Facebook', color: '#1877F2' },
-    { icon: Instagram, href: `https://www.instagram.com/fashionist.art.dour/`, label: 'Instagram', color: '#E1306C' },
-    { icon: TikTokIcon, href: `https://www.tiktok.com/@user6921475292315?_r=1&_t=ZG-94Kw7dIEGcS`, label: 'TikTok', color: '#010101' },
+    {
+      icon: Facebook,
+      href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${shareText}`,
+      label: 'Facebook', color: '#1877F2'
+    },
+    {
+      icon: Instagram,
+      href: `https://www.instagram.com/fashionist.art.dour/`,
+      label: 'Instagram', color: '#E1306C'
+    },
+    {
+      icon: TikTokIcon,
+      href: `https://www.tiktok.com/@user6921475292315?_r=1&_t=ZG-94Kw7dIEGcS`,
+      label: 'TikTok', color: '#010101'
+    },
   ];
 
   return (
