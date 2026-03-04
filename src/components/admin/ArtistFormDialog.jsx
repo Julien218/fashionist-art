@@ -8,6 +8,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Loader2, Upload, Plus, Trash2, Image } from 'lucide-react';
 import { toast } from 'sonner';
+import DriveImagePicker from './DriveImagePicker';
 
 const EMPTY = {
   name: '', first_name: '', last_name: '', stage_name: '', email: '', phone: '',
