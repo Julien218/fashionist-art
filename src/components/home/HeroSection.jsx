@@ -100,20 +100,23 @@ export default function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.55 }}
-          className="flex items-center justify-center gap-3 mb-8"
+          className="flex flex-wrap items-center justify-center gap-3 mb-8"
         >
-          <span className="text-white/40 text-sm">Partager :</span>
-          {socialLinks.map(({ icon: Icon, href, label, color }) => (
+          <span className="text-white/70 text-sm font-medium bg-white/10 px-3 py-1.5 rounded-full">Partager</span>
+          {socialLinks.map(({ icon: SocialIcon, href, label, color }) => (
             <a key={label} href={href} target="_blank" rel="noopener noreferrer"
-              className="w-9 h-9 rounded-full flex items-center justify-center transition-all hover:scale-110"
+              title={`Partager sur ${label}`}
+              className="flex items-center gap-2 px-4 py-2 rounded-full text-white text-sm font-medium transition-all hover:scale-105 hover:brightness-110 shadow-md"
               style={{ backgroundColor: color }}
             >
-              <Icon className="w-4 h-4 text-white" />
+              <SocialIcon className="w-4 h-4 text-white" />
+              <span>{label}</span>
             </a>
           ))}
-          <button onClick={copyLink}
-            className="w-9 h-9 rounded-full flex items-center justify-center bg-white/10 hover:bg-white/20 transition-all hover:scale-110">
+          <button onClick={copyLink} title="Copier le lien"
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 hover:bg-white/25 text-white text-sm font-medium transition-all hover:scale-105 shadow-md border border-white/20">
             {copied ? <Check className="w-4 h-4 text-green-400" /> : <LinkIcon className="w-4 h-4 text-white" />}
+            {copied ? 'Copié !' : 'Copier le lien'}
           </button>
         </motion.div>
 
