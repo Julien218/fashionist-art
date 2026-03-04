@@ -71,12 +71,18 @@ export default function Artists() {
                 className="glass-dark card-hover neon-border rounded-2xl overflow-hidden cursor-pointer group"
               >
                 <div className="aspect-square overflow-hidden">
-                  <img
-                    src={artist.photo_url || PLACEHOLDER_PHOTOS[i % PLACEHOLDER_PHOTOS.length]}
-                    alt={artist.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                  />
+                  {artist.photo_url ? (
+                    <img
+                      src={artist.photo_url}
+                      alt={artist.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-[#FF2D8A]/10 flex items-center justify-center">
+                      <User className="w-16 h-16 text-[#FF2D8A]/30" />
+                    </div>
+                  )}
                 </div>
                 <div className="p-5">
                   <p className="text-[#FF2D8A] text-xs font-semibold uppercase tracking-wide">{artist.discipline}</p>
