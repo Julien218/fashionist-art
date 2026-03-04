@@ -213,6 +213,7 @@ export default function Layout({ children, currentPageName }) {
               <div className="space-y-2">
                 <Link to={createPageUrl('Legal')} className="block text-xs text-white/35 hover:text-white transition-colors">Mentions légales</Link>
                 <Link to={createPageUrl('Privacy')} className="block text-xs text-white/35 hover:text-white transition-colors">Politique de confidentialité</Link>
+                <Link to={createPageUrl('Sitemap')} className="block text-xs text-white/35 hover:text-white transition-colors">Plan du site</Link>
               </div>
             </div>
           </div>
