@@ -17,11 +17,35 @@ export default function NewsletterForm({ light = false }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!consent) { toast.error('Veuillez accepter de recevoir la newsletter.'); return; }
+    const normalizedEmail = email.trim().toLowerCase();
     setLoading(true);
-    await base44.entities.NewsletterSubscriber.create({ email, consent: true, consent_date: new Date().toISOString() });
-    setLoading(false);
-    setDone(true);
-    toast.success('Inscription confirmée !');
+    try {
+      // Anti-doublon
+      const existing = await base44.entities.NewsletterSubscriber.filter({ email: normalizedEmail, unsubscribed: false });
+      if (existing && existing.length > 0) {
+        toast.error('Cette adresse est déjà inscrite à la newsletter.');
+        setLoading(false);
+        return;
+      }
+      // Générer token de désinscription
+      const token = Math.random().toString(36).substring(2) + Date.now().toString(36);
+      await base44.entities.NewsletterSubscriber.create({
+        email: normalizedEmail,
+        first_name: firstName.trim() || null,
+        consent: true,
+        consent_date: new Date().toISOString(),
+        unsubscribed: false,
+        source: 'website',
+        unsubscribe_token: token,
+      });
+      setDone(true);
+      toast.success('Inscription confirmée !');
+    } catch (err) {
+      console.error('Newsletter subscription error:', err);
+      toast.error("Une erreur est survenue. Veuillez réessayer.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (done) {
