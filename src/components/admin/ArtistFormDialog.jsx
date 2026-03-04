@@ -178,6 +178,7 @@ export default function ArtistFormDialog({ open, onOpenChange, artist, onSaved }
                       {uploadingWork === idx ? '...' : 'Upload'}
                       <input type="file" accept="image/*" className="hidden" onChange={e => handleUploadWork(e.target.files[0], idx)} />
                     </label>
+                    <DriveImagePicker onFilePicked={url => updateWork(idx, 'image_url', url)} />
                   </div>
                   <div className="flex-1 space-y-1.5">
                     <Input value={work.title || ''} onChange={e => updateWork(idx, 'title', e.target.value)}
