@@ -43,7 +43,7 @@ const DriveIdModal = React.forwardRef(function DriveIdModal({ onFilePicked }, re
   const [fileId, setFileId] = useState('');
   const [loading, setLoading] = useState(false);
 
-  React.useImperativeHandle(ref, () => ({
+  useImperativeHandle(ref, () => ({
     showModal: () => { setOpen(true); setFileId(''); }
   }));
 
