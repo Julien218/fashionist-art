@@ -114,11 +114,14 @@ export default function ArtistFormDialog({ open, onOpenChange, artist, onSaved }
                 : <div className="w-16 h-16 rounded-full bg-white/5 border border-dashed border-white/10 flex items-center justify-center flex-shrink-0"><Image className="w-6 h-6 text-white/20" /></div>
               }
               <div className="flex flex-col gap-1.5 flex-1">
-                <label className="cursor-pointer inline-flex items-center gap-2 text-xs text-white/60 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg px-3 py-2 transition-colors w-fit">
-                  {uploadingPortrait ? <Loader2 className="w-3 h-3 animate-spin" /> : <Upload className="w-3 h-3" />}
-                  {uploadingPortrait ? 'Upload...' : 'Uploader une photo'}
-                  <input type="file" accept="image/*" className="hidden" onChange={e => handleUploadPortrait(e.target.files[0])} />
-                </label>
+                <div className="flex items-center gap-2">
+                  <label className="cursor-pointer inline-flex items-center gap-2 text-xs text-white/60 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg px-3 py-2 transition-colors w-fit">
+                    {uploadingPortrait ? <Loader2 className="w-3 h-3 animate-spin" /> : <Upload className="w-3 h-3" />}
+                    {uploadingPortrait ? 'Upload...' : 'Uploader'}
+                    <input type="file" accept="image/*" className="hidden" onChange={e => handleUploadPortrait(e.target.files[0])} />
+                  </label>
+                  <DriveImagePicker onFilePicked={url => set('photo_url', url)} />
+                </div>
                 <Input value={form.photo_url || ''} onChange={e => set('photo_url', e.target.value)}
                   placeholder="ou coller un lien URL..." className="bg-white/5 border-white/10 text-white placeholder:text-white/20 h-8 text-xs" />
               </div>
