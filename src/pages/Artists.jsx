@@ -8,14 +8,7 @@ import FreeBadge from '@/components/shared/FreeBadge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { User, Globe, Instagram, Facebook as FacebookIcon } from 'lucide-react';
 
-const PLACEHOLDER_PHOTOS = [
-  'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80',
-  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
-  'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80',
-  'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80',
-  'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80',
-  'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80',
-];
+
 
 export default function Artists() {
   const [selectedArtist, setSelectedArtist] = useState(null);
