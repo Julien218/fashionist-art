@@ -146,7 +146,7 @@ export default function Layout({ children, currentPageName }) {
       </main>
 
       {/* Footer */}
-      <footer className="relative z-10 border-t border-white/10 mt-16 overflow-hidden">
+      <footer className="relative z-10 border-t border-white/10 mt-16 overflow-hidden bg-black">
         {/* Background watermark */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
           <span className="font-script text-[200px] text-white/[0.03] whitespace-nowrap">Fashionist'ART</span>
