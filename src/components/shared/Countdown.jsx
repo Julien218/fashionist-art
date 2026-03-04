@@ -71,10 +71,10 @@ export default function Countdown() {
           className="btn-outline text-sm py-2.5 px-5">
           <CalendarPlus className="w-4 h-4" /> Ajouter à mon agenda
         </a>
-        <button onClick={() => { navigator.clipboard.writeText(window.location.origin); }}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm text-white transition-all"
-          style={{ background: 'linear-gradient(135deg, #FF2D8A, #C2185B)' }}>
-          <Share2 className="w-4 h-4" /> Partager le compte à rebours
+        <button onClick={() => { navigator.clipboard.writeText('https://fashionistart.base44.app'); }}
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white transition-all hover:brightness-110"
+          style={{ background: 'linear-gradient(135deg, #FF2D8A, #C2185B)', boxShadow: '0 4px 20px rgba(255,45,138,0.4)' }}>
+          <Share2 className="w-4 h-4" /> Partager l'événement
         </button>
       </div>
     </div>
