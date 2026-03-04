@@ -40,13 +40,15 @@ Deno.serve(async (req) => {
         return Response.json({ error: 'Seul un super_admin peut envoyer' }, { status: 403 });
       }
 
-      const campaign = (await base44.asServiceRole.entities.NewsletterCampaign.filter({ id: campaign_id }))[0];
+      const allCampaigns = await base44.asServiceRole.entities.NewsletterCampaign.list();
+      const campaign = allCampaigns.find(c => c.id === campaign_id);
       if (!campaign) return Response.json({ error: 'Campagne introuvable' }, { status: 404 });
       if (campaign.status !== 'APPROVED') {
         return Response.json({ error: 'La campagne doit être approuvée avant envoi' }, { status: 400 });
       }
 
-      const subscribers = await base44.asServiceRole.entities.NewsletterSubscriber.filter({ unsubscribed: false });
+      const allSubscribers = await base44.asServiceRole.entities.NewsletterSubscriber.list();
+      const subscribers = allSubscribers.filter(s => !s.unsubscribed);
       console.log(`[Newsletter] Sending campaign ${campaign_id} to ${subscribers.length} subscribers`);
 
       let sent = 0, failed = 0, skipped = 0;
