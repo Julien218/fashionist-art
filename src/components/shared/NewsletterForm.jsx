@@ -16,12 +16,14 @@ export default function NewsletterForm({ light = false }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!email.trim()) { toast.error('Veuillez entrer une adresse email.'); return; }
     if (!consent) { toast.error('Veuillez accepter de recevoir la newsletter.'); return; }
     const normalizedEmail = email.trim().toLowerCase();
     setLoading(true);
     try {
-      // Anti-doublon
-      const existing = await base44.entities.NewsletterSubscriber.filter({ email: normalizedEmail, unsubscribed: false });
+      // Anti-doublon : on liste tous les abonnés actifs et on filtre côté client
+      const allSubs = await base44.entities.NewsletterSubscriber.list();
+      const existing = allSubs.filter(s => s.email === normalizedEmail && !s.unsubscribed);
       if (existing && existing.length > 0) {
         toast.error('Cette adresse est déjà inscrite à la newsletter.');
         setLoading(false);
