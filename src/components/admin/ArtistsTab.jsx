@@ -41,7 +41,8 @@ export default function ArtistsTab({ user }) {
     .filter(a => {
       const matchSearch = !search || [a.name, a.first_name, a.last_name, a.stage_name, a.email].join(' ').toLowerCase().includes(search.toLowerCase());
       const matchCat = filterCategory === 'all' || (a.category || a.discipline) === filterCategory;
-      return matchSearch && matchCat;
+      const matchStatus = filterStatus === 'all' || a.status === filterStatus;
+      return matchSearch && matchCat && matchStatus;
     })
     .sort((a, b) => {
       const va = (a[sortField] || '').toString().toLowerCase();
