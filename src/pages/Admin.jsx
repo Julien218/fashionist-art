@@ -50,9 +50,9 @@ export default function Admin() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[#0A0A0F] text-white">
       {/* Admin header */}
-      <div className="glass border-b border-white/20 px-4 py-3">
+      <div className="bg-[#12121A] border-b border-white/10 px-4 py-3">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Logo size="sm" />
