@@ -233,20 +233,20 @@ function AdminReadOnly({ entity, columns }) {
 
   return (
     <div>
-      <h2 className="font-display font-bold text-xl mb-6">{entity} ({items.length})</h2>
+      <h2 className="font-display font-bold text-xl mb-6 text-white">{entity} ({items.length})</h2>
       {isLoading ? <Loader2 className="w-6 h-6 animate-spin mx-auto" /> : (
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto rounded-xl border border-white/10">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-[#E8A0B4]/20">
-                {columns.map((col) => <th key={col} className="text-left py-2 px-3 font-display font-semibold text-xs uppercase tracking-wider text-[#2D2024]/40">{col}</th>)}
+              <tr className="border-b border-white/10 bg-white/3">
+                {columns.map((col) => <th key={col} className="text-left py-3 px-3 font-display font-semibold text-xs uppercase tracking-wider text-white/40">{col}</th>)}
               </tr>
             </thead>
             <tbody>
               {items.map((item) => (
-                <tr key={item.id} className="border-b border-[#E8A0B4]/10 hover:bg-[#F2C4CE]/10">
+                <tr key={item.id} className="border-b border-white/5 hover:bg-white/3">
                   {columns.map((col) => (
-                    <td key={col} className="py-2 px-3 text-[#2D2024]/70">
+                    <td key={col} className="py-2 px-3 text-white/70">
                       {typeof item[col] === 'boolean' ? (item[col] ? '✓' : '✗') : (item[col] || '—')}
                     </td>
                   ))}
