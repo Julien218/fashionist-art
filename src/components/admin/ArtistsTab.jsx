@@ -12,7 +12,7 @@ import Papa from 'papaparse';
 import * as XLSX from 'xlsx';
 import {
   Upload, Download, Mail, Pencil, ToggleLeft, ToggleRight,
-  Loader2, Search, Plus, X, ChevronDown, ChevronUp, AlertCircle, CheckCircle2
+  Loader2, Search, Plus, X, ChevronDown, ChevronUp, AlertCircle, CheckCircle2, ThumbsUp, ThumbsDown, Clock
 } from 'lucide-react';
 import ArtistFormDialog from './ArtistFormDialog';
 import ArtistImportDialog from './ArtistImportDialog';
