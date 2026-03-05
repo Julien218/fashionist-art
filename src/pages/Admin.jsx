@@ -74,7 +74,7 @@ export default function Admin() {
 
       <div className="max-w-7xl mx-auto px-4 py-8">
         <Tabs defaultValue="participants">
-          <TabsList className="glass mb-8 flex flex-wrap gap-1">
+          <TabsList className="bg-[#12121A] border border-white/10 mb-8 flex flex-wrap gap-1 h-auto p-1.5">
             <TabsTrigger value="participants" className="gap-2"><ClipboardList className="w-4 h-4" /> Participants</TabsTrigger>
             <TabsTrigger value="artists" className="gap-2"><Palette className="w-4 h-4" /> Artistes</TabsTrigger>
             <TabsTrigger value="program" className="gap-2"><Calendar className="w-4 h-4" /> Programme</TabsTrigger>
