@@ -320,7 +320,7 @@ function AdminUsers({ user }) {
       {isLoading ? <Loader2 className="w-6 h-6 animate-spin mx-auto" /> : (
         <div className="space-y-3">
           {users.map((u) => (
-            <div key={u.id} className="glass glow-card rounded-xl p-4 flex items-center justify-between">
+            <div key={u.id} className="bg-white/5 border border-white/10 rounded-xl p-4 flex items-center justify-between">
               <div>
                 <p className="font-display font-semibold text-sm">{u.full_name || u.email}</p>
                 <p className="text-xs text-[#2D2024]/40">{u.email}</p>
