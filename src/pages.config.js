@@ -52,16 +52,16 @@ import ArtistComplete from './pages/ArtistComplete';
 import Artists from './pages/Artists';
 import Billetterie from './pages/Billetterie';
 import Blog from './pages/Blog';
+import Gallery from './pages/Gallery';
 import Home from './pages/Home';
 import Infos from './pages/Infos';
 import Legal from './pages/Legal';
+import MyArtist from './pages/MyArtist';
 import ParticipantFormPage from './pages/ParticipantFormPage';
 import Privacy from './pages/Privacy';
 import Programme from './pages/Programme';
 import Sitemap from './pages/Sitemap';
 import Unsubscribe from './pages/Unsubscribe';
-import Gallery from './pages/Gallery';
-import MyArtist from './pages/MyArtist';
 import __Layout from './Layout.jsx';
 
 
@@ -71,16 +71,16 @@ export const PAGES = {
     "Artists": Artists,
     "Billetterie": Billetterie,
     "Blog": Blog,
+    "Gallery": Gallery,
     "Home": Home,
     "Infos": Infos,
     "Legal": Legal,
+    "MyArtist": MyArtist,
     "ParticipantFormPage": ParticipantFormPage,
     "Privacy": Privacy,
     "Programme": Programme,
     "Sitemap": Sitemap,
     "Unsubscribe": Unsubscribe,
-    "Gallery": Gallery,
-    "MyArtist": MyArtist,
 }
 
 export const pagesConfig = {

@@ -7,6 +7,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
 import { Loader2, User, CheckCircle2, Clock, XCircle, Save, Palette } from 'lucide-react';
+import WorksGallery from '@/components/artist/WorksGallery';
 
 const STATUS_CONFIG = {
   pending: { label: 'En attente de validation', color: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20', icon: Clock },
@@ -212,6 +213,11 @@ export default function MyArtist() {
                 Enregistrer mon profil
               </Button>
             </form>
+
+            {/* Works Gallery Section */}
+            <div className="mt-10 glass-dark neon-border rounded-3xl p-8">
+              <WorksGallery artistId={artist.id} />
+            </div>
           </div>
         )}
       </div>
