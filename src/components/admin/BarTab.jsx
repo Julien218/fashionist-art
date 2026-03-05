@@ -17,21 +17,34 @@ export default function BarTab({ user }) {
 
   const generateMutation = useMutation({
     mutationFn: async (amountCents) => {
-      const res = await base44.functions.invoke('stripeCreateCheckout', {
-        title: `Bar Fashionist'ART ${note ? ` - ${note}` : ''}`,
-        amount_cents: amountCents,
-        sale_type: 'bar',
-      });
-      return res.data;
+      try {
+        const res = await base44.functions.invoke('stripeCreateCheckout', {
+          title: `Bar Fashionist'ART${note ? ` - ${note}` : ''}`,
+          amount_cents: amountCents,
+          sale_type: 'bar',
+        });
+        console.log('stripeCreateCheckout response:', res);
+        return res.data;
+      } catch (err) {
+        console.error('stripeCreateCheckout error:', err);
+        throw err;
+      }
     },
     onSuccess: (data) => {
-      if (data.checkout_url) {
+      console.log('Success data:', data);
+      if (data && data.checkout_url) {
         setCheckoutUrl(data.checkout_url);
         generateQR(data.checkout_url);
         toast.success('Lien paiement généré !');
+      } else {
+        console.error('No checkout_url in response:', data);
+        toast.error('Erreur: pas de lien paiement');
       }
     },
-    onError: (err) => toast.error(err.message),
+    onError: (err) => {
+      console.error('Mutation error:', err);
+      toast.error(err.message || 'Erreur génération QR');
+    },
   });
 
   const generateQR = async (url) => {
@@ -53,11 +66,12 @@ export default function BarTab({ user }) {
   };
 
   const handleCustom = () => {
-    if (!amount || isNaN(amount)) {
+    if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
       toast.error('Montant invalide');
       return;
     }
     const cents = Math.round(parseFloat(amount) * 100);
+    console.log('handleCustom - Sending amount:', amount, 'cents:', cents);
     generateMutation.mutate(cents);
   };
 
