@@ -51,7 +51,6 @@ import Admin from './pages/Admin';
 import ArtistComplete from './pages/ArtistComplete';
 import Artists from './pages/Artists';
 import Billetterie from './pages/Billetterie';
-import Gallery from './pages/Gallery';
 import Home from './pages/Home';
 import Infos from './pages/Infos';
 import Legal from './pages/Legal';
@@ -68,7 +67,6 @@ export const PAGES = {
     "ArtistComplete": ArtistComplete,
     "Artists": Artists,
     "Billetterie": Billetterie,
-    "Gallery": Gallery,
     "Home": Home,
     "Infos": Infos,
     "Legal": Legal,
