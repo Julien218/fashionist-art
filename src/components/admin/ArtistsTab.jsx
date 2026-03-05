@@ -133,6 +133,15 @@ export default function ArtistsTab({ user }) {
         </div>
       </div>
 
+      {/* Pending alert */}
+      {pendingCount > 0 && (
+        <div className="flex items-center gap-3 mb-4 p-3 rounded-xl bg-yellow-500/10 border border-yellow-500/20">
+          <Clock className="w-4 h-4 text-yellow-400" />
+          <span className="text-sm text-yellow-300 font-semibold">{pendingCount} artiste(s) en attente de validation</span>
+          <button onClick={() => setFilterStatus('pending')} className="text-xs text-yellow-400 underline ml-auto">Voir</button>
+        </div>
+      )}
+
       {/* Filters */}
       <div className="flex flex-wrap gap-3 mb-4">
         <div className="relative flex-1 min-w-[200px]">
@@ -147,6 +156,19 @@ export default function ArtistsTab({ user }) {
           <SelectContent>
             <SelectItem value="all">Toutes catégories</SelectItem>
             {categories.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}
+          </SelectContent>
+        </Select>
+        <Select value={filterStatus} onValueChange={setFilterStatus}>
+          <SelectTrigger className="w-40 bg-white/5 border-white/10 text-white">
+            <SelectValue placeholder="Statut" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">Tous statuts</SelectItem>
+            <SelectItem value="pending">En attente</SelectItem>
+            <SelectItem value="approved">Approuvé</SelectItem>
+            <SelectItem value="active">Actif</SelectItem>
+            <SelectItem value="inactive">Inactif</SelectItem>
+            <SelectItem value="rejected">Refusé</SelectItem>
           </SelectContent>
         </Select>
       </div>
