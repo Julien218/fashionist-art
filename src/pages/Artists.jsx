@@ -190,10 +190,13 @@ export default function Artists() {
                 {(selectedArtist.full_bio || selectedArtist.short_bio) && (
                   <p className="text-white/60 text-sm leading-relaxed">{selectedArtist.full_bio || selectedArtist.short_bio}</p>
                 )}
-                <div className="flex gap-3">
+                <div className="flex items-center gap-3 flex-wrap">
                   {selectedArtist.website && <a href={selectedArtist.website} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-white/10 transition-colors"><Globe className="w-4 h-4 text-[#FF2D8A]" /></a>}
                   {selectedArtist.instagram && <a href={selectedArtist.instagram} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-white/10 transition-colors"><Instagram className="w-4 h-4 text-[#FF2D8A]" /></a>}
                   {selectedArtist.facebook && <a href={selectedArtist.facebook} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-white/10 transition-colors"><FacebookIcon className="w-4 h-4 text-[#FF2D8A]" /></a>}
+                  <div className="ml-auto">
+                    <ArtistShare artist={selectedArtist} />
+                  </div>
                 </div>
               </div>
             </>
