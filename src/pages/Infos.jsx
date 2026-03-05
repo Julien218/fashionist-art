@@ -14,7 +14,6 @@ import { createPageUrl } from '@/utils';
 // Google Maps embed — Centre Sportif d'Élouges, Dour
 const MAP_EMBED_URL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2524.0!2d3.7760!3d50.3950!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c24b0000000001%3A0x1!2sCentre+Sportif+d%27%C3%89louges%2C+Dour!5e0!3m2!1sfr!2sbe!4v1700000000000!5m2!1sfr!2sbe";
 
-const EVENT_POSITION = [50.3950, 3.7760];
 
 export default function Infos() {
   const [form, setForm] = useState({ name: '', email: '', message: '', consent_rgpd: false });
