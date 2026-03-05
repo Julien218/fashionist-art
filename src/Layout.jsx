@@ -16,6 +16,10 @@ const NAV_ITEMS = [
   { label: 'Blog', page: 'Blog' },
 ];
 
+const USER_NAV_ITEMS = [
+  { label: 'Mon artiste', page: 'MyArtist' },
+];
+
 export default function Layout({ children, currentPageName }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [user, setUser] = useState(null);
