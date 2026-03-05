@@ -59,6 +59,7 @@ import Privacy from './pages/Privacy';
 import Programme from './pages/Programme';
 import Sitemap from './pages/Sitemap';
 import Unsubscribe from './pages/Unsubscribe';
+import Blog from './pages/Blog';
 import __Layout from './Layout.jsx';
 
 
@@ -75,6 +76,7 @@ export const PAGES = {
     "Programme": Programme,
     "Sitemap": Sitemap,
     "Unsubscribe": Unsubscribe,
+    "Blog": Blog,
 }
 
 export const pagesConfig = {
