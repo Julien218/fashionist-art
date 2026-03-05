@@ -11,6 +11,32 @@ import { User, Globe, Instagram, Facebook as FacebookIcon } from 'lucide-react';
 
 
 
+const BASE_URL = 'https://fashionistart.base44.app';
+
+// Inject dynamic SEO meta for artist sharing
+function injectArtistMeta(artist) {
+  if (!artist) return;
+  const title = `${artist.name} — ${artist.discipline} | Fashionist'ART 2026`;
+  const description = artist.short_bio || `${artist.name} participera à Fashionist'ART le 18 avril 2026 à Dour, Belgique. ${artist.discipline}. Entrée gratuite !`;
+  const image = artist.photo_url || 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a460cb984c65f748b49e7d/ef497c4fd_artisteimageb.jpg';
+  const url = `${BASE_URL}/artists?artist=${encodeURIComponent(artist.name)}`;
+
+  document.title = title;
+  const setMeta = (sel, attr, val) => {
+    let el = document.querySelector(sel);
+    if (!el) { el = document.createElement('meta'); const m = sel.match(/\[([^=]+)="([^"]+)"\]/); if (m) el.setAttribute(m[1], m[2]); document.head.appendChild(el); }
+    el.setAttribute(attr, val);
+  };
+  setMeta('meta[property="og:title"]', 'content', title);
+  setMeta('meta[property="og:description"]', 'content', description);
+  setMeta('meta[property="og:image"]', 'content', image);
+  setMeta('meta[property="og:url"]', 'content', url);
+  setMeta('meta[property="og:type"]', 'content', 'profile');
+  setMeta('meta[name="twitter:title"]', 'content', title);
+  setMeta('meta[name="twitter:description"]', 'content', description);
+  setMeta('meta[name="twitter:image"]', 'content', image);
+}
+
 export default function Artists() {
   const [selectedArtist, setSelectedArtist] = useState(null);
 
