@@ -300,10 +300,10 @@ function AdminUsers({ user }) {
             placeholder="email@exemple.com"
             value={inviteEmail}
             onChange={(e) => setInviteEmail(e.target.value)}
-            className="rounded-xl border-[#E8A0B4]/40 flex-1"
+            className="rounded-xl bg-white/5 border-white/10 text-white placeholder:text-white/30 flex-1"
           />
           <Select value={inviteRole} onValueChange={setInviteRole}>
-            <SelectTrigger className="rounded-xl border-[#E8A0B4]/40 w-40"><SelectValue /></SelectTrigger>
+            <SelectTrigger className="rounded-xl bg-white/5 border-white/10 text-white w-40"><SelectValue /></SelectTrigger>
             <SelectContent>
               {user.role === 'super_admin' && <SelectItem value="admin">Admin</SelectItem>}
               <SelectItem value="member">Membre</SelectItem>
