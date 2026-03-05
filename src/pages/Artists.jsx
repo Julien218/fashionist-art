@@ -95,7 +95,7 @@ export default function Artists() {
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ delay: i * 0.06, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 whileHover={{ y: -6, scale: 1.03 }}
-                onClick={() => setSelectedArtist(artist)}
+                onClick={() => { setSelectedArtist(artist); injectArtistMeta(artist); }}
                 className="relative rounded-2xl overflow-hidden cursor-pointer group aspect-[3/4]"
                 style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.4)' }}
               >
