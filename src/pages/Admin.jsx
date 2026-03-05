@@ -20,7 +20,7 @@ import BlogTab from '@/components/admin/BlogTab';
 import { 
   Users, Calendar, Palette, Handshake, Image, Mail, 
   Plus, Pencil, Trash2, LogOut, Shield, Loader2,
-  Eye, UserPlus, Home, ChevronRight, CreditCard, ClipboardList, Send
+  Eye, UserPlus, Home, ChevronRight, CreditCard, ClipboardList, Send, BookOpen
 } from 'lucide-react';
 
 export default function Admin() {
