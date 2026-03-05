@@ -84,6 +84,7 @@ export default function Admin() {
             <TabsTrigger value="registrations" className="gap-2"><Mail className="w-4 h-4" /> Inscriptions</TabsTrigger>
             <TabsTrigger value="users" className="gap-2"><Users className="w-4 h-4" /> Utilisateurs</TabsTrigger>
             <TabsTrigger value="newsletter" className="gap-2"><Send className="w-4 h-4" /> Newsletter</TabsTrigger>
+            <TabsTrigger value="blog" className="gap-2"><BookOpen className="w-4 h-4" /> Blog</TabsTrigger>
             {user.role === 'super_admin' && (
               <TabsTrigger value="stripe" className="gap-2"><CreditCard className="w-4 h-4" /> Stripe</TabsTrigger>
             )}
