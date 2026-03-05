@@ -164,7 +164,7 @@ function AdminCRUD({ entity, queryClient, fields }) {
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
-        <h2 className="font-display font-bold text-xl">{entity}</h2>
+        <h2 className="font-display font-bold text-xl text-white">{entity}</h2>
         <Button onClick={openCreate} className="bg-[#FF2D8A] hover:bg-[#C2185B] text-white text-sm gap-2"><Plus className="w-4 h-4" /> Ajouter</Button>
       </div>
 
