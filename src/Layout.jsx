@@ -13,6 +13,7 @@ const NAV_ITEMS = [
   { label: 'Artistes', page: 'Artists' },
   { label: 'Galerie', page: 'Gallery' },
   { label: 'Infos pratiques', page: 'Infos' },
+  { label: 'Blog', page: 'Blog' },
 ];
 
 export default function Layout({ children, currentPageName }) {
