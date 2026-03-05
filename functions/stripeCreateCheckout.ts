@@ -1,50 +1,98 @@
-import { createClientFromRequest } from 'npm:@base44/sdk@0.8.6';
-import Stripe from 'npm:stripe@14.21.0';
+import Stripe from 'npm:stripe@14.0.0';
 
 const stripe = new Stripe(Deno.env.get('STRIPE_SECRET_KEY'));
 
 Deno.serve(async (req) => {
   try {
-    const base44 = createClientFromRequest(req);
-    const user = await base44.auth.me();
-
-    if (!user || user.role !== 'super_admin') {
-      return Response.json({ error: 'Accès réservé au super admin' }, { status: 403 });
+    if (req.method !== 'POST') {
+      return Response.json({ error: 'POST only' }, { status: 405 });
     }
 
-    const { amount, label, description, currency = 'eur', success_url, cancel_url } = await req.json();
-
-    if (!amount || !label) {
-      return Response.json({ error: 'amount et label requis' }, { status: 400 });
+    // Vérifier si on est en iframe
+    const origin = req.headers.get('origin');
+    const isIframe = origin && !origin.includes('fashionistart.be');
+    
+    if (isIframe) {
+      return Response.json({
+        error: 'Checkout works only from published app',
+        message: 'Pour procéder au paiement, veuillez accéder au site directement',
+      }, { status: 400 });
     }
 
-    const origin = req.headers.get('origin') || 'https://your-app.base44.app';
+    const body = await req.json();
+    const { title, amount_cents, sale_type, seller_user_id, metadata = {} } = body;
 
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
-      line_items: [{
-        price_data: {
-          currency: currency,
-          product_data: {
-            name: label,
-            description: description || undefined,
-          },
-          unit_amount: amount,
-        },
-        quantity: 1,
-      }],
-      mode: 'payment',
-      success_url: success_url || `${origin}?payment=success`,
-      cancel_url: cancel_url || `${origin}?payment=cancelled`,
-      metadata: {
-        base44_app_id: Deno.env.get('BASE44_APP_ID'),
-        created_by: user.email,
+    if (!title || !amount_cents || !sale_type) {
+      return Response.json({ error: 'Missing required fields' }, { status: 400 });
+    }
+
+    console.log(`Creating checkout: ${title} ${amount_cents} cents, type=${sale_type}`);
+
+    // Récupérer la règle de commission plateforme
+    const response = await fetch(`${Deno.env.get('BASE44_API_URL') || 'http://localhost:3000'}/api/entities/PlatformFeeRule/filter?sale_type=${sale_type}&active=true`, {
+      headers: {
+        'Authorization': `Bearer ${Deno.env.get('BASE44_SERVICE_TOKEN') || ''}`,
       },
     });
 
-    return Response.json({ url: session.url, session_id: session.id });
+    let platformFeeCents = 0;
+    if (response.ok) {
+      const rules = await response.json();
+      if (rules && rules.length > 0) {
+        const rule = rules[0];
+        if (rule.mode === 'percent') {
+          platformFeeCents = Math.round(amount_cents * (rule.value / 100));
+        } else if (rule.mode === 'fixed') {
+          platformFeeCents = rule.value;
+        }
+      }
+    }
+
+    console.log(`Platform fee calculated: ${platformFeeCents} cents`);
+
+    // Créer session Stripe
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: [
+        {
+          price_data: {
+            currency: 'eur',
+            product_data: {
+              name: title,
+            },
+            unit_amount: amount_cents,
+          },
+          quantity: 1,
+        },
+      ],
+      mode: 'payment',
+      success_url: `${Deno.env.get('APP_URL') || 'https://fashionistart.be'}?payment=success&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${Deno.env.get('APP_URL') || 'https://fashionistart.be'}?payment=cancelled`,
+      metadata: {
+        base44_app_id: Deno.env.get('BASE44_APP_ID'),
+        sale_type,
+        seller_user_id: seller_user_id || 'none',
+        ...metadata,
+      },
+    });
+
+    console.log(`Stripe session created: ${session.id}`);
+
+    // TODO: Créer record Sale en PENDING
+    // Pour cela il faudrait avoir accès au SDK Base44
+    // Pour l'instant on retourne juste la session
+
+    return Response.json({
+      success: true,
+      checkout_url: session.url,
+      session_id: session.id,
+      platform_fee_cents: platformFeeCents,
+    });
   } catch (error) {
-    console.error('stripeCreateCheckout error:', error);
-    return Response.json({ error: error.message }, { status: 500 });
+    console.error('Error in stripeCreateCheckout:', error.message, error.stack);
+    return Response.json(
+      { error: error.message || 'Internal server error' },
+      { status: 500 }
+    );
   }
 });
