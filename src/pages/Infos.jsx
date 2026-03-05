@@ -64,12 +64,16 @@ export default function Infos() {
 
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             className="glass-dark neon-border rounded-2xl overflow-hidden h-[400px] lg:h-full min-h-[400px]">
-            <MapContainer center={EVENT_POSITION} zoom={14} style={{ height: '100%', width: '100%' }} scrollWheelZoom={false}>
-              <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-              <Marker position={EVENT_POSITION}>
-                <Popup><strong>Fashionist'ART</strong><br />Centre Sportif d'Élouges<br />18 avril 2026</Popup>
-              </Marker>
-            </MapContainer>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2524.350!2d3.7735!3d50.3945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c24fac7b6e8d1d%3A0x5f1a4c0a0c0b1e2f!2sCentre+Sportif+d%27%C3%89louges!5e0!3m2!1sfr!2sbe!4v1700000000000!5m2!1sfr!2sbe"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Centre Sportif d'Élouges, Dour"
+            />
           </motion.div>
         </div>
 
