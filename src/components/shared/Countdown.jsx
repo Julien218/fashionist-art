@@ -35,6 +35,24 @@ export default function Countdown() {
 
   const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent("Fashionist'ART – Mode & Art")}&dates=20260418T100000/20260418T220000&details=${encodeURIComponent("Événement mode & art au Centre Sportif d'Élouges (Dour). Entrée gratuite !")}&location=${encodeURIComponent("Centre Sportif d'Élouges, Rue du Stade, 7370 Dour, Belgique")}`;
 
+  const shareUrl = window.location.origin;
+  const shareText = "Fashionist'ART — 18 avril 2026 — Centre Sportif d'Élouges (Dour). Entrée gratuite !";
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({ title: "Fashionist'ART", text: shareText, url: shareUrl });
+    } else {
+      navigator.clipboard.writeText(shareUrl);
+      toast.success('Lien copié !');
+    }
+  };
+
+  const socialLinks = [
+    { label: 'Facebook', href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, color: 'text-[#1877F2]' },
+    { label: 'LinkedIn', href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`, color: 'text-[#0A66C2]' },
+    { label: 'X / Twitter', href: `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`, color: 'text-white' },
+  ];
+
   return (
     <div>
       <div className="flex gap-4 sm:gap-6 justify-center">

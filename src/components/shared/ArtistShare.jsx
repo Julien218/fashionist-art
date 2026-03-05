@@ -14,7 +14,8 @@ export default function ArtistShare({ artist }) {
 
   if (!artist) return null;
 
-  const artistUrl = `${BASE_URL}/artists?artist=${encodeURIComponent(artist.name)}`;
+  const origin = window.location.origin;
+  const artistUrl = `${origin}/artists?artist=${encodeURIComponent(artist.name)}`;
   const shareText = `🎨 Découvrez ${artist.name} — ${artist.discipline} — à Fashionist'ART le 18 avril 2026 à Dour, Belgique ! Entrée gratuite. #FashionistART #Mode #Art #Dour`;
   const encodedText = encodeURIComponent(shareText);
   const encodedUrl = encodeURIComponent(artistUrl);
