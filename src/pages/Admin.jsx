@@ -194,7 +194,7 @@ function AdminCRUD({ entity, queryClient, fields }) {
           <div className="space-y-4 mt-4">
             {fields.map((field) => (
               <div key={field.key}>
-                <label className="text-xs font-medium text-[#2D2024]/50 mb-1 block">{field.label}{field.required && ' *'}</label>
+                <label className="text-xs font-medium text-white/50 mb-1 block">{field.label}{field.required && ' *'}</label>
                 {field.type === 'textarea' ? (
                   <Textarea value={formData[field.key] || ''} onChange={(e) => setFormData({ ...formData, [field.key]: e.target.value })} className="rounded-xl bg-white/5 border-white/10 text-white" />
                 ) : field.type === 'select' ? (
