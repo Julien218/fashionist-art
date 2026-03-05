@@ -173,8 +173,8 @@ function AdminCRUD({ entity, queryClient, fields }) {
           {items.map((item) => (
             <div key={item.id} className="bg-white/5 border border-white/10 rounded-xl p-4 flex items-center justify-between">
               <div>
-                <p className="font-display font-semibold text-sm">{item.name || item.title || item.email || item.id}</p>
-                <p className="text-xs text-[#2D2024]/40">{item.category || item.discipline || item.type || ''}</p>
+                <p className="font-display font-semibold text-sm text-white">{item.name || item.title || item.email || item.id}</p>
+                <p className="text-xs text-white/40">{item.category || item.discipline || item.type || ''}</p>
               </div>
               <div className="flex gap-2">
                 <Button variant="ghost" size="icon" onClick={() => openEdit(item)}><Pencil className="w-4 h-4" /></Button>
