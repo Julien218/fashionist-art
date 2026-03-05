@@ -16,6 +16,7 @@ import ParticipantsTab from '@/components/admin/ParticipantsTab';
 import StripeTab from '@/components/admin/StripeTab';
 import ArtistsTab from '@/components/admin/ArtistsTab';
 import NewsletterTab from '@/components/admin/NewsletterTab';
+import BlogTab from '@/components/admin/BlogTab';
 import { 
   Users, Calendar, Palette, Handshake, Image, Mail, 
   Plus, Pencil, Trash2, LogOut, Shield, Loader2,
