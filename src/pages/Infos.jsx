@@ -62,17 +62,36 @@ export default function Infos() {
           </div>
 
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            className="glass-dark neon-border rounded-2xl overflow-hidden h-[400px] lg:h-full min-h-[400px]">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2524.350!2d3.7735!3d50.3945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c24fac7b6e8d1d%3A0x5f1a4c0a0c0b1e2f!2sCentre+Sportif+d%27%C3%89louges!5e0!3m2!1sfr!2sbe!4v1700000000000!5m2!1sfr!2sbe"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Centre Sportif d'Élouges, Dour"
+            className="glass-dark neon-border rounded-2xl overflow-hidden min-h-[400px] relative group">
+            {/* Static map image via OpenStreetMap staticmap */}
+            <img
+              src="https://staticmap.openstreetmap.de/staticmap.php?center=50.3945,3.7735&zoom=15&size=800x500&maptype=mapnik&markers=50.3945,3.7735,red"
+              alt="Carte Centre Sportif d'Élouges, Dour"
+              className="w-full h-full object-cover min-h-[400px]"
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.nextSibling.style.display = 'flex';
+              }}
             />
+            {/* Fallback */}
+            <div className="hidden w-full h-full min-h-[400px] flex-col items-center justify-center gap-4 p-8 text-center">
+              <MapPin className="w-12 h-12 text-[#FF2D8A]" />
+              <div>
+                <p className="font-display font-bold text-white mb-1">Centre Sportif d'Élouges</p>
+                <p className="text-white/50 text-sm">Dour, Belgique</p>
+              </div>
+            </div>
+            {/* Overlay link to Google Maps */}
+            <a
+              href="https://www.google.com/maps/search/Centre+Sportif+%C3%89louges+Dour+Belgique/@50.3945,3.7735,15z"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute inset-0 flex items-end justify-center pb-6 opacity-0 group-hover:opacity-100 transition-opacity"
+            >
+              <span className="bg-[#FF2D8A] text-white text-sm font-display font-semibold px-5 py-2.5 rounded-full shadow-lg flex items-center gap-2">
+                <MapPin className="w-4 h-4" /> Ouvrir dans Google Maps
+              </span>
+            </a>
           </motion.div>
         </div>
 
