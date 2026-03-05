@@ -310,7 +310,7 @@ function AdminUsers({ user }) {
               <SelectItem value="user">Visiteur</SelectItem>
             </SelectContent>
           </Select>
-          <Button onClick={handleInvite} disabled={inviting} className="btn-premium">
+          <Button onClick={handleInvite} disabled={inviting} className="bg-[#FF2D8A] hover:bg-[#C2185B] text-white">
             {inviting ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Inviter'}
           </Button>
         </div>
