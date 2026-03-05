@@ -85,16 +85,22 @@ export default function Countdown() {
 
       <p className="text-center text-white/40 text-sm mt-4 mb-6">18 avril 2026 · Centre Sportif d'Élouges, Dour</p>
 
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 flex-wrap">
         <a href={googleCalUrl} target="_blank" rel="noopener noreferrer"
           className="btn-outline text-sm py-2.5 px-5">
           <CalendarPlus className="w-4 h-4" /> Ajouter à mon agenda
         </a>
-        <button onClick={() => { navigator.clipboard.writeText('https://fashionistart.base44.app'); }}
+        <button onClick={handleShare}
           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white transition-all hover:brightness-110"
           style={{ background: 'linear-gradient(135deg, #FF2D8A, #C2185B)', boxShadow: '0 4px 20px rgba(255,45,138,0.4)' }}>
           <Share2 className="w-4 h-4" /> Partager l'événement
         </button>
+        {socialLinks.map(({ label, href, color }) => (
+          <a key={label} href={href} target="_blank" rel="noopener noreferrer"
+            className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold border border-white/10 bg-white/5 hover:bg-white/10 transition-all ${color}`}>
+            {label}
+          </a>
+        ))}
       </div>
     </div>
   );
