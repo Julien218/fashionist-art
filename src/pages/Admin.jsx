@@ -59,6 +59,9 @@ export default function Admin() {
             <Badge className="bg-[#D4AF37]/20 text-[#D4AF37] border-[#D4AF37]/30">{user.role === 'super_admin' ? 'Super Admin' : 'Admin'}</Badge>
           </div>
           <div className="flex items-center gap-3">
+            <Link to={createPageUrl('Home')} className="text-sm text-white/70 hover:text-[#FF2D8A] flex items-center gap-1 px-3 py-1.5 rounded-full border border-white/10 hover:border-[#FF2D8A]/30 transition-all">
+              <Home className="w-4 h-4" /> Accueil
+            </Link>
             <Link to={createPageUrl('Home')} className="text-sm text-[#2D2024]/50 hover:text-[#C2185B] flex items-center gap-1">
               <Eye className="w-4 h-4" /> Voir le site
             </Link>
