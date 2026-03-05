@@ -239,10 +239,12 @@ export default function ArtistsTab({ user }) {
                     <span className="text-xs text-white/60">{artist.category || artist.discipline || '—'}</span>
                   </td>
                   <td className="py-3 px-3 text-center">
-                    <Badge className={artist.status === 'active'
-                      ? 'bg-green-500/10 text-green-400 border-green-500/20 text-xs'
-                      : 'bg-red-500/10 text-red-400 border-red-500/20 text-xs'}>
-                      {artist.status === 'active' ? 'Actif' : 'Inactif'}
+                    <Badge className={
+                      artist.status === 'active' || artist.status === 'approved' ? 'bg-green-500/10 text-green-400 border-green-500/20 text-xs' :
+                      artist.status === 'pending' ? 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20 text-xs' :
+                      artist.status === 'rejected' ? 'bg-red-500/10 text-red-400 border-red-500/20 text-xs' :
+                      'bg-gray-500/10 text-gray-400 border-gray-500/20 text-xs'}>
+                      {artist.status === 'active' ? 'Actif' : artist.status === 'approved' ? 'Approuvé' : artist.status === 'pending' ? 'En attente' : artist.status === 'rejected' ? 'Refusé' : 'Inactif'}
                     </Badge>
                   </td>
                   <td className="py-3 px-3 text-center">
