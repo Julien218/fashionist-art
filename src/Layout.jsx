@@ -152,6 +152,23 @@ export default function Layout({ children, currentPageName }) {
                 <Link to={createPageUrl('Billetterie')} onClick={() => setMenuOpen(false)} className="block btn-primary text-center mt-3">
                   Réserver
                 </Link>
+                {user ? (
+                  <button
+                    onClick={() => { setMenuOpen(false); base44.auth.logout(); }}
+                    className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-white/60 hover:bg-white/5 transition-colors mt-1"
+                  >
+                    <span className="flex items-center gap-2"><User className="w-4 h-4" />{user.full_name || user.email}</span>
+                    <LogOut className="w-4 h-4 opacity-40" />
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => { setMenuOpen(false); base44.auth.redirectToLogin(); }}
+                    className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-white/70 hover:bg-white/5 transition-colors mt-1"
+                  >
+                    <span>Connexion</span>
+                    <LogIn className="w-4 h-4 opacity-40" />
+                  </button>
+                )}
               </div>
             </motion.div>
           )}
