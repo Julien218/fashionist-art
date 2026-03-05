@@ -61,6 +61,7 @@ import Programme from './pages/Programme';
 import Sitemap from './pages/Sitemap';
 import Unsubscribe from './pages/Unsubscribe';
 import Gallery from './pages/Gallery';
+import MyArtist from './pages/MyArtist';
 import __Layout from './Layout.jsx';
 
 
@@ -79,6 +80,7 @@ export const PAGES = {
     "Sitemap": Sitemap,
     "Unsubscribe": Unsubscribe,
     "Gallery": Gallery,
+    "MyArtist": MyArtist,
 }
 
 export const pagesConfig = {
