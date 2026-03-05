@@ -62,10 +62,10 @@ export default function Admin() {
             <Link to={createPageUrl('Home')} className="text-sm text-white/60 hover:text-[#FF2D8A] flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 hover:border-[#FF2D8A]/30 transition-all">
               <Home className="w-4 h-4" /> Accueil
             </Link>
-            <Link to={createPageUrl('Home')} className="text-sm text-[#2D2024]/50 hover:text-[#C2185B] flex items-center gap-1">
+            <Link to={createPageUrl('Home')} className="text-sm text-white/50 hover:text-[#FF2D8A] flex items-center gap-1 px-3 py-1.5 rounded-full border border-white/10 hover:border-[#FF2D8A]/30 transition-all">
               <Eye className="w-4 h-4" /> Voir le site
             </Link>
-            <Button variant="ghost" size="sm" onClick={() => base44.auth.logout()} className="text-[#2D2024]/50">
+            <Button variant="ghost" size="sm" onClick={() => base44.auth.logout()} className="text-white/50 hover:text-white">
               <LogOut className="w-4 h-4" />
             </Button>
           </div>
