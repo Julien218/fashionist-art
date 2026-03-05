@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { CalendarPlus, Share2 } from 'lucide-react';
+import { CalendarPlus, Share2, Facebook, Linkedin, Twitter } from 'lucide-react';
+import { toast } from 'sonner';
 
 const EVENT_DATE = new Date('2026-04-18T10:00:00+02:00');
 
