@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { base44 } from '@/api/base44Client';
 import { motion } from 'framer-motion';
 import SectionTitle from '@/components/shared/SectionTitle';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
