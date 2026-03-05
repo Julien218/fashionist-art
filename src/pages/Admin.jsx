@@ -215,7 +215,7 @@ function AdminCRUD({ entity, queryClient, fields }) {
                 )}
               </div>
             ))}
-            <Button onClick={handleSave} disabled={createMutation.isPending || updateMutation.isPending} className="btn-premium w-full">
+            <Button onClick={handleSave} disabled={createMutation.isPending || updateMutation.isPending} className="bg-[#FF2D8A] hover:bg-[#C2185B] text-white w-full">
               {(createMutation.isPending || updateMutation.isPending) ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Enregistrer'}
             </Button>
           </div>
