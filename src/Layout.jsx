@@ -101,6 +101,24 @@ export default function Layout({ children, currentPageName }) {
               <Link to={createPageUrl('Billetterie')} className="hidden sm:inline-flex items-center gap-2 btn-primary text-sm py-2.5 px-6 ring-2 ring-[#FF2D8A] ring-offset-2 ring-offset-transparent">
                 <Ticket className="w-4 h-4" /> Réserver
               </Link>
+              {user ? (
+                <button
+                  onClick={() => base44.auth.logout()}
+                  className="hidden lg:inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition-all border border-white/10"
+                  title={user.full_name || user.email}
+                >
+                  <User className="w-4 h-4" />
+                  <span className="max-w-[100px] truncate">{user.full_name || user.email}</span>
+                  <LogOut className="w-3.5 h-3.5 opacity-60" />
+                </button>
+              ) : (
+                <button
+                  onClick={() => base44.auth.redirectToLogin()}
+                  className="hidden lg:inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition-all border border-white/10"
+                >
+                  <LogIn className="w-4 h-4" /> Connexion
+                </button>
+              )}
               <button onClick={() => setMenuOpen(!menuOpen)} className="lg:hidden p-2 rounded-full hover:bg-white/10 transition-colors">
                 {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
