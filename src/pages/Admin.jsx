@@ -19,6 +19,7 @@ import NewsletterTab from '@/components/admin/NewsletterTab';
 import BlogTab from '@/components/admin/BlogTab';
 import GalleryMediaTab from '@/components/admin/GalleryMediaTab';
 import SocialPostsTab from '@/components/admin/SocialPostsTab';
+import PartnerTab from '@/components/admin/PartnerTab';
 import { 
   Users, Calendar, Palette, Handshake, Image, Mail, 
   Plus, Pencil, Trash2, LogOut, Shield, Loader2,
@@ -106,13 +107,7 @@ export default function Admin() {
             { key: 'description', label: 'Description', type: 'textarea' },
           ]} /></TabsContent>
 
-          <TabsContent value="partners"><AdminCRUD entity="Partner" queryClient={queryClient} fields={[
-            { key: 'name', label: 'Nom', type: 'text', required: true },
-            { key: 'category', label: 'Catégorie', type: 'select', options: ['principal', 'officiel', 'media', 'technique', 'institutionnel'], required: true },
-            { key: 'logo_url', label: 'Logo URL', type: 'text' },
-            { key: 'website', label: 'Site web', type: 'text' },
-            { key: 'display_order', label: 'Ordre', type: 'number' },
-          ]} /></TabsContent>
+          <TabsContent value="partners"><PartnerTab user={user} /></TabsContent>
 
           <TabsContent value="media"><GalleryMediaTab /></TabsContent>
 
