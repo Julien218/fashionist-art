@@ -322,8 +322,8 @@ function AdminUsers({ user }) {
           {users.map((u) => (
             <div key={u.id} className="bg-white/5 border border-white/10 rounded-xl p-4 flex items-center justify-between">
               <div>
-                <p className="font-display font-semibold text-sm">{u.full_name || u.email}</p>
-                <p className="text-xs text-[#2D2024]/40">{u.email}</p>
+                <p className="font-display font-semibold text-sm text-white">{u.full_name || u.email}</p>
+                <p className="text-xs text-white/40">{u.email}</p>
               </div>
               <Badge className={roleColors[u.role] || roleColors.user}>{u.role || 'user'}</Badge>
             </div>
