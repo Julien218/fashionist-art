@@ -18,10 +18,11 @@ import ArtistsTab from '@/components/admin/ArtistsTab';
 import NewsletterTab from '@/components/admin/NewsletterTab';
 import BlogTab from '@/components/admin/BlogTab';
 import GalleryMediaTab from '@/components/admin/GalleryMediaTab';
+import SocialPostsTab from '@/components/admin/SocialPostsTab';
 import { 
   Users, Calendar, Palette, Handshake, Image, Mail, 
   Plus, Pencil, Trash2, LogOut, Shield, Loader2,
-  Eye, UserPlus, Home, ChevronRight, CreditCard, ClipboardList, Send, BookOpen
+  Eye, UserPlus, Home, ChevronRight, CreditCard, ClipboardList, Send, BookOpen, Megaphone
 } from 'lucide-react';
 
 export default function Admin() {
@@ -86,6 +87,7 @@ export default function Admin() {
             <TabsTrigger value="users" className="gap-2"><Users className="w-4 h-4" /> Utilisateurs</TabsTrigger>
             <TabsTrigger value="newsletter" className="gap-2"><Send className="w-4 h-4" /> Newsletter</TabsTrigger>
             <TabsTrigger value="blog" className="gap-2"><BookOpen className="w-4 h-4" /> Blog</TabsTrigger>
+            <TabsTrigger value="social" className="gap-2"><Megaphone className="w-4 h-4" /> Posts</TabsTrigger>
             {user.role === 'super_admin' && (
               <TabsTrigger value="stripe" className="gap-2"><CreditCard className="w-4 h-4" /> Stripe</TabsTrigger>
             )}
@@ -119,6 +121,7 @@ export default function Admin() {
           <TabsContent value="users"><AdminUsers user={user} /></TabsContent>
           <TabsContent value="newsletter"><NewsletterTab user={user} /></TabsContent>
           <TabsContent value="blog"><BlogTab /></TabsContent>
+          <TabsContent value="social"><SocialPostsTab user={user} /></TabsContent>
           {user.role === 'super_admin' && (
             <TabsContent value="stripe"><StripeTab /></TabsContent>
           )}
