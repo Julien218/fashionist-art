@@ -112,12 +112,7 @@ export default function Admin() {
             { key: 'display_order', label: 'Ordre', type: 'number' },
           ]} /></TabsContent>
 
-          <TabsContent value="media"><AdminCRUD entity="GalleryMedia" queryClient={queryClient} fields={[
-            { key: 'title', label: 'Titre', type: 'text', required: true },
-            { key: 'type', label: 'Type', type: 'select', options: ['photo', 'video', 'document'], required: true },
-            { key: 'url', label: 'URL', type: 'text', required: true },
-            { key: 'thumbnail_url', label: 'Miniature URL', type: 'text' },
-          ]} /></TabsContent>
+          <TabsContent value="media"><GalleryMediaTab /></TabsContent>
 
           <TabsContent value="registrations"><AdminReadOnly entity="Registration" queryClient={queryClient} columns={['first_name', 'last_name', 'email', 'accepts_terms', 'accepts_contact', 'created_date']} /></TabsContent>
 
