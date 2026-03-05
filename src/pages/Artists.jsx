@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
 import SectionTitle from '@/components/shared/SectionTitle';
 import SocialShare from '@/components/shared/SocialShare';
+import ArtistShare from '@/components/shared/ArtistShare';
 import FreeBadge from '@/components/shared/FreeBadge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { User, Globe, Instagram, Facebook as FacebookIcon } from 'lucide-react';

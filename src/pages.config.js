@@ -51,6 +51,7 @@ import Admin from './pages/Admin';
 import ArtistComplete from './pages/ArtistComplete';
 import Artists from './pages/Artists';
 import Billetterie from './pages/Billetterie';
+import Blog from './pages/Blog';
 import Home from './pages/Home';
 import Infos from './pages/Infos';
 import Legal from './pages/Legal';
@@ -59,7 +60,6 @@ import Privacy from './pages/Privacy';
 import Programme from './pages/Programme';
 import Sitemap from './pages/Sitemap';
 import Unsubscribe from './pages/Unsubscribe';
-import Blog from './pages/Blog';
 import __Layout from './Layout.jsx';
 
 
@@ -68,6 +68,7 @@ export const PAGES = {
     "ArtistComplete": ArtistComplete,
     "Artists": Artists,
     "Billetterie": Billetterie,
+    "Blog": Blog,
     "Home": Home,
     "Infos": Infos,
     "Legal": Legal,
@@ -76,7 +77,6 @@ export const PAGES = {
     "Programme": Programme,
     "Sitemap": Sitemap,
     "Unsubscribe": Unsubscribe,
-    "Blog": Blog,
 }
 
 export const pagesConfig = {
