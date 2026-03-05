@@ -156,6 +156,12 @@ export default function Layout({ children, currentPageName }) {
                     <ChevronRight className="w-4 h-4 opacity-40" />
                   </Link>
                 ))}
+                {user && (
+                  <Link to={createPageUrl('MyArtist')} onClick={() => setMenuOpen(false)} className="flex items-center justify-between px-4 py-3 rounded-xl text-[#D4AF37]/80 hover:bg-white/5 transition-colors">
+                    <span>Mon artiste</span>
+                    <ChevronRight className="w-4 h-4 opacity-40" />
+                  </Link>
+                )}
                 {isAdmin && (
                   <Link to={createPageUrl('Admin')} onClick={() => setMenuOpen(false)} className="flex items-center justify-between px-4 py-3 rounded-xl text-[#D4AF37] hover:bg-white/5 transition-colors">
                     <span>Administration</span>
