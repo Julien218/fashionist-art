@@ -63,6 +63,7 @@ import Programme from './pages/Programme';
 import Sitemap from './pages/Sitemap';
 import Unsubscribe from './pages/Unsubscribe';
 import Actus from './pages/Actus';
+import Partners from './pages/Partners';
 import __Layout from './Layout.jsx';
 
 
@@ -83,6 +84,7 @@ export const PAGES = {
     "Sitemap": Sitemap,
     "Unsubscribe": Unsubscribe,
     "Actus": Actus,
+    "Partners": Partners,
 }
 
 export const pagesConfig = {
