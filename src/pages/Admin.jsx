@@ -199,7 +199,7 @@ function AdminCRUD({ entity, queryClient, fields }) {
                   <Textarea value={formData[field.key] || ''} onChange={(e) => setFormData({ ...formData, [field.key]: e.target.value })} className="rounded-xl bg-white/5 border-white/10 text-white" />
                 ) : field.type === 'select' ? (
                   <Select value={formData[field.key] || ''} onValueChange={(v) => setFormData({ ...formData, [field.key]: v })}>
-                    <SelectTrigger className="rounded-xl border-[#E8A0B4]/40"><SelectValue /></SelectTrigger>
+                    <SelectTrigger className="rounded-xl bg-white/5 border-white/10 text-white"><SelectValue /></SelectTrigger>
                     <SelectContent>
                       {field.options.map((o) => <SelectItem key={o} value={o}>{o}</SelectItem>)}
                     </SelectContent>
