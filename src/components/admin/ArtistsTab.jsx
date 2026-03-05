@@ -66,6 +66,22 @@ export default function ArtistsTab({ user }) {
     toast.success(`Artiste ${newStatus === 'active' ? 'activé' : 'désactivé'}`);
   };
 
+  const approveArtist = async (artist) => {
+    await base44.entities.Artist.update(artist.id, { status: 'approved' });
+    queryClient.invalidateQueries({ queryKey: ['artists-admin'] });
+    queryClient.invalidateQueries({ queryKey: ['artists'] });
+    toast.success('Artiste approuvé !');
+  };
+
+  const rejectArtist = async (artist) => {
+    await base44.entities.Artist.update(artist.id, { status: 'rejected' });
+    queryClient.invalidateQueries({ queryKey: ['artists-admin'] });
+    queryClient.invalidateQueries({ queryKey: ['artists'] });
+    toast.success('Artiste refusé.');
+  };
+
+  const pendingCount = artists.filter(a => a.status === 'pending').length;
+
   const handleSendEmails = async () => {
     const targets = selected.filter(id => {
       const a = artists.find(x => x.id === id);
