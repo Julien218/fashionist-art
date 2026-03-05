@@ -210,7 +210,7 @@ function AdminCRUD({ entity, queryClient, fields }) {
                     value={formData[field.key] || ''}
                     onChange={(e) => setFormData({ ...formData, [field.key]: field.type === 'number' ? Number(e.target.value) : e.target.value })}
                     placeholder={field.placeholder}
-                    className="rounded-xl border-[#E8A0B4]/40"
+                    className="rounded-xl bg-white/5 border-white/10 text-white placeholder:text-white/30"
                   />
                 )}
               </div>
