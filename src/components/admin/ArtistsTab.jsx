@@ -257,6 +257,16 @@ export default function ArtistsTab({ user }) {
                       <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => { setEditArtist(artist); setFormOpen(true); }}>
                         <Pencil className="w-3.5 h-3.5 text-white/50 hover:text-white" />
                       </Button>
+                      {artist.status === 'pending' && (
+                        <>
+                          <Button variant="ghost" size="icon" className="h-7 w-7" title="Approuver" onClick={() => approveArtist(artist)}>
+                            <ThumbsUp className="w-3.5 h-3.5 text-green-400" />
+                          </Button>
+                          <Button variant="ghost" size="icon" className="h-7 w-7" title="Refuser" onClick={() => rejectArtist(artist)}>
+                            <ThumbsDown className="w-3.5 h-3.5 text-red-400" />
+                          </Button>
+                        </>
+                      )}
                       <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => toggleStatus(artist)}>
                         {artist.status === 'active'
                           ? <ToggleRight className="w-4 h-4 text-green-400" />
