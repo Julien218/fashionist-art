@@ -187,7 +187,7 @@ function AdminCRUD({ entity, queryClient, fields }) {
       )}
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent className="glass max-w-md">
+        <DialogContent className="bg-[#12121A] border border-white/10 text-white max-w-md">
           <DialogHeader>
             <DialogTitle>{editItem ? 'Modifier' : 'Ajouter'}</DialogTitle>
           </DialogHeader>
