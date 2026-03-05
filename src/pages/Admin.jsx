@@ -171,7 +171,7 @@ function AdminCRUD({ entity, queryClient, fields }) {
       {isLoading ? <Loader2 className="w-6 h-6 animate-spin mx-auto" /> : (
         <div className="space-y-3">
           {items.map((item) => (
-            <div key={item.id} className="glass glow-card rounded-xl p-4 flex items-center justify-between">
+            <div key={item.id} className="bg-white/5 border border-white/10 rounded-xl p-4 flex items-center justify-between">
               <div>
                 <p className="font-display font-semibold text-sm">{item.name || item.title || item.email || item.id}</p>
                 <p className="text-xs text-[#2D2024]/40">{item.category || item.discipline || item.type || ''}</p>
