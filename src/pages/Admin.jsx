@@ -122,6 +122,7 @@ export default function Admin() {
 
           <TabsContent value="users"><AdminUsers user={user} /></TabsContent>
           <TabsContent value="newsletter"><NewsletterTab user={user} /></TabsContent>
+          <TabsContent value="blog"><BlogTab /></TabsContent>
           {user.role === 'super_admin' && (
             <TabsContent value="stripe"><StripeTab /></TabsContent>
           )}
