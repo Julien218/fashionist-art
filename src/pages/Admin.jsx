@@ -20,10 +20,12 @@ import BlogTab from '@/components/admin/BlogTab';
 import GalleryMediaTab from '@/components/admin/GalleryMediaTab';
 import SocialPostsTab from '@/components/admin/SocialPostsTab';
 import PartnerTab from '@/components/admin/PartnerTab';
+import BarTab from '@/components/admin/BarTab';
+import SalesTab from '@/components/admin/SalesTab';
 import { 
   Users, Calendar, Palette, Handshake, Image, Mail, 
   Plus, Pencil, Trash2, LogOut, Shield, Loader2,
-  Eye, UserPlus, Home, ChevronRight, CreditCard, ClipboardList, Send, BookOpen, Megaphone
+  Eye, UserPlus, Home, ChevronRight, CreditCard, ClipboardList, Send, BookOpen, Megaphone, Zap, BarChart3
 } from 'lucide-react';
 
 export default function Admin() {
@@ -92,6 +94,12 @@ export default function Admin() {
             {user.role === 'super_admin' && (
               <TabsTrigger value="stripe" className="gap-2"><CreditCard className="w-4 h-4" /> Stripe</TabsTrigger>
             )}
+            {['admin', 'super_admin'].includes(user.role) && (
+              <>
+                <TabsTrigger value="bar" className="gap-2"><Zap className="w-4 h-4" /> Bar</TabsTrigger>
+                <TabsTrigger value="sales" className="gap-2"><BarChart3 className="w-4 h-4" /> Ventes</TabsTrigger>
+              </>
+            )}
           </TabsList>
 
           <TabsContent value="participants"><ParticipantsTab user={user} /></TabsContent>
@@ -119,6 +127,12 @@ export default function Admin() {
           <TabsContent value="social"><SocialPostsTab user={user} /></TabsContent>
           {user.role === 'super_admin' && (
             <TabsContent value="stripe"><StripeTab /></TabsContent>
+          )}
+          {['admin', 'super_admin'].includes(user.role) && (
+            <>
+              <TabsContent value="bar"><BarTab user={user} /></TabsContent>
+              <TabsContent value="sales"><SalesTab user={user} /></TabsContent>
+            </>
           )}
         </Tabs>
       </div>
