@@ -83,7 +83,7 @@ export default function Layout({ children, currentPageName }) {
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                     currentPageName === item.page
                       ? 'text-[#FF2D8A] bg-[#FF2D8A]/10'
-                      : 'text-gray-700 hover:text-[#FF2D8A] hover:bg-[#FF2D8A]/5'
+                      : 'text-white/80 hover:text-[#FF2D8A] hover:bg-[#FF2D8A]/5'
                   }`}
                 >
                   {item.label}
