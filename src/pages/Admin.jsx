@@ -292,8 +292,8 @@ function AdminUsers({ user }) {
       <h2 className="font-display font-bold text-xl mb-6">Utilisateurs</h2>
       
       {/* Invite */}
-      <div className="glass glow-card rounded-2xl p-6 mb-8">
-        <h3 className="font-display font-semibold text-sm mb-4 flex items-center gap-2"><UserPlus className="w-4 h-4 text-[#C2185B]" /> Inviter un utilisateur</h3>
+      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 mb-8">
+        <h3 className="font-display font-semibold text-sm mb-4 flex items-center gap-2 text-white"><UserPlus className="w-4 h-4 text-[#FF2D8A]" /> Inviter un utilisateur</h3>
         <div className="flex flex-col sm:flex-row gap-3">
           <Input
             type="email"
