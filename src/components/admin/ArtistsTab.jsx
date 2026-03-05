@@ -21,6 +21,7 @@ export default function ArtistsTab({ user }) {
   const queryClient = useQueryClient();
   const [search, setSearch] = useState('');
   const [filterCategory, setFilterCategory] = useState('all');
+  const [filterStatus, setFilterStatus] = useState('all');
   const [sortField, setSortField] = useState('name');
   const [sortDir, setSortDir] = useState('asc');
   const [selected, setSelected] = useState([]);
