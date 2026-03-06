@@ -1,18 +1,39 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Volume2, VolumeX } from 'lucide-react';
-
-// URL de la vidéo d'intro hébergée sur Base44
-const VIDEO_URL = "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_68ae1c019dacc474a322f2b2/fashionistart_intro.mp4";
+import { base44 } from '@/api/base44Client';
 
 const LOGO_URL = "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_68ae1c019dacc474a322f2b2/742499905_Capturedecran2026-02-26a175005.png";
 const BG_URL = "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a460cb984c65f748b49e7d/ef497c4fd_artisteimageb.jpg";
+
+// Convertir YouTube URL en embed URL
+const getEmbedUrl = (url) => {
+  if (!url) return null;
+  
+  // youtube.com/watch?v=...
+  const youtubeMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
+  if (youtubeMatch) {
+    return `https://www.youtube.com/embed/${youtubeMatch[1]}?autoplay=1&fs=1&modestbranding=1`;
+  }
+  
+  // Si c'est déjà un embed ou une URL directe, retourner tel quel
+  return url;
+};
 
 export default function SplashScreen({ onDone }) {
   const [visible, setVisible] = useState(true);
   const [muted, setMuted] = useState(true);
   const [videoError, setVideoError] = useState(false);
+  const [config, setConfig] = useState(null);
+  const [loading, setLoading] = useState(true);
   const videoRef = useRef(null);
+
+  useEffect(() => {
+    base44.entities.HomePageConfig.list().then(items => {
+      if (items?.[0]) setConfig(items[0]);
+      setLoading(false);
+    }).catch(() => setLoading(false));
+  }, []);
 
   const handleDone = () => {
     setVisible(false);
@@ -20,20 +41,21 @@ export default function SplashScreen({ onDone }) {
   };
 
   useEffect(() => {
-    // Auto-dismiss après 40 secondes max
-    const timer = setTimeout(handleDone, 40000);
+    if (loading) return;
+
+    const duration = (config?.intro_duration_seconds || 12) * 1000;
+    const timer = setTimeout(handleDone, Math.min(duration, 60000));
 
     const video = videoRef.current;
     if (video) {
       video.muted = true;
       video.play().catch(() => {
-        // Autoplay bloqué → fallback statique
         setVideoError(true);
       });
     }
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [loading, config]);
 
   const toggleMute = () => {
     const video = videoRef.current;
@@ -42,6 +64,13 @@ export default function SplashScreen({ onDone }) {
       setMuted(!muted);
     }
   };
+
+  // Ne pas afficher si config désactivée
+  const shouldShow = !config || config.intro_enabled !== false;
+  const videoUrl = config?.intro_video_url ? getEmbedUrl(config.intro_video_url) : null;
+  const imageUrl = config?.intro_image_url;
+
+  if (!shouldShow) return null;
 
   return (
     <AnimatePresence>
@@ -60,12 +89,28 @@ export default function SplashScreen({ onDone }) {
             overflow: 'hidden',
           }}
         >
-          {/* === FALLBACK STATIQUE si vidéo en erreur === */}
-          {videoError ? (
+          {/* === VIDÉO YOUTUBE/VIMEO EMBED === */}
+          {videoUrl && videoUrl.includes('youtube.com/embed') ? (
+            <div className="absolute inset-0 flex items-center justify-center bg-black">
+              <iframe
+                width="100%"
+                height="100%"
+                src={videoUrl}
+                title="Intro video"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                style={{ objectFit: 'cover' }}
+                onLoad={() => {
+                  setTimeout(handleDone, (config?.intro_duration_seconds || 12) * 1000);
+                }}
+              />
+            </div>
+          ) : videoError ? (
             <div
               className="absolute inset-0 flex flex-col items-center justify-center"
               style={{
-                backgroundImage: `url("${BG_URL}")`,
+                backgroundImage: `url("${imageUrl || BG_URL}")`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
@@ -95,10 +140,10 @@ export default function SplashScreen({ onDone }) {
               </motion.div>
             </div>
           ) : (
-            /* === VIDÉO NORMALE === */
+            /* === VIDÉO MP4 === */
             <video
               ref={videoRef}
-              src={VIDEO_URL}
+              src={videoUrl}
               playsInline
               muted
               autoPlay
@@ -125,8 +170,8 @@ export default function SplashScreen({ onDone }) {
             <X className="w-4 h-4" /> Passer
           </button>
 
-          {/* === BOUTON SON (masqué en fallback) === */}
-          {!videoError && (
+          {/* === BOUTON SON (masqué si YouTube ou fallback) === */}
+          {!videoError && !videoUrl?.includes('youtube') && (
             <button
               onClick={toggleMute}
               style={{ position: 'absolute', bottom: '24px', right: '24px', zIndex: 100000 }}
