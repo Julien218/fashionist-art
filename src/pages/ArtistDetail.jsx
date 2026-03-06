@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, User, Globe, Instagram, Facebook as FacebookIcon } from 'lucide-react';
 import ArtistShare from '@/components/shared/ArtistShare';
 import SEOHead from '@/components/shared/SEOHead';
+import SchemaOrgPerson from '@/components/shared/SchemaOrgPerson';
 import { createPageUrl } from '@/utils';
 
 export default function ArtistDetail() {
@@ -60,6 +61,7 @@ export default function ArtistDetail() {
   return (
     <div className="py-12 px-4">
       <SEOHead pageName="Artists" title={`${artist.name} — ${artist.discipline} | Fashionist'ART 2026`} description={artist.short_bio || artist.full_bio || `${artist.name} participera à Fashionist'ART le 18 avril 2026 à Dour, Belgique. ${artist.discipline}. Entrée gratuite !`} image={artist.photo_url} />
+      <SchemaOrgPerson person={artist} />
       <div className="max-w-4xl mx-auto">
         {/* Back button */}
         <motion.button
