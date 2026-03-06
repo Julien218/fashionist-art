@@ -50,7 +50,24 @@ export default function SalesTab({ user }) {
   );
 
   const today = new Date().toISOString().split('T')[0];
-  const salesToday = sales.filter((s) => (s.created_at || s.created_date || '').split('T')[0] === today);
+
+  const getSalesForExport = () => {
+    if (exportPeriod === 'today') {
+      return sales.filter((s) => (s.created_at || s.created_date || '').split('T')[0] === today);
+    } else if (exportPeriod === 'date') {
+      return sales.filter((s) => (s.created_at || s.created_date || '').split('T')[0] === exportDate);
+    } else if (exportPeriod === 'year') {
+      return sales.filter((s) => (s.created_at || s.created_date || '').startsWith(exportYear));
+    }
+    return filteredSales;
+  };
+
+  const getExportFilename = () => {
+    if (exportPeriod === 'today') return `caisse-du-jour-${today}.csv`;
+    if (exportPeriod === 'date') return `ventes-${exportDate}.csv`;
+    if (exportPeriod === 'year') return `ventes-annee-${exportYear}.csv`;
+    return `ventes-export.csv`;
+  };
 
   const buildCSV = (rows, isSuperAdmin) => {
     const headers = ['Date', 'Heure', 'Type', 'Note', 'Montant (€)', 'Frais Stripe (€)', 'Net (€)', 'Statut', ...(isSuperAdmin ? ['Commission (€)'] : [])];
