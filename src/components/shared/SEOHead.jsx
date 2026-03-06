@@ -46,12 +46,16 @@ const PAGE_META = {
 const BASE_URL = 'https://fashionistart.base44.app';
 const OG_IMAGE = 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a460cb984c65f748b49e7d/ef497c4fd_artisteimageb.jpg';
 
-export default function SEOHead({ pageName }) {
-  const meta = PAGE_META[pageName] || PAGE_META.Home;
+export default function SEOHead({ pageName, title: overrideTitle, description: overrideDescription, image: overrideImage, url: overrideUrl }) {
+  const base = PAGE_META[pageName] || PAGE_META.Home;
+
+  const title = overrideTitle || base.title;
+  const description = overrideDescription || base.description;
+  const image = overrideImage || OG_IMAGE;
+  const url = overrideUrl || (BASE_URL + base.canonical);
 
   useEffect(() => {
-    // Title
-    document.title = meta.title;
+    document.title = title;
 
     const setMeta = (selector, attr, value) => {
       let el = document.querySelector(selector);
@@ -71,28 +75,28 @@ export default function SEOHead({ pageName }) {
     };
 
     // Standard meta
-    setMeta('meta[name="description"]', 'content', meta.description);
+    setMeta('meta[name="description"]', 'content', description);
     setMeta('meta[name="robots"]', 'content', 'index, follow');
-    setLink('canonical', BASE_URL + meta.canonical);
+    setLink('canonical', url);
 
     // Open Graph
-    setMeta('meta[property="og:title"]', 'content', meta.title);
-    setMeta('meta[property="og:description"]', 'content', meta.description);
-    setMeta('meta[property="og:url"]', 'content', BASE_URL + meta.canonical);
-    setMeta('meta[property="og:image"]', 'content', OG_IMAGE);
+    setMeta('meta[property="og:title"]', 'content', title);
+    setMeta('meta[property="og:description"]', 'content', description);
+    setMeta('meta[property="og:url"]', 'content', url);
+    setMeta('meta[property="og:image"]', 'content', image);
     setMeta('meta[property="og:type"]', 'content', 'website');
     setMeta('meta[property="og:locale"]', 'content', 'fr_BE');
     setMeta('meta[property="og:site_name"]', 'content', "Fashionist'ART");
 
     // Twitter
     setMeta('meta[name="twitter:card"]', 'content', 'summary_large_image');
-    setMeta('meta[name="twitter:title"]', 'content', meta.title);
-    setMeta('meta[name="twitter:description"]', 'content', meta.description);
-    setMeta('meta[name="twitter:image"]', 'content', OG_IMAGE);
+    setMeta('meta[name="twitter:title"]', 'content', title);
+    setMeta('meta[name="twitter:description"]', 'content', description);
+    setMeta('meta[name="twitter:image"]', 'content', image);
 
     // Lang
     document.documentElement.lang = 'fr';
-  }, [pageName]);
+  }, [title, description, image, url]);
 
   return null;
 }
