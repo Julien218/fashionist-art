@@ -122,8 +122,11 @@ export default function SalesTab({ user }) {
           </SelectContent>
         </Select>
 
+        <Button onClick={exportTodayCSV} variant="outline" className="border-white/20 text-white/70 hover:text-white gap-2">
+          <Download className="w-4 h-4" /> CSV du jour
+        </Button>
         <Button onClick={exportCSV} variant="outline" className="border-white/20 text-white/70 hover:text-white gap-2">
-          <Download className="w-4 h-4" /> Export CSV
+          <Download className="w-4 h-4" /> Export CSV (tout)
         </Button>
       </div>
 
