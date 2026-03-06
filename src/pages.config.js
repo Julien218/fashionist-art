@@ -54,6 +54,8 @@ import Artists from './pages/Artists';
 import Billetterie from './pages/Billetterie';
 import Blog from './pages/Blog';
 import Gallery from './pages/Gallery';
+import Histoire from './pages/Histoire';
+import HistoireValidation from './pages/HistoireValidation';
 import Home from './pages/Home';
 import Infos from './pages/Infos';
 import Legal from './pages/Legal';
@@ -64,8 +66,6 @@ import Privacy from './pages/Privacy';
 import Programme from './pages/Programme';
 import Sitemap from './pages/Sitemap';
 import Unsubscribe from './pages/Unsubscribe';
-import Histoire from './pages/Histoire';
-import HistoireValidation from './pages/HistoireValidation';
 import __Layout from './Layout.jsx';
 
 
@@ -77,6 +77,8 @@ export const PAGES = {
     "Billetterie": Billetterie,
     "Blog": Blog,
     "Gallery": Gallery,
+    "Histoire": Histoire,
+    "HistoireValidation": HistoireValidation,
     "Home": Home,
     "Infos": Infos,
     "Legal": Legal,
@@ -87,8 +89,6 @@ export const PAGES = {
     "Programme": Programme,
     "Sitemap": Sitemap,
     "Unsubscribe": Unsubscribe,
-    "Histoire": Histoire,
-    "HistoireValidation": HistoireValidation,
 }
 
 export const pagesConfig = {

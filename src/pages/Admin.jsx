@@ -290,10 +290,15 @@ function AdminUsers({ user }) {
   const [inviteRole, setInviteRole] = useState('member');
   const [inviting, setInviting] = useState(false);
 
-  const { data: users = [], isLoading } = useQuery({
+  const { data: allUsers = [], isLoading } = useQuery({
     queryKey: ['users'],
     queryFn: () => base44.entities.User.list(),
   });
+
+  // Les admins ne voient pas les super_admin, seulement super_admin voit tout
+  const users = user.role === 'super_admin'
+    ? allUsers
+    : allUsers.filter((u) => u.role !== 'super_admin' && u.role !== 'admin');
 
   const handleInvite = async () => {
     if (!inviteEmail) return;
