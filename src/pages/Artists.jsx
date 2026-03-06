@@ -137,8 +137,14 @@ export default function Artists() {
               <User className="w-16 h-16 text-white/20 mx-auto mb-4" />
               <p className="font-display font-semibold text-white/40 text-lg">Artistes à venir</p>
             </div>
+          ) : filteredArtists.length === 0 ? (
+            <div className="col-span-full text-center py-16 glass-dark neon-border rounded-3xl">
+              <Search className="w-12 h-12 text-white/20 mx-auto mb-4" />
+              <p className="font-display font-semibold text-white/40 text-lg">Aucun artiste trouvé</p>
+              <button onClick={() => { setSearch(''); setActiveFilter('all'); }} className="mt-4 text-[#FF2D8A] text-sm underline">Réinitialiser les filtres</button>
+            </div>
           ) : (
-            artists.map((artist, i) => (
+            filteredArtists.map((artist, i) => (
               <motion.div
                 key={artist.id}
                 initial={{ opacity: 0, scale: 0.85, y: 30 }}
