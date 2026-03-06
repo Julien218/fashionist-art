@@ -22,10 +22,11 @@ import SocialPostsTab from '@/components/admin/SocialPostsTab';
 import PartnerTab from '@/components/admin/PartnerTab';
 import BarTab from '@/components/admin/BarTab';
 import SalesTab from '@/components/admin/SalesTab';
+import CommissionsTab from '@/components/admin/CommissionsTab';
 import { 
   Users, Calendar, Palette, Handshake, Image, Mail, 
   Plus, Pencil, Trash2, LogOut, Shield, Loader2,
-  Eye, UserPlus, Home, ChevronRight, CreditCard, ClipboardList, Send, BookOpen, Megaphone, Zap, BarChart3
+  Eye, UserPlus, Home, ChevronRight, CreditCard, ClipboardList, Send, BookOpen, Megaphone, Zap, BarChart3, TrendingUp
 } from 'lucide-react';
 
 export default function Admin() {
@@ -91,7 +92,7 @@ export default function Admin() {
             <TabsTrigger value="newsletter" className="gap-2"><Send className="w-4 h-4" /> Newsletter</TabsTrigger>
             <TabsTrigger value="blog" className="gap-2"><BookOpen className="w-4 h-4" /> Blog</TabsTrigger>
             <TabsTrigger value="social" className="gap-2"><Megaphone className="w-4 h-4" /> Posts</TabsTrigger>
-            {user.role === 'super_admin' && (
+            {['admin', 'super_admin'].includes(user.role) && (
               <TabsTrigger value="stripe" className="gap-2"><CreditCard className="w-4 h-4" /> Stripe</TabsTrigger>
             )}
             {['admin', 'super_admin'].includes(user.role) && (
@@ -99,6 +100,9 @@ export default function Admin() {
                 <TabsTrigger value="bar" className="gap-2"><Zap className="w-4 h-4" /> Bar</TabsTrigger>
                 <TabsTrigger value="sales" className="gap-2"><BarChart3 className="w-4 h-4" /> Ventes</TabsTrigger>
               </>
+            )}
+            {user.role === 'super_admin' && (
+              <TabsTrigger value="commissions" className="gap-2"><TrendingUp className="w-4 h-4" /> Commissions</TabsTrigger>
             )}
           </TabsList>
 
@@ -125,14 +129,17 @@ export default function Admin() {
           <TabsContent value="newsletter"><NewsletterTab user={user} /></TabsContent>
           <TabsContent value="blog"><BlogTab /></TabsContent>
           <TabsContent value="social"><SocialPostsTab user={user} /></TabsContent>
-          {user.role === 'super_admin' && (
-            <TabsContent value="stripe"><StripeTab /></TabsContent>
+          {['admin', 'super_admin'].includes(user.role) && (
+            <TabsContent value="stripe"><StripeTab user={user} /></TabsContent>
           )}
           {['admin', 'super_admin'].includes(user.role) && (
             <>
               <TabsContent value="bar"><BarTab user={user} /></TabsContent>
               <TabsContent value="sales"><SalesTab user={user} /></TabsContent>
             </>
+          )}
+          {user.role === 'super_admin' && (
+            <TabsContent value="commissions"><CommissionsTab /></TabsContent>
           )}
         </Tabs>
       </div>
