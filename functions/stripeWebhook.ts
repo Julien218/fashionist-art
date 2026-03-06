@@ -13,7 +13,6 @@ Deno.serve(async (req) => {
     const signature = req.headers.get('stripe-signature');
     const body = await req.text();
 
-    // Valider signature (async car Deno utilise SubtleCrypto)
     let event;
     try {
       event = await stripe.webhooks.constructEventAsync(body, signature, webhookSecret);
@@ -26,33 +25,58 @@ Deno.serve(async (req) => {
 
     if (event.type === 'checkout.session.completed') {
       const session = event.data.object;
-      console.log(`Checkout completed: ${session.id}`);
+      const sessionId = session.id;
+      const paymentIntentId = session.payment_intent;
 
-      // Initialiser le SDK après validation Stripe
+      console.log(`Checkout completed: ${sessionId}, PI: ${paymentIntentId}`);
+
       const base44 = createClientFromRequest(req);
 
-      // Récupérer la balance transaction pour les frais
-      const balanceTransaction = await stripe.balanceTransactions.retrieve(
-        session.payment_intent
-      );
+      // Retrouver la Sale via stripe_session_id
+      const sales = await base44.asServiceRole.entities.Sale.filter({ stripe_session_id: sessionId });
+      const sale = sales?.[0];
 
-      const stripeFeeAmount = balanceTransaction.fee || 0;
+      if (!sale) {
+        console.warn(`No Sale found for session_id: ${sessionId}`);
+        return Response.json({ received: true });
+      }
 
-      console.log(`Stripe fee: ${stripeFeeAmount} cents`);
+      console.log(`Found Sale: ${sale.id}`);
 
-      // TODO: Mettre à jour Sale avec status PAID + stripe_fee_cents
-      // Cela nécessite d'avoir un lien entre session.id et Sale.stripe_session_id
-      // Pour l'instant, on log seulement
+      // Récupérer les frais Stripe exacts via BalanceTransaction
+      let stripeFee = 0;
+      try {
+        if (paymentIntentId) {
+          const pi = await stripe.paymentIntents.retrieve(paymentIntentId);
+          const chargeId = pi.latest_charge;
+          if (chargeId) {
+            const charge = await stripe.charges.retrieve(chargeId);
+            const btId = charge.balance_transaction;
+            if (btId) {
+              const bt = await stripe.balanceTransactions.retrieve(btId);
+              stripeFee = bt.fee || 0;
+              console.log(`Stripe fee from balance transaction: ${stripeFee} cents`);
+            }
+          }
+        }
+      } catch (feeErr) {
+        console.warn('Failed to retrieve Stripe fee:', feeErr.message);
+      }
 
-      return Response.json({ received: true });
+      // Mettre à jour la Sale
+      await base44.asServiceRole.entities.Sale.update(sale.id, {
+        status: 'PAID',
+        stripe_payment_intent_id: paymentIntentId || null,
+        stripe_fee_cents: stripeFee,
+        paid_at: new Date().toISOString(),
+      });
+
+      console.log(`Sale ${sale.id} updated to PAID, stripe_fee=${stripeFee}`);
     }
 
     return Response.json({ received: true });
   } catch (error) {
-    console.error('Error in stripeWebhook:', error.message, error.stack);
-    return Response.json(
-      { error: error.message || 'Internal server error' },
-      { status: 500 }
-    );
+    console.error('stripeWebhook error:', error.message, error.stack);
+    return Response.json({ error: error.message }, { status: 500 });
   }
 });
