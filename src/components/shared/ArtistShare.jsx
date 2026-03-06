@@ -93,11 +93,18 @@ export default function ArtistShare({ artist }) {
       <PopoverContent className="bg-[#12121A] border border-white/10 w-56 p-2" align="end">
         <p className="text-[10px] text-white/30 px-3 pt-1 pb-2 font-display uppercase tracking-widest">Partager {artist.name}</p>
         <div className="space-y-1">
-          {links.map(({ icon: Icon, label, href, color }) => (
-            <a key={label} href={href} target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/5 transition-colors text-sm text-white/70 hover:text-white">
-              <span className={color}><Icon /></span> {label}
-            </a>
+          {links.map(({ icon: Icon, label, href, color, copyOnClick }) => (
+            copyOnClick ? (
+              <button key={label} onClick={() => handleSocialClick(href, label)}
+                className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/5 transition-colors text-sm text-white/70 hover:text-white w-full text-left">
+                <span className={color}><Icon /></span> {label}
+              </button>
+            ) : (
+              <a key={label} href={href} target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/5 transition-colors text-sm text-white/70 hover:text-white">
+                <span className={color}><Icon /></span> {label}
+              </a>
+            )
           ))}
           <div className="border-t border-white/5 my-1" />
           <button onClick={copyLink} className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/5 transition-colors text-sm text-white/70 hover:text-white w-full">
