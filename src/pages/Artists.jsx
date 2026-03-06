@@ -14,10 +14,8 @@ import { User, Globe, Instagram, Facebook as FacebookIcon, Search, X } from 'luc
 
 const BASE_URL = 'https://fashionistart.base44.app';
 
-
 export default function Artists() {
-  const [selectedArtist, setSelectedArtist] = useState(null);
-  const [dynamicMeta, setDynamicMeta] = useState(null);
+  const navigate = useNavigate();
   const [search, setSearch] = useState('');
   const [activeFilter, setActiveFilter] = useState('all');
 
