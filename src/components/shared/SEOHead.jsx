@@ -86,9 +86,12 @@ export default function SEOHead({ pageName, title: overrideTitle, description: o
     setMeta('meta[property="og:description"]', 'content', description);
     setMeta('meta[property="og:url"]', 'content', url);
     setMeta('meta[property="og:image"]', 'content', image);
+    setMeta('meta[property="og:image:width"]', 'content', '1200');
+    setMeta('meta[property="og:image:height"]', 'content', '630');
+    setMeta('meta[property="og:image:alt"]', 'content', "Fashionist'ART 2026 – Logo officiel");
     setMeta('meta[property="og:type"]', 'content', 'website');
     setMeta('meta[property="og:locale"]', 'content', 'fr_BE');
-    setMeta('meta[property="og:site_name"]', 'content', "Fashionist'ART");
+    setMeta('meta[property="og:site_name"]', 'content', "Fashionist'ART – Créé par Js-Innov.IA & JY-Trix.AI");
 
     // Twitter
     setMeta('meta[name="twitter:card"]', 'content', 'summary_large_image');
