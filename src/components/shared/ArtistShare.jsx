@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Share2, Facebook, Instagram, Link, Check, Twitter } from 'lucide-react';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { toast } from 'sonner';
+import { useQuery } from '@tanstack/react-query';
+import { base44 } from '@/api/base44Client';
 
 const TikTokIcon = () => (
   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -12,11 +14,24 @@ const TikTokIcon = () => (
 export default function ArtistShare({ artist }) {
   const [copied, setCopied] = useState(false);
 
+  const { data: bioData } = useQuery({
+    queryKey: ['artistBio', artist?.id],
+    queryFn: async () => {
+      const results = await base44.entities.ArtistBioGenerated.filter({ artist_id: artist.id });
+      return results[0] || null;
+    },
+    enabled: !!artist?.id,
+  });
+
   if (!artist) return null;
 
   const origin = window.location.origin;
   const artistUrl = `${origin}/artists?artist=${encodeURIComponent(artist.name)}`;
-  const shareText = `🎨 Découvrez ${artist.name} — ${artist.discipline} — à Fashionist'ART le 18 avril 2026 à Dour, Belgique ! Entrée gratuite. #FashionistART #Mode #Art #Dour`;
+
+  // Utilise la bio optimisée IA si disponible, sinon fallback sur la bio manuelle
+  const optimizedText = bioData?.post_social || bioData?.bio_short || null;
+  const fallbackText = `🎨 Découvrez ${artist.name} — ${artist.discipline} — à Fashionist'ART le 18 avril 2026 à Dour, Belgique ! Entrée gratuite. #FashionistART #Mode #Art #Dour`;
+  const shareText = optimizedText || fallbackText;
   const encodedText = encodeURIComponent(shareText);
   const encodedUrl = encodeURIComponent(artistUrl);
 
