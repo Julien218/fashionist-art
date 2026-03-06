@@ -12,6 +12,7 @@ import { Plus, Pencil, Trash2, Loader2, Upload, Trash, Eye } from 'lucide-react'
 export default function HomePageTab() {
   const queryClient = useQueryClient();
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [videoDetailOpen, setVideoDetailOpen] = useState(false);
   const [introEnabled, setIntroEnabled] = useState(true);
   const [introVideoUrl, setIntroVideoUrl] = useState('');
   const [introImageUrl, setIntroImageUrl] = useState('');
@@ -149,9 +150,14 @@ export default function HomePageTab() {
               {config.intro_video_url && (
                 <div className="mb-4">
                   <p className="text-xs text-white/50 mb-2">Vidéo intro</p>
-                  <a href={config.intro_video_url} target="_blank" rel="noopener noreferrer" className="text-[#FF2D8A] text-sm break-all hover:underline">
-                    Voir →
-                  </a>
+                  <Button 
+                    onClick={() => setVideoDetailOpen(true)}
+                    variant="ghost"
+                    size="sm"
+                    className="text-[#FF2D8A] hover:bg-white/5 gap-2"
+                  >
+                    <Eye className="w-4 h-4" /> Voir les détails
+                  </Button>
                 </div>
               )}
 
@@ -220,7 +226,41 @@ export default function HomePageTab() {
         )}
       </TabsContent>
 
-      {/* Dialog */}
+      {/* Video Detail Dialog */}
+      <Dialog open={videoDetailOpen} onOpenChange={setVideoDetailOpen}>
+        <DialogContent className="bg-[#12121A] border border-white/10 text-white max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Détails de la vidéo intro</DialogTitle>
+          </DialogHeader>
+          {config?.intro_video_url && (
+            <div className="space-y-4 mt-4">
+              <div className="rounded-xl overflow-hidden bg-black/30 aspect-video">
+                <iframe
+                  src={config.intro_video_url}
+                  title="Video intro"
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+              <div className="space-y-3 bg-white/5 rounded-lg p-4">
+                <div>
+                  <p className="text-xs text-white/50 mb-1">URL vidéo</p>
+                  <a href={config.intro_video_url} target="_blank" rel="noopener noreferrer" className="text-[#FF2D8A] text-sm break-all hover:underline">
+                    {config.intro_video_url}
+                  </a>
+                </div>
+                <div>
+                  <p className="text-xs text-white/50 mb-1">Durée affichage</p>
+                  <p className="text-white font-semibold">{config.intro_duration_seconds} secondes</p>
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Config Dialog */}
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent className="bg-[#12121A] border border-white/10 text-white max-w-lg">
           <DialogHeader>
