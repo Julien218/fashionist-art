@@ -77,6 +77,8 @@ export default function SEOHead({ pageName, title: overrideTitle, description: o
     // Standard meta
     setMeta('meta[name="description"]', 'content', description);
     setMeta('meta[name="robots"]', 'content', 'index, follow');
+    setMeta('meta[name="author"]', 'content', "Fashionist'ART – Créé par Js-Innov.IA & JY-Trix.AI");
+    setMeta('meta[name="creator"]', 'content', "Js-Innov.IA & JY-Trix.AI");
     setLink('canonical', url);
 
     // Open Graph
