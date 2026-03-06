@@ -103,13 +103,9 @@ export default function SalesTab({ user }) {
   };
 
   const exportCSV = () => {
-    const csv = buildCSV(filteredSales, user?.role === 'super_admin');
-    downloadCSV(csv, `ventes-${new Date().toISOString().split('T')[0]}.csv`);
-  };
-
-  const exportTodayCSV = () => {
-    const csv = buildCSV(salesToday, user?.role === 'super_admin');
-    downloadCSV(csv, `caisse-du-jour-${today}.csv`);
+    const rows = getSalesForExport();
+    const csv = buildCSV(rows, user?.role === 'super_admin');
+    downloadCSV(csv, getExportFilename());
   };
 
   return (
