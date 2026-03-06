@@ -28,9 +28,9 @@ export default function ArtistShare({ artist }) {
   const origin = window.location.origin;
   const artistUrl = `${origin}/artists?artist=${encodeURIComponent(artist.name)}`;
 
-  // Utilise la bio optimisée IA si disponible, sinon fallback sur la bio manuelle
-  const optimizedText = bioData?.post_social || bioData?.bio_short || null;
-  const fallbackText = `🎨 Découvrez ${artist.name} — ${artist.discipline} — à Fashionist'ART le 18 avril 2026 à Dour, Belgique ! Entrée gratuite. #FashionistART #Mode #Art #Dour`;
+  // Utilise la bio complète optimisée IA si disponible, sinon fallback sur la bio manuelle
+  const optimizedText = bioData?.bio_website || bioData?.bio_short || null;
+  const fallbackText = artist.full_bio || artist.short_bio || `🎨 Découvrez ${artist.name} — ${artist.discipline} — à Fashionist'ART le 18 avril 2026 à Dour, Belgique ! Entrée gratuite. #FashionistART #Mode #Art #Dour`;
   const shareText = optimizedText || fallbackText;
   const encodedText = encodeURIComponent(shareText);
   const encodedUrl = encodeURIComponent(artistUrl);
