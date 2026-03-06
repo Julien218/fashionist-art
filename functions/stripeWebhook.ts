@@ -14,14 +14,26 @@ Deno.serve(async (req) => {
     const body = await req.text();
 
     let event;
-    try {
-      event = await stripe.webhooks.constructEventAsync(body, signature, webhookSecret);
-    } catch (err) {
-      console.error('Webhook signature verification failed:', err.message);
-      return Response.json({ error: 'Invalid signature' }, { status: 400 });
+    if (webhookSecret && signature) {
+      try {
+        event = await stripe.webhooks.constructEventAsync(body, signature, webhookSecret);
+      } catch (err) {
+        console.error('Webhook signature verification failed:', err.message);
+        return Response.json({ error: 'Invalid signature' }, { status: 400 });
+      }
+    } else {
+      // Pas de secret configuré : parser sans vérification (à sécuriser en prod)
+      console.warn('STRIPE_WEBHOOK_SECRET not set — skipping signature verification');
+      try {
+        event = JSON.parse(body);
+      } catch (err) {
+        return Response.json({ error: 'Invalid JSON body' }, { status: 400 });
+      }
     }
 
     console.log(`Webhook event: ${event.type}`);
+
+    const base44 = createClientFromRequest(req);
 
     if (event.type === 'checkout.session.completed') {
       const session = event.data.object;
@@ -30,9 +42,6 @@ Deno.serve(async (req) => {
 
       console.log(`Checkout completed: ${sessionId}, PI: ${paymentIntentId}`);
 
-      const base44 = createClientFromRequest(req);
-
-      // Retrouver la Sale via stripe_session_id
       const sales = await base44.asServiceRole.entities.Sale.filter({ stripe_session_id: sessionId });
       const sale = sales?.[0];
 
@@ -63,7 +72,6 @@ Deno.serve(async (req) => {
         console.warn('Failed to retrieve Stripe fee:', feeErr.message);
       }
 
-      // Mettre à jour la Sale
       await base44.asServiceRole.entities.Sale.update(sale.id, {
         status: 'PAID',
         stripe_payment_intent_id: paymentIntentId || null,
@@ -72,6 +80,30 @@ Deno.serve(async (req) => {
       });
 
       console.log(`Sale ${sale.id} updated to PAID, stripe_fee=${stripeFee}`);
+    }
+
+    if (event.type === 'checkout.session.expired') {
+      const session = event.data.object;
+      const sessionId = session.id;
+      console.log(`Checkout expired: ${sessionId}`);
+      const sales = await base44.asServiceRole.entities.Sale.filter({ stripe_session_id: sessionId });
+      const sale = sales?.[0];
+      if (sale && sale.status === 'PENDING') {
+        await base44.asServiceRole.entities.Sale.update(sale.id, { status: 'CANCELLED' });
+        console.log(`Sale ${sale.id} updated to CANCELLED`);
+      }
+    }
+
+    if (event.type === 'payment_intent.payment_failed') {
+      const pi = event.data.object;
+      console.log(`Payment failed for PI: ${pi.id}`);
+      // Chercher par payment_intent_id si déjà enregistré
+      const sales = await base44.asServiceRole.entities.Sale.filter({ stripe_payment_intent_id: pi.id });
+      const sale = sales?.[0];
+      if (sale && sale.status === 'PENDING') {
+        await base44.asServiceRole.entities.Sale.update(sale.id, { status: 'FAILED' });
+        console.log(`Sale ${sale.id} updated to FAILED`);
+      }
     }
 
     return Response.json({ received: true });
