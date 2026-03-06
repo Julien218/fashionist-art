@@ -64,6 +64,67 @@ export default function Artists() {
 
         <SectionTitle title="Artistes" subtitle="Les talents qui façonnent Fashionist'ART" />
 
+        {/* Search + Filters */}
+        {!isLoading && artists.length > 0 && (
+          <div className="mb-8 space-y-4">
+            {/* Search bar */}
+            <div className="relative max-w-md mx-auto">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+              <input
+                type="text"
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                placeholder="Rechercher un artiste, une discipline…"
+                className="w-full pl-11 pr-10 py-3 rounded-full bg-white/5 border border-white/10 text-white placeholder:text-white/30 text-sm focus:outline-none focus:border-[#FF2D8A]/50 focus:bg-white/8 transition-all"
+              />
+              {search && (
+                <button onClick={() => setSearch('')} className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-white/10 transition-colors">
+                  <X className="w-3.5 h-3.5 text-white/40" />
+                </button>
+              )}
+            </div>
+
+            {/* Category filters */}
+            {disciplines.length > 1 && (
+              <div className="flex flex-wrap justify-center gap-2">
+                <button
+                  onClick={() => setActiveFilter('all')}
+                  className={`px-4 py-1.5 rounded-full text-xs font-semibold font-display transition-all ${
+                    activeFilter === 'all'
+                      ? 'bg-[#FF2D8A] text-white shadow-lg shadow-[#FF2D8A]/30'
+                      : 'bg-white/5 text-white/50 border border-white/10 hover:text-white hover:border-white/25'
+                  }`}
+                >
+                  Tous ({artists.length})
+                </button>
+                {disciplines.map(d => {
+                  const count = artists.filter(a => a.discipline === d).length;
+                  return (
+                    <button
+                      key={d}
+                      onClick={() => setActiveFilter(d)}
+                      className={`px-4 py-1.5 rounded-full text-xs font-semibold font-display transition-all ${
+                        activeFilter === d
+                          ? 'bg-[#FF2D8A] text-white shadow-lg shadow-[#FF2D8A]/30'
+                          : 'bg-white/5 text-white/50 border border-white/10 hover:text-white hover:border-white/25'
+                      }`}
+                    >
+                      {d} ({count})
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* Results count */}
+            {(search || activeFilter !== 'all') && (
+              <p className="text-center text-xs text-white/30">
+                {filteredArtists.length} artiste{filteredArtists.length !== 1 ? 's' : ''} trouvé{filteredArtists.length !== 1 ? 's' : ''}
+              </p>
+            )}
+          </div>
+        )}
+
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mb-20">
           {isLoading ? (
             Array.from({ length: 10 }).map((_, i) => (
