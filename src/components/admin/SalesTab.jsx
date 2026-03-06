@@ -26,6 +26,9 @@ const STATUS_COLORS = {
 export default function SalesTab({ user }) {
   const [filterType, setFilterType] = useState('all');
   const [filterStatus, setFilterStatus] = useState('all');
+  const [exportPeriod, setExportPeriod] = useState('today'); // today | date | year
+  const [exportDate, setExportDate] = useState(new Date().toISOString().split('T')[0]);
+  const [exportYear, setExportYear] = useState(new Date().getFullYear().toString());
 
   const { data: sales = [], isLoading } = useQuery({
     queryKey: ['sales'],
