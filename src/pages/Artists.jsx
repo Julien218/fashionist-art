@@ -8,7 +8,7 @@ import SocialShare from '@/components/shared/SocialShare';
 import ArtistShare from '@/components/shared/ArtistShare';
 import FreeBadge from '@/components/shared/FreeBadge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { User, Globe, Instagram, Facebook as FacebookIcon } from 'lucide-react';
+import { User, Globe, Instagram, Facebook as FacebookIcon, Search, X } from 'lucide-react';
 
 
 
