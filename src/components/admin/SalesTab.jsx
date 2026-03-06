@@ -45,27 +45,50 @@ export default function SalesTab({ user }) {
     0
   );
 
-  const exportCSV = () => {
-    const headers = ['Date', 'Type', 'Montant', 'Frais Stripe', ...(user?.role === 'super_admin' ? ['Commission'] : [])];
-    const rows = filteredSales.map((s) => [
-      new Date(s.created_at).toLocaleDateString('fr-FR'),
-      SALE_TYPE_LABELS[s.sale_type] || s.sale_type,
-      `${(s.amount_total_cents / 100).toFixed(2)} €`,
-      `${(s.stripe_fee_cents / 100).toFixed(2)} €`,
-      ...(user?.role === 'super_admin' ? [`${(s.platform_fee_cents / 100).toFixed(2)} €`] : []),
-    ]);
+  const today = new Date().toISOString().split('T')[0];
+  const salesToday = sales.filter((s) => (s.created_at || s.created_date || '').split('T')[0] === today);
 
-    const csv =
-      [headers, ...rows].map((r) => r.map((v) => `"${v}"`).join(',')).join('\n');
-    const blob = new Blob([csv], { type: 'text/csv' });
+  const buildCSV = (rows, isSuperAdmin) => {
+    const headers = ['Date', 'Heure', 'Type', 'Note', 'Montant (€)', 'Frais Stripe (€)', 'Net (€)', 'Statut', ...(isSuperAdmin ? ['Commission (€)'] : [])];
+    const dataRows = rows.map((s) => {
+      const dt = new Date(s.created_at || s.created_date);
+      const amount = (s.amount_total_cents || 0) / 100;
+      const fee = (s.stripe_fee_cents || 0) / 100;
+      return [
+        dt.toLocaleDateString('fr-FR'),
+        dt.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }),
+        SALE_TYPE_LABELS[s.sale_type] || s.sale_type,
+        s.note || '',
+        amount.toFixed(2),
+        fee.toFixed(2),
+        (amount - fee).toFixed(2),
+        s.status,
+        ...(isSuperAdmin ? [((s.platform_fee_cents || 0) / 100).toFixed(2)] : []),
+      ];
+    });
+    return [headers, ...dataRows].map((r) => r.map((v) => `"${v}"`).join(',')).join('\n');
+  };
+
+  const downloadCSV = (csv, filename) => {
+    const blob = new Blob(['\uFEFF' + csv, ''], { type: 'text/csv;charset=utf-8;' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `ventes-${new Date().toISOString().split('T')[0]}.csv`;
+    a.download = filename;
     document.body.appendChild(a);
     a.click();
     window.URL.revokeObjectURL(url);
     a.remove();
+  };
+
+  const exportCSV = () => {
+    const csv = buildCSV(filteredSales, user?.role === 'super_admin');
+    downloadCSV(csv, `ventes-${new Date().toISOString().split('T')[0]}.csv`);
+  };
+
+  const exportTodayCSV = () => {
+    const csv = buildCSV(salesToday, user?.role === 'super_admin');
+    downloadCSV(csv, `caisse-du-jour-${today}.csv`);
   };
 
   return (
