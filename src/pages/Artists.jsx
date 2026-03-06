@@ -29,6 +29,14 @@ export default function Artists() {
     },
   });
 
+  const disciplines = [...new Set(artists.map(a => a.discipline).filter(Boolean))].sort();
+
+  const filteredArtists = artists.filter(a => {
+    const matchSearch = !search || [a.name, a.stage_name, a.discipline, a.short_bio].join(' ').toLowerCase().includes(search.toLowerCase());
+    const matchFilter = activeFilter === 'all' || a.discipline === activeFilter;
+    return matchSearch && matchFilter;
+  });
+
   const { data: partners = [] } = useQuery({
     queryKey: ['partners'],
     queryFn: () => base44.entities.Partner.list('display_order'),
