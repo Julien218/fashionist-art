@@ -24,10 +24,11 @@ import BarTab from '@/components/admin/BarTab';
 import SalesTab from '@/components/admin/SalesTab';
 import CommissionsTab from '@/components/admin/CommissionsTab';
 import HistoryTab from '@/components/admin/HistoryTab';
+import HomePageTab from '@/components/admin/HomePageTab';
 import { 
   Users, Calendar, Palette, Handshake, Image, Mail, 
   Plus, Pencil, Trash2, LogOut, Shield, Loader2,
-  Eye, UserPlus, Home, ChevronRight, CreditCard, ClipboardList, Send, BookOpen, Megaphone, Zap, BarChart3, TrendingUp, ScrollText
+  Eye, UserPlus, Home, ChevronRight, CreditCard, ClipboardList, Send, BookOpen, Megaphone, Zap, BarChart3, TrendingUp, ScrollText, Sparkles
 } from 'lucide-react';
 
 export default function Admin() {
@@ -83,6 +84,7 @@ export default function Admin() {
       <div className="max-w-7xl mx-auto px-4 py-8">
         <Tabs defaultValue="participants">
           <TabsList className="bg-[#12121A] border border-white/10 mb-8 flex flex-wrap gap-1 h-auto p-1.5">
+            <TabsTrigger value="home" className="gap-2"><Sparkles className="w-4 h-4" /> Accueil</TabsTrigger>
             <TabsTrigger value="participants" className="gap-2"><ClipboardList className="w-4 h-4" /> Participants</TabsTrigger>
             <TabsTrigger value="artists" className="gap-2"><Palette className="w-4 h-4" /> Artistes</TabsTrigger>
             <TabsTrigger value="program" className="gap-2"><Calendar className="w-4 h-4" /> Programme</TabsTrigger>
@@ -109,6 +111,8 @@ export default function Admin() {
               <TabsTrigger value="histoire" className="gap-2"><ScrollText className="w-4 h-4" /> Histoire</TabsTrigger>
             )}
           </TabsList>
+
+          <TabsContent value="home"><HomePageTab /></TabsContent>
 
           <TabsContent value="participants"><ParticipantsTab user={user} /></TabsContent>
 
