@@ -31,7 +31,7 @@ Deno.serve(async (req) => {
         info_request_token_expires_at: expiresAt,
       });
 
-      const completionUrl = `${appUrl}/artiste/complete?token=${token}`;
+      const completionUrl = `${appUrl}/ArtistComplete?token=${token}`;
       const artistName = artist.stage_name || `${artist.first_name || ''} ${artist.last_name || ''}`.trim() || artist.name;
 
       await base44.asServiceRole.integrations.Core.SendEmail({
