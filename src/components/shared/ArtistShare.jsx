@@ -28,44 +28,58 @@ export default function ArtistShare({ artist }) {
   const origin = window.location.origin;
   const artistUrl = `${origin}/artists?artist=${encodeURIComponent(artist.name)}`;
 
-  // Utilise la bio complète optimisée IA si disponible, sinon fallback sur la bio manuelle
-  const optimizedText = bioData?.bio_website || bioData?.bio_short || null;
-  const fallbackText = artist.full_bio || artist.short_bio || `🎨 Découvrez ${artist.name} — ${artist.discipline} — à Fashionist'ART le 18 avril 2026 à Dour, Belgique ! Entrée gratuite. #FashionistART #Mode #Art #Dour`;
-  const shareText = optimizedText || fallbackText;
-  const encodedText = encodeURIComponent(shareText);
+  // post_social = texte optimisé pour les réseaux, bio_short = version courte, sinon fallback
+  const postText = bioData?.post_social || bioData?.bio_short
+    || `🎨 Découvrez ${artist.name} — ${artist.discipline} — à Fashionist'ART le 18 avril 2026 à Dour, Belgique ! Entrée gratuite. #FashionistART #Mode #Art #Dour`;
   const encodedUrl = encodeURIComponent(artistUrl);
 
+  const copyText = (text) => {
+    navigator.clipboard.writeText(text);
+  };
+
   const copyLink = () => {
-    navigator.clipboard.writeText(artistUrl);
+    copyText(artistUrl);
     setCopied(true);
     toast.success('Lien copié !');
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  // Pour FB/Instagram/TikTok : copie le texte + lien dans le presse-papier puis ouvre le réseau
+  const handleSocialClick = (href, platform) => {
+    const fullText = `${postText}\n\n${artistUrl}`;
+    copyText(fullText);
+    toast.info(`Texte copié ! Collez-le dans votre publication ${platform} 📋`, { duration: 5000 });
+    setTimeout(() => window.open(href, '_blank', 'noopener noreferrer'), 300);
   };
 
   const links = [
     {
       icon: Facebook,
       label: 'Facebook',
-      href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodedText}`,
+      href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
       color: 'text-[#1877F2]',
+      copyOnClick: true,
     },
     {
       icon: Twitter,
       label: 'X / Twitter',
-      href: `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`,
+      href: `https://twitter.com/intent/tweet?text=${encodeURIComponent(postText + '\n' + artistUrl)}`,
       color: 'text-white',
+      copyOnClick: false,
     },
     {
       icon: TikTokIcon,
       label: 'TikTok',
       href: `https://www.tiktok.com/@user6921475292315`,
       color: 'text-[#FF2D8A]',
+      copyOnClick: true,
     },
     {
       icon: Instagram,
       label: 'Instagram',
       href: `https://www.instagram.com/fashionist.art.dour/`,
       color: 'text-[#E1306C]',
+      copyOnClick: true,
     },
   ];
 
