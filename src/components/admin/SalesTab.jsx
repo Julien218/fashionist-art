@@ -139,12 +139,39 @@ export default function SalesTab({ user }) {
           </SelectContent>
         </Select>
 
-        <Button onClick={exportTodayCSV} variant="outline" className="border-white/20 text-white/70 hover:text-white gap-2">
-          <Download className="w-4 h-4" /> CSV du jour
-        </Button>
-        <Button onClick={exportCSV} variant="outline" className="border-white/20 text-white/70 hover:text-white gap-2">
-          <Download className="w-4 h-4" /> Export CSV (tout)
-        </Button>
+        <div className="flex items-center gap-2 flex-wrap ml-auto">
+          <Select value={exportPeriod} onValueChange={setExportPeriod}>
+            <SelectTrigger className="w-40 bg-white/5 border-white/10 text-white h-9 text-sm">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="today">Aujourd'hui</SelectItem>
+              <SelectItem value="date">Date précise</SelectItem>
+              <SelectItem value="year">Annuel</SelectItem>
+            </SelectContent>
+          </Select>
+          {exportPeriod === 'date' && (
+            <Input
+              type="date"
+              value={exportDate}
+              onChange={(e) => setExportDate(e.target.value)}
+              className="w-40 bg-white/5 border-white/10 text-white h-9 text-sm"
+            />
+          )}
+          {exportPeriod === 'year' && (
+            <Input
+              type="number"
+              value={exportYear}
+              onChange={(e) => setExportYear(e.target.value)}
+              min="2020"
+              max="2099"
+              className="w-24 bg-white/5 border-white/10 text-white h-9 text-sm"
+            />
+          )}
+          <Button onClick={exportCSV} variant="outline" className="border-white/20 text-white/70 hover:text-white gap-2">
+            <Download className="w-4 h-4" /> Exporter CSV
+          </Button>
+        </div>
       </div>
 
       {/* Totals */}
