@@ -6,6 +6,8 @@ import ArtistPreview from '@/components/home/ArtistPreview';
 import NewsletterForm from '@/components/shared/NewsletterForm';
 import SectionTitle from '@/components/shared/SectionTitle';
 import Countdown from '@/components/shared/Countdown';
+import SchemaOrgEvent from '@/components/shared/SchemaOrgEvent';
+import SchemaOrgOrganization from '@/components/shared/SchemaOrgOrganization';
 import { motion } from 'framer-motion';
 import { Palette, Shirt, Users, Zap, Shield } from 'lucide-react';
 import { useEffect, useState } from 'react';
@@ -26,6 +28,21 @@ export default function Home() {
 
   return (
     <div>
+      <SchemaOrgEvent event={{
+        name: "Fashionist'ART 2026",
+        description: "Une fusion unique entre mode et art au Centre Sportif d'Élouges (Dour). Entrée gratuite !",
+        startDate: "2026-04-18T10:00:00+02:00",
+        endDate: "2026-04-18T22:00:00+02:00",
+        locationName: "Centre Sportif d'Élouges",
+        streetAddress: "Rue du Stade",
+        city: "Élouges",
+        postalCode: "7370",
+        region: "Hainaut",
+        country: "BE",
+        price: "0",
+        currency: "EUR"
+      }} />
+      <SchemaOrgOrganization />
       {isAdmin && (
         <div className="fixed bottom-6 right-6 z-50">
           <Link to={createPageUrl('Admin')} className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#D4AF37]/90 hover:bg-[#D4AF37] text-black font-display font-bold text-sm shadow-lg transition-all hover:scale-105">
