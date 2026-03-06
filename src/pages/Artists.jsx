@@ -97,7 +97,15 @@ export default function Artists() {
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ delay: i * 0.06, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 whileHover={{ y: -6, scale: 1.03 }}
-                onClick={() => { setSelectedArtist(artist); injectArtistMeta(artist); }}
+                onClick={() => {
+          setSelectedArtist(artist);
+          setDynamicMeta({
+            title: `${artist.name} — ${artist.discipline} | Fashionist'ART 2026`,
+            description: artist.short_bio || `${artist.name} participera à Fashionist'ART le 18 avril 2026 à Dour, Belgique. ${artist.discipline}. Entrée gratuite !`,
+            image: artist.photo_url || undefined,
+            url: `${BASE_URL}/artists?artist=${encodeURIComponent(artist.name)}`,
+          });
+        }}
                 className="relative rounded-2xl overflow-hidden cursor-pointer group aspect-[3/4]"
                 style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.4)' }}
               >
