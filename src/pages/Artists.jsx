@@ -53,7 +53,7 @@ export default function Artists() {
 
   return (
     <div className="py-12 px-4">
-      <SEOHead pageName="Artists" {...(dynamicMeta || {})} />
+      <SEOHead pageName="Artists" />
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <FreeBadge />
