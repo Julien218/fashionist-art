@@ -40,6 +40,7 @@ function injectArtistMeta(artist) {
 
 export default function Artists() {
   const [selectedArtist, setSelectedArtist] = useState(null);
+  const [dynamicMeta, setDynamicMeta] = useState(null);
 
   const { data: artists = [], isLoading } = useQuery({
     queryKey: ['artists'],
