@@ -23,10 +23,11 @@ import PartnerTab from '@/components/admin/PartnerTab';
 import BarTab from '@/components/admin/BarTab';
 import SalesTab from '@/components/admin/SalesTab';
 import CommissionsTab from '@/components/admin/CommissionsTab';
+import HistoryTab from '@/components/admin/HistoryTab';
 import { 
   Users, Calendar, Palette, Handshake, Image, Mail, 
   Plus, Pencil, Trash2, LogOut, Shield, Loader2,
-  Eye, UserPlus, Home, ChevronRight, CreditCard, ClipboardList, Send, BookOpen, Megaphone, Zap, BarChart3, TrendingUp
+  Eye, UserPlus, Home, ChevronRight, CreditCard, ClipboardList, Send, BookOpen, Megaphone, Zap, BarChart3, TrendingUp, ScrollText
 } from 'lucide-react';
 
 export default function Admin() {
@@ -104,6 +105,9 @@ export default function Admin() {
             {user.role === 'super_admin' && (
               <TabsTrigger value="commissions" className="gap-2"><TrendingUp className="w-4 h-4" /> Commissions</TabsTrigger>
             )}
+            {['admin', 'super_admin'].includes(user.role) && (
+              <TabsTrigger value="histoire" className="gap-2"><ScrollText className="w-4 h-4" /> Histoire</TabsTrigger>
+            )}
           </TabsList>
 
           <TabsContent value="participants"><ParticipantsTab user={user} /></TabsContent>
@@ -140,6 +144,9 @@ export default function Admin() {
           )}
           {user.role === 'super_admin' && (
             <TabsContent value="commissions"><CommissionsTab /></TabsContent>
+          )}
+          {['admin', 'super_admin'].includes(user.role) && (
+            <TabsContent value="histoire"><HistoryTab user={user} /></TabsContent>
           )}
         </Tabs>
       </div>
