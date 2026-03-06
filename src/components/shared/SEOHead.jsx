@@ -44,7 +44,7 @@ const PAGE_META = {
 };
 
 const BASE_URL = 'https://fashionistart.base44.app';
-const OG_IMAGE = 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a460cb984c65f748b49e7d/ef497c4fd_artisteimageb.jpg';
+const OG_IMAGE = 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_68ae1c019dacc474a322f2b2/742499905_Capturedecran2026-02-26a175005.png';
 
 export default function SEOHead({ pageName, title: overrideTitle, description: overrideDescription, image: overrideImage, url: overrideUrl }) {
   const base = PAGE_META[pageName] || PAGE_META.Home;
