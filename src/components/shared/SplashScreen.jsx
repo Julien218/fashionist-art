@@ -13,7 +13,7 @@ const getEmbedUrl = (url) => {
   // youtube.com/watch?v=...
   const youtubeMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
   if (youtubeMatch) {
-    return `https://www.youtube.com/embed/${youtubeMatch[1]}?autoplay=1&fs=1&modestbranding=1`;
+    return `https://www.youtube.com/embed/${youtubeMatch[1]}?autoplay=1&mute=1&fs=1&modestbranding=1&playsinline=1`;
   }
   
   // Si c'est déjà un embed ou une URL directe, retourner tel quel
