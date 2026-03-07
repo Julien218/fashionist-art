@@ -136,12 +136,12 @@ export default function ArtistFormDialog({ open, onOpenChange, artist, onSaved }
             <Textarea value={form.full_bio} onChange={e => set('full_bio', e.target.value)} className="bg-white/5 border-white/10 text-white h-24 text-sm" />
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            <F label="Instagram" k="instagram" />
-            <F label="Facebook" k="facebook" />
-            <F label="TikTok" k="tiktok" />
-            <F label="YouTube" k="youtube" />
-            <F label="LinkedIn" k="linkedin" />
-            <F label="Site web" k="website" />
+            {field("Instagram", "instagram")}
+            {field("Facebook", "facebook")}
+            {field("TikTok", "tiktok")}
+            {field("YouTube", "youtube")}
+            {field("LinkedIn", "linkedin")}
+            {field("Site web", "website")}
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
@@ -154,7 +154,7 @@ export default function ArtistFormDialog({ open, onOpenChange, artist, onSaved }
                 </SelectContent>
               </Select>
             </div>
-            <F label="Ordre d'affichage" k="display_order" type="number" />
+            {field("Ordre d'affichage", "display_order", "number")}
           </div>
           {/* Œuvres */}
           <div>
