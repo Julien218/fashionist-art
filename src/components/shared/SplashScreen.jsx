@@ -21,14 +21,7 @@ const getEmbedUrl = (url) => {
 };
 
 export default function SplashScreen({ onDone }) {
-  const [visible, setVisible] = useState(() => {
-    // Vérifier si c'est la première visite
-    if (typeof window !== 'undefined') {
-      const hasSeenIntro = localStorage.getItem('fashionistart_intro_seen');
-      return !hasSeenIntro;
-    }
-    return true;
-  });
+  const [visible, setVisible] = useState(true);
   const [muted, setMuted] = useState(true);
   const [videoError, setVideoError] = useState(false);
   const [config, setConfig] = useState(null);
@@ -43,8 +36,6 @@ export default function SplashScreen({ onDone }) {
   }, []);
 
   const handleDone = () => {
-    // Marquer que l'intro a été vue
-    localStorage.setItem('fashionistart_intro_seen', 'true');
     setVisible(false);
     setTimeout(onDone, 600);
   };
