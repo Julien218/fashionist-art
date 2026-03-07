@@ -13,7 +13,7 @@ const getEmbedUrl = (url) => {
   // youtube.com/watch?v=...
   const youtubeMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
   if (youtubeMatch) {
-    return `https://www.youtube.com/embed/${youtubeMatch[1]}?autoplay=1&mute=1&controls=0&fs=0&modestbranding=1&playsinline=1&rel=0&enablejsapi=1`;
+    return `https://www.youtube-nocookie.com/embed/${youtubeMatch[1]}?autoplay=1&mute=1&controls=1&modestbranding=1&playsinline=1&rel=0`;
   }
   
   // Si c'est déjà un embed ou une URL directe, retourner tel quel
