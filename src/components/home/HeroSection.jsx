@@ -46,7 +46,7 @@ export default function HeroSection() {
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
       {/* Background image with overlay */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-[#0A0A0F]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-transparent" />
         {/* Ambient glows */}
         <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full bg-[#FF2D8A]/10 blur-[120px]" />
         <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] rounded-full bg-purple-600/10 blur-[100px]" />
@@ -102,22 +102,29 @@ export default function HeroSection() {
           transition={{ duration: 0.5, delay: 0.55 }}
           className="flex flex-wrap items-center justify-center gap-3 mb-8"
         >
-          <span className="text-white/70 text-sm font-medium bg-white/10 px-3 py-1.5 rounded-full">Partager</span>
           {socialLinks.map(({ icon: SocialIcon, href, label, color }) => (
-            <a key={label} href={href} target="_blank" rel="noopener noreferrer"
-              title={`Partager sur ${label}`}
-              className="flex items-center gap-2 px-4 py-2 rounded-full text-white text-sm font-medium transition-all hover:scale-105 hover:brightness-110 shadow-md"
-              style={{ backgroundColor: color }}
+            <motion.a
+              key={label}
+              href={href} target="_blank" rel="noopener noreferrer"
+              whileHover={{ y: -4, scale: 1.08 }}
+              whileTap={{ scale: 0.95 }}
+              className="relative flex flex-col items-center justify-center w-16 h-16 rounded-2xl text-white shadow-xl border border-white/10 backdrop-blur-md transition-shadow hover:shadow-2xl"
+              style={{ background: `linear-gradient(135deg, ${color}cc, ${color}88)` }}
+              title={label}
             >
-              <SocialIcon className="w-4 h-4 text-white" />
-              <span>{label}</span>
-            </a>
+              <SocialIcon className="w-6 h-6 text-white" />
+              <span className="text-[10px] font-semibold mt-1 text-white/90">{label}</span>
+            </motion.a>
           ))}
-          <button onClick={copyLink} title="Copier le lien"
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 hover:bg-white/25 text-white text-sm font-medium transition-all hover:scale-105 shadow-md border border-white/20">
-            {copied ? <Check className="w-4 h-4 text-green-400" /> : <LinkIcon className="w-4 h-4 text-white" />}
-            {copied ? 'Copié !' : 'Copier le lien'}
-          </button>
+          <motion.button
+            onClick={copyLink}
+            whileHover={{ y: -4, scale: 1.08 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex flex-col items-center justify-center w-16 h-16 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-md text-white shadow-xl hover:shadow-2xl transition-shadow"
+          >
+            {copied ? <Check className="w-6 h-6 text-green-400" /> : <LinkIcon className="w-6 h-6 text-white/80" />}
+            <span className="text-[10px] font-semibold mt-1 text-white/70">{copied ? 'Copié !' : 'Lien'}</span>
+          </motion.button>
         </motion.div>
 
         {/* CTAs */}
