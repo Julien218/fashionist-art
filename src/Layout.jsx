@@ -17,10 +17,6 @@ const NAV_ITEMS = [
   { label: 'Blog', page: 'Blog' },
 ];
 
-const USER_NAV_ITEMS = [
-  { label: 'Mon artiste', page: 'MyArtist' },
-];
-
 export default function Layout({ children, currentPageName }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [user, setUser] = useState(null);
@@ -67,7 +63,7 @@ export default function Layout({ children, currentPageName }) {
           opacity: 0.50,
         }}
       />
-      {/* Dark overlay to preserve readability */}
+      {/* Dark overlay */}
       <div className="fixed inset-0 z-0 pointer-events-none" style={{background: 'rgba(10,10,15,0)'}} />
 
       {/* Top rainbow bar */}
@@ -77,7 +73,6 @@ export default function Layout({ children, currentPageName }) {
       <header className="fixed top-0 left-0 right-0 z-40 bg-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-[72px]">
-            {/* Logo */}
             <Link to={createPageUrl('Home')} />
 
             {/* Desktop nav */}
@@ -273,18 +268,49 @@ export default function Layout({ children, currentPageName }) {
             </div>
           </div>
 
-          <div className="divider mt-10 mb-6" />
-          <div className="flex flex-col items-center gap-4 text-xs text-white/25">
+          <div className="divider mt-10 mb-8" />
+
+          {/* Credits section */}
+          <div className="flex flex-col items-center gap-6 text-xs text-white/25">
             <p>© 2026 Fashionist'ART. Tous droits réservés.</p>
-            <p className="text-white/20 text-[11px]">SaaS développé par <span className="text-white/35">JY-Trix.AI</span> & <span className="text-white/35">JS-Innov.IA</span> — © 2026 JS-Innov.IA. Tous droits réservés.</p>
-            <div className="flex flex-col items-center gap-2">
-              <span className="text-white/30 text-xs tracking-wide">Développé par</span>
-              <div className="flex items-center gap-3 flex-wrap justify-center">
-                <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a460cb984c65f748b49e7d/40b06e5fb_JY-TrixAI_Logo_Transparent.png" alt="JY-Trix.AI" className="h-32 object-contain hover:opacity-100 transition-opacity" style={{mixBlendMode:'screen', opacity:0.9}} />
-                <span className="text-white/25 text-xs">&</span>
-                <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a460cb984c65f748b49e7d/19955f85a_Logo_JS-InnovIA_EvoluTion_Autonome_02-26.png" alt="JS-Innov.IA" className="h-20 object-contain hover:opacity-100 transition-opacity" style={{mixBlendMode:'screen', opacity:0.9}} />
+
+            {/* Dev cards */}
+            <div className="flex flex-col items-center gap-3">
+              <span className="text-white/30 text-xs tracking-widest uppercase font-display font-semibold">Développé par</span>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+
+                {/* Card JY-Trix.AI */}
+                <motion.div
+                  whileHover={{ y: -4, scale: 1.03 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                  className="flex items-center justify-center px-5 py-3 rounded-2xl bg-white/5 border border-white/10 hover:border-[#FF2D8A]/30 hover:bg-white/8 transition-colors shadow-lg"
+                >
+                  <img
+                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a460cb984c65f748b49e7d/40b06e5fb_JY-TrixAI_Logo_Transparent.png"
+                    alt="JY-Trix.AI"
+                    className="h-14 object-contain"
+                    style={{ mixBlendMode: 'screen', opacity: 0.92 }}
+                  />
+                </motion.div>
+
+                {/* Card JS-Innov.IA */}
+                <motion.div
+                  whileHover={{ y: -4, scale: 1.03 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                  className="flex items-center justify-center px-5 py-3 rounded-2xl bg-white/5 border border-white/10 hover:border-[#D4AF37]/30 hover:bg-white/8 transition-colors shadow-lg"
+                >
+                  <img
+                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a460cb984c65f748b49e7d/19955f85a_Logo_JS-InnovIA_EvoluTion_Autonome_02-26.png"
+                    alt="JS-Innov.IA"
+                    className="h-16 object-contain rounded-xl"
+                    style={{ mixBlendMode: 'screen', opacity: 0.92 }}
+                  />
+                </motion.div>
+
               </div>
             </div>
+
+            <p className="text-white/20 text-[11px]">SaaS développé par <span className="text-white/35">JY-Trix.AI</span> & <span className="text-white/35">JS-Innov.IA</span> — © 2026 JS-Innov.IA. Tous droits réservés.</p>
           </div>
         </div>
       </footer>
