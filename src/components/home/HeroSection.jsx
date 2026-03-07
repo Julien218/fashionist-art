@@ -14,13 +14,28 @@ export default function HeroSection() {
   const shareText = encodeURIComponent("Fashionist'ART – 18 avril 2026, Centre Sportif d'Élouges (Dour). Mode & Art. Entrée gratuite ! 🎨👗");
 
   const copyLink = () => {
-    navigator.clipboard.writeText(shareUrl).then(() => {
+    const fallback = () => {
+      const el = document.createElement('textarea');
+      el.value = shareUrl;
+      el.style.position = 'fixed';
+      el.style.opacity = '0';
+      document.body.appendChild(el);
+      el.select();
+      try { document.execCommand('copy'); } catch {}
+      document.body.removeChild(el);
       setCopied(true);
       toast.success('Lien copié !');
       setTimeout(() => setCopied(false), 2000);
-    }).catch(() => {
-      toast.error('Impossible de copier le lien');
-    });
+    };
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        setCopied(true);
+        toast.success('Lien copié !');
+        setTimeout(() => setCopied(false), 2000);
+      }).catch(fallback);
+    } else {
+      fallback();
+    }
   };
 
   const TikTokIcon = () => (
