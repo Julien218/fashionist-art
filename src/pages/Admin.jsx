@@ -25,10 +25,11 @@ import SalesTab from '@/components/admin/SalesTab';
 import CommissionsTab from '@/components/admin/CommissionsTab';
 import HistoryTab from '@/components/admin/HistoryTab';
 import HomePageTab from '@/components/admin/HomePageTab';
+import MarketingTab from '@/components/admin/MarketingTab';
 import { 
   Users, Calendar, Palette, Handshake, Image, Mail, 
   Plus, Pencil, Trash2, LogOut, Shield, Loader2,
-  Eye, UserPlus, Home, ChevronRight, CreditCard, ClipboardList, Send, BookOpen, Megaphone, Zap, BarChart3, TrendingUp, ScrollText, Sparkles
+  Eye, UserPlus, Home, ChevronRight, CreditCard, ClipboardList, Send, BookOpen, Megaphone, Zap, BarChart3, TrendingUp, ScrollText, Sparkles, Rocket
 } from 'lucide-react';
 
 export default function Admin() {
@@ -94,6 +95,7 @@ export default function Admin() {
             <TabsTrigger value="users" className="gap-2"><Users className="w-4 h-4" /> Utilisateurs</TabsTrigger>
             <TabsTrigger value="newsletter" className="gap-2"><Send className="w-4 h-4" /> Newsletter</TabsTrigger>
             <TabsTrigger value="blog" className="gap-2"><BookOpen className="w-4 h-4" /> Blog</TabsTrigger>
+            <TabsTrigger value="marketing" className="gap-2"><Rocket className="w-4 h-4" /> Marketing</TabsTrigger>
             <TabsTrigger value="social" className="gap-2"><Megaphone className="w-4 h-4" /> Posts</TabsTrigger>
             {['admin', 'super_admin'].includes(user.role) && (
               <TabsTrigger value="stripe" className="gap-2"><CreditCard className="w-4 h-4" /> Stripe</TabsTrigger>
@@ -136,6 +138,7 @@ export default function Admin() {
           <TabsContent value="users"><AdminUsers user={user} /></TabsContent>
           <TabsContent value="newsletter"><NewsletterTab user={user} /></TabsContent>
           <TabsContent value="blog"><BlogTab /></TabsContent>
+          <TabsContent value="marketing"><MarketingTab user={user} /></TabsContent>
           <TabsContent value="social"><SocialPostsTab user={user} /></TabsContent>
           {['admin', 'super_admin'].includes(user.role) && (
             <TabsContent value="stripe"><StripeTab user={user} /></TabsContent>
