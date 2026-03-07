@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import SectionTitle from '@/components/shared/SectionTitle';
 import SocialShare from '@/components/shared/SocialShare';
 import FreeBadge from '@/components/shared/FreeBadge';
-import { Clock, MapPin, Sparkles, Palette, BookOpen, Mic } from 'lucide-react';
+import { Clock, MapPin, Sparkles, Palette, BookOpen, Mic, CalendarDays, ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const CATEGORIES = [
