@@ -103,6 +103,11 @@ export default function Home() {
 
       <div className="divider max-w-4xl mx-auto" />
 
+      {/* Testimonials */}
+      <TestimonialsCarousel />
+
+      <div className="divider max-w-4xl mx-auto" />
+
       {/* Newsletter */}
       <section className="py-20 px-4">
         <div className="max-w-xl mx-auto text-center">
