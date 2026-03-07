@@ -52,6 +52,18 @@ export default function Home() {
       )}
       <HeroSection />
 
+      {/* Countdown section */}
+      <section className="py-12 px-4">
+        <div className="max-w-3xl mx-auto text-center">
+          <span className="text-[#FF2D8A] text-xs font-display font-semibold uppercase tracking-widest block mb-4">Compte à rebours</span>
+          <h2 className="font-display font-black text-[clamp(1.4rem,3.5vw,2.5rem)] text-white mb-2 tracking-tight uppercase">L'événement commence dans</h2>
+          <p className="text-white/40 text-sm mb-10">18 avril 2026 · Centre Sportif d'Élouges, Dour</p>
+          <Countdown />
+        </div>
+      </section>
+
+      <div className="divider max-w-4xl mx-auto" />
+
       {/* About section */}
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
@@ -80,18 +92,6 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
-
-      <div className="divider max-w-4xl mx-auto" />
-
-      {/* Countdown section */}
-      <section className="py-20 px-4">
-        <div className="max-w-3xl mx-auto text-center">
-          <span className="text-[#FF2D8A] text-xs font-display font-semibold uppercase tracking-widest block mb-4">Compte à rebours</span>
-          <h2 className="font-display font-black text-[clamp(1.4rem,3.5vw,2.5rem)] text-white mb-2 tracking-tight uppercase">L'événement commence dans</h2>
-          <p className="text-white/40 text-sm mb-10">18 avril 2026 · Centre Sportif d'Élouges, Dour</p>
-          <Countdown />
         </div>
       </section>
 
