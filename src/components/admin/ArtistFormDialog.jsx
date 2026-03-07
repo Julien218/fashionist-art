@@ -76,7 +76,7 @@ export default function ArtistFormDialog({ open, onOpenChange, artist, onSaved }
     onSaved();
   };
 
-  const F = ({ label, k, type = 'text', placeholder }) => (
+  const field = (label, k, type = 'text', placeholder) => (
     <div>
       <label className="text-xs text-white/40 mb-1 block">{label}</label>
       <Input type={type} value={form[k] || ''} onChange={e => set(k, e.target.value)}
