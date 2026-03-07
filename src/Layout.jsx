@@ -276,6 +276,7 @@ export default function Layout({ children, currentPageName }) {
           <div className="divider mt-10 mb-6" />
           <div className="flex flex-col items-center gap-4 text-xs text-white/25">
             <p>© 2026 Fashionist'ART. Tous droits réservés.</p>
+            <p className="text-white/20 text-[11px]">SaaS développé par <span className="text-white/35">JY-Trix.AI</span> & <span className="text-white/35">JS-Innov.IA</span> — © 2026 JS-Innov.IA. Tous droits réservés.</p>
             <div className="flex flex-col items-center gap-2">
               <span className="text-white/30 text-xs tracking-wide">Développé par</span>
               <div className="flex items-center gap-3 flex-wrap justify-center">
