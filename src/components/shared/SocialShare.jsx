@@ -23,6 +23,7 @@ export default function SocialShare({ title, description }) {
     { icon: Facebook, label: 'Facebook', href: `https://www.facebook.com/61575203516618/` },
     { icon: Instagram, label: 'Instagram', href: `https://www.instagram.com/fashionist.art.dour/` },
     { icon: TikTokIcon, label: 'TikTok', href: `https://www.tiktok.com/@user6921475292315?_r=1&_t=ZG-94Kw7dIEGcS` },
+    { icon: Youtube, label: 'Clip officiel', href: `https://youtu.be/Ti8_bJHM8VM?si=ITO8EMGq4VnxcFg2` },
   ];
 
   return (
