@@ -268,7 +268,7 @@ export default function Layout({ children, currentPageName }) {
                   <img
                     src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a460cb984c65f748b49e7d/40b06e5fb_JY-TrixAI_Logo_Transparent.png"
                     alt="JY-Trix.AI"
-                    className="h-14 object-contain"
+                    className="h-20 object-contain"
                     style={{ mixBlendMode: 'screen', opacity: 0.92 }}
                   />
                 </motion.div>
@@ -287,7 +287,7 @@ export default function Layout({ children, currentPageName }) {
               </div>
             </div>
 
-            <p className="text-white/20 text-[11px]">SaaS développé par <span className="text-white/35">JY-Trix.AI</span> & <span className="text-white/35">JS-Innov.IA</span> — © 2026 JS-Innov.IA. Tous droits réservés.</p>
+            <p className="text-white/20 text-[11px] text-center leading-relaxed">SaaS développé par <span className="text-white/35">JY-Trix.AI</span> & <span className="text-white/35">JS-Innov.IA</span><br />© 2026 JS-Innov.IA. Tous droits réservés.</p>
           </div>
         </div>
       </footer>
