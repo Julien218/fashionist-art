@@ -67,6 +67,15 @@ export default function Gallery() {
           subtitle="Revivez les moments forts de la première édition Fashionist'ART"
         />
 
+        {/* Upload button */}
+        <div className="flex justify-center mb-6">
+          <label className={`cursor-pointer inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-display font-semibold transition-all border border-[#FF2D8A]/40 text-[#FF2D8A] hover:bg-[#FF2D8A]/10 ${uploading ? 'opacity-60 pointer-events-none' : ''}`}>
+            {uploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
+            {uploading ? 'Upload en cours...' : 'Ajouter des photos'}
+            <input type="file" accept="image/*" multiple className="hidden" onChange={handleUpload} disabled={uploading} />
+          </label>
+        </div>
+
         {/* Tabs */}
         <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
           {[
