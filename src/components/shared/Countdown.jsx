@@ -39,11 +39,23 @@ export default function Countdown() {
   const shareText = "Fashionist'ART — 18 avril 2026 — Centre Sportif d'Élouges (Dour). Entrée gratuite !";
 
   const handleShare = () => {
-    if (navigator.share) {
-      navigator.share({ title: "Fashionist'ART", text: shareText, url: shareUrl });
-    } else {
-      navigator.clipboard.writeText(shareUrl);
+    const copyFallback = () => {
+      const el = document.createElement('textarea');
+      el.value = shareUrl;
+      el.style.position = 'fixed';
+      el.style.opacity = '0';
+      document.body.appendChild(el);
+      el.select();
+      try { document.execCommand('copy'); } catch {}
+      document.body.removeChild(el);
       toast.success('Lien copié !');
+    };
+    if (navigator.share) {
+      navigator.share({ title: "Fashionist'ART", text: shareText, url: shareUrl }).catch(() => copyFallback());
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(shareUrl).then(() => toast.success('Lien copié !')).catch(copyFallback);
+    } else {
+      copyFallback();
     }
   };
 
