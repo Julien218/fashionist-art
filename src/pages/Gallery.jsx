@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { motion, AnimatePresence } from 'framer-motion';
 import SectionTitle from '@/components/shared/SectionTitle';
-import { Play, X, ChevronLeft, ChevronRight, Camera, Film, Filter } from 'lucide-react';
+import { Play, X, ChevronLeft, ChevronRight, Camera, Film, Filter, Upload, Plus, Loader2 } from 'lucide-react';
+import { toast } from 'sonner';
 
 export default function Gallery() {
   const [activeTab, setActiveTab] = useState('all');
