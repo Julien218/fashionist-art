@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import HeroSection from '@/components/home/HeroSection';
 import ArtistPreview from '@/components/home/ArtistPreview';
+import TestimonialsCarousel from '@/components/home/TestimonialsCarousel';
 import NewsletterForm from '@/components/shared/NewsletterForm';
 import SectionTitle from '@/components/shared/SectionTitle';
 import Countdown from '@/components/shared/Countdown';
