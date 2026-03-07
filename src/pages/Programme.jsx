@@ -133,6 +133,8 @@ export default function Programme() {
 
         <SectionTitle title="Programme" subtitle="18 avril 2026 — Centre Sportif d'Élouges (Dour), Belgique" />
 
+        <InteractiveCalendar />
+
         {/* Filters */}
         <div className="flex flex-wrap gap-2 justify-center mb-12">
           {CATEGORIES.map(({ value, label, icon: Icon }) => (
