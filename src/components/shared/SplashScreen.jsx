@@ -98,12 +98,9 @@ export default function SplashScreen({ onDone }) {
                 src={videoUrl}
                 title="Intro video"
                 frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
-                style={{ objectFit: 'cover' }}
-                onLoad={() => {
-                  setTimeout(handleDone, (config?.intro_duration_seconds || 12) * 1000);
-                }}
+                style={{ objectFit: 'cover', width: '100%', height: '100%', position: 'absolute', inset: 0 }}
               />
             </div>
           ) : videoError ? (
