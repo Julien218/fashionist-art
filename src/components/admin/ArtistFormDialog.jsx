@@ -92,18 +92,18 @@ export default function ArtistFormDialog({ open, onOpenChange, artist, onSaved }
         </DialogHeader>
         <div className="space-y-4 mt-2">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <F label="Prénom" k="first_name" />
-            <F label="Nom" k="last_name" />
-            <F label="Nom de scène" k="stage_name" />
+            {field("Prénom", "first_name")}
+            {field("Nom", "last_name")}
+            {field("Nom de scène", "stage_name")}
           </div>
-          <F label="Nom complet (affiché)" k="name" placeholder="Nom affiché sur le site" />
+          {field("Nom complet (affiché)", "name", "text", "Nom affiché sur le site")}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <F label="Email" k="email" type="email" />
-            <F label="Téléphone" k="phone" />
+            {field("Email", "email", "email")}
+            {field("Téléphone", "phone")}
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <F label="Catégorie" k="category" placeholder="ex: Musique" />
-            <F label="Discipline" k="discipline" placeholder="ex: Chanteur" />
+            {field("Catégorie", "category", "text", "ex: Musique")}
+            {field("Discipline", "discipline", "text", "ex: Chanteur")}
           </div>
           {/* Photo portrait */}
           <div>
