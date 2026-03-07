@@ -30,6 +30,89 @@ const categoryBadge = {
   conference: 'text-cyan-400',
 };
 
+const EVENT_DATE = new Date(2026, 3, 18); // 18 avril 2026
+
+function InteractiveCalendar() {
+  const [currentMonth, setCurrentMonth] = useState(new Date(2026, 3, 1));
+  const [added, setAdded] = useState(false);
+
+  const year = currentMonth.getFullYear();
+  const month = currentMonth.getMonth();
+  const firstDay = (new Date(year, month, 1).getDay() + 6) % 7; // lundi = 0
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  const monthNames = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+  const dayNames = ['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'];
+
+  const isEventDay = (d) => year === 2026 && month === 3 && d === 18;
+
+  const addToGoogleCalendar = () => {
+    const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=Fashionist'ART%202026&dates=20260418T090000Z/20260418T210000Z&details=Entr%C3%A9e+gratuite+!+Une+fusion+unique+entre+mode+et+art.&location=Centre+Sportif+d'%C3%89louges,+Rue+du+Stade,+%C3%89louges,+7370+Dour,+Belgique`;
+    window.open(url, '_blank');
+    setAdded(true);
+  };
+
+  const cells = [];
+  for (let i = 0; i < firstDay; i++) cells.push(null);
+  for (let d = 1; d <= daysInMonth; d++) cells.push(d);
+
+  return (
+    <div className="glass-dark neon-border rounded-3xl p-6 mb-12">
+      <div className="flex items-center gap-2 mb-5">
+        <CalendarDays className="w-5 h-5 text-[#FF2D8A]" />
+        <h3 className="font-display font-bold text-white">Calendrier de l'événement</h3>
+      </div>
+
+      {/* Navigation mois */}
+      <div className="flex items-center justify-between mb-4">
+        <button onClick={() => setCurrentMonth(new Date(year, month - 1, 1))} className="p-1.5 rounded-full hover:bg-white/10 text-white/50 hover:text-white transition-colors">
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+        <span className="font-display font-semibold text-white text-sm">{monthNames[month]} {year}</span>
+        <button onClick={() => setCurrentMonth(new Date(year, month + 1, 1))} className="p-1.5 rounded-full hover:bg-white/10 text-white/50 hover:text-white transition-colors">
+          <ChevronRight className="w-5 h-5" />
+        </button>
+      </div>
+
+      {/* Jours */}
+      <div className="grid grid-cols-7 gap-1 mb-1">
+        {dayNames.map(d => <div key={d} className="text-center text-[10px] font-display font-semibold text-white/30 py-1">{d}</div>)}
+      </div>
+      <div className="grid grid-cols-7 gap-1">
+        {cells.map((d, i) => (
+          <div key={i} className={`aspect-square flex items-center justify-center rounded-xl text-xs font-display font-medium transition-all ${
+            !d ? '' :
+            isEventDay(d)
+              ? 'bg-[#FF2D8A] text-white font-bold shadow-lg shadow-[#FF2D8A]/40 ring-2 ring-[#FF2D8A]/60 scale-110'
+              : 'text-white/40 hover:bg-white/5'
+          }`}>
+            {d || ''}
+            {isEventDay(d) && <span className="sr-only">Fashionist'ART</span>}
+          </div>
+        ))}
+      </div>
+
+      {/* Légende + bouton */}
+      <div className="mt-5 flex flex-col sm:flex-row items-center gap-3 pt-4 border-t border-white/10">
+        <div className="flex items-center gap-2 text-sm text-white/60">
+          <span className="w-3 h-3 rounded-full bg-[#FF2D8A] inline-block" />
+          18 avril 2026 — Entrée gratuite !
+        </div>
+        <button
+          onClick={addToGoogleCalendar}
+          className={`ml-auto flex items-center gap-2 px-4 py-2 rounded-full text-xs font-display font-semibold transition-all ${
+            added
+              ? 'bg-green-500/20 text-green-400 border border-green-500/30'
+              : 'bg-[#FF2D8A]/10 text-[#FF2D8A] border border-[#FF2D8A]/30 hover:bg-[#FF2D8A]/20'
+          }`}
+        >
+          {added ? <><Check className="w-3.5 h-3.5" /> Ajouté !</> : <><CalendarDays className="w-3.5 h-3.5" /> Ajouter à Google Calendar</>}
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export default function Programme() {
   const [activeCategory, setActiveCategory] = useState('all');
 
