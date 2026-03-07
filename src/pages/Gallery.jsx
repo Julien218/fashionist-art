@@ -10,6 +10,28 @@ export default function Gallery() {
   const [activeTab, setActiveTab] = useState('all');
   const [lightbox, setLightbox] = useState(null);
   const [selectedEdition, setSelectedEdition] = useState('2025');
+  const [uploading, setUploading] = useState(false);
+  const queryClient = useQueryClient();
+
+  const handleUpload = async (e) => {
+    const files = Array.from(e.target.files);
+    if (!files.length) return;
+    setUploading(true);
+    for (const file of files) {
+      const { file_url } = await base44.integrations.Core.UploadFile({ file });
+      await base44.entities.GalleryMedia.create({
+        title: file.name.replace(/\.[^/.]+$/, ''),
+        type: 'photo',
+        url: file_url,
+        edition: selectedEdition,
+        display_order: 0,
+      });
+    }
+    queryClient.invalidateQueries({ queryKey: ['gallery-media'] });
+    toast.success(`${files.length} photo(s) ajoutée(s) !`);
+    setUploading(false);
+    e.target.value = '';
+  };
 
   const { data: media = [] } = useQuery({
     queryKey: ['gallery-media', selectedEdition],
