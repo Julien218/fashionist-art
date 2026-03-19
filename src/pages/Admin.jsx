@@ -26,6 +26,7 @@ import CommissionsTab from '@/components/admin/CommissionsTab';
 import HistoryTab from '@/components/admin/HistoryTab';
 import HomePageTab from '@/components/admin/HomePageTab';
 import MarketingTab from '@/components/admin/MarketingTab';
+import ArtistSpotlightTab from '@/components/admin/ArtistSpotlightTab';
 import { 
   Users, Calendar, Palette, Handshake, Image, Mail, 
   Plus, Pencil, Trash2, LogOut, Shield, Loader2,
