@@ -140,6 +140,7 @@ export default function Admin() {
           <TabsContent value="users"><AdminUsers user={user} /></TabsContent>
           <TabsContent value="newsletter"><NewsletterTab user={user} /></TabsContent>
           <TabsContent value="blog"><BlogTab /></TabsContent>
+          <TabsContent value="spotlight"><ArtistSpotlightTab user={user} /></TabsContent>
           <TabsContent value="marketing"><MarketingTab user={user} /></TabsContent>
           <TabsContent value="social"><SocialPostsTab user={user} /></TabsContent>
           {['admin', 'super_admin'].includes(user.role) && (
