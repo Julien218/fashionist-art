@@ -155,6 +155,9 @@ export default function BlogTab() {
                 <Button variant="ghost" size="icon" onClick={() => openEdit(post)} className="text-white/40 hover:text-white">
                   <Pencil className="w-4 h-4" />
                 </Button>
+                <Button variant="ghost" size="icon" onClick={() => handleToFacebook(post)} disabled={toFacebookId === post.id} className="text-white/40 hover:text-blue-400" title="Créer post Facebook">
+                  {toFacebookId === post.id ? <Loader2 className="w-4 h-4 animate-spin" /> : <Share2 className="w-4 h-4" />}
+                </Button>
                 <Button variant="ghost" size="icon" onClick={() => { if (confirm('Supprimer cet article ?')) deleteMutation.mutate(post.id); }} className="text-white/40 hover:text-red-400">
                   <Trash2 className="w-4 h-4" />
                 </Button>
