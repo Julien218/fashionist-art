@@ -310,7 +310,8 @@ function AdminUsers({ user }) {
   const handleInvite = async () => {
     if (!inviteEmail) return;
     setInviting(true);
-    const roleForInvite = ['super_admin', 'admin'].includes(inviteRole) ? 'admin' : 'user';
+    // Seul super_admin peut inviter un admin ; sinon role = user
+    const roleForInvite = isSuperAdmin && inviteRole === 'admin' ? 'admin' : 'user';
     await base44.users.inviteUser(inviteEmail, roleForInvite);
     toast.success(`Invitation envoyée à ${inviteEmail}`);
     setInviteEmail('');
