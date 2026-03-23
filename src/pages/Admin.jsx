@@ -99,20 +99,18 @@ export default function Admin() {
             <TabsTrigger value="spotlight" className="gap-2"><Zap className="w-4 h-4" /> Spotlight</TabsTrigger>
             <TabsTrigger value="marketing" className="gap-2"><Rocket className="w-4 h-4" /> Marketing</TabsTrigger>
             <TabsTrigger value="social" className="gap-2"><Megaphone className="w-4 h-4" /> Posts</TabsTrigger>
-            {['admin', 'super_admin'].includes(user.role) && (
-              <TabsTrigger value="stripe" className="gap-2"><CreditCard className="w-4 h-4" /> Stripe</TabsTrigger>
-            )}
-            {['admin', 'super_admin'].includes(user.role) && (
+              {['admin', 'super_admin'].includes(user.role) && (
               <>
                 <TabsTrigger value="bar" className="gap-2"><Zap className="w-4 h-4" /> Bar</TabsTrigger>
                 <TabsTrigger value="sales" className="gap-2"><BarChart3 className="w-4 h-4" /> Ventes</TabsTrigger>
+                <TabsTrigger value="histoire" className="gap-2"><ScrollText className="w-4 h-4" /> Histoire</TabsTrigger>
               </>
             )}
             {user.role === 'super_admin' && (
-              <TabsTrigger value="commissions" className="gap-2"><TrendingUp className="w-4 h-4" /> Commissions</TabsTrigger>
-            )}
-            {['admin', 'super_admin'].includes(user.role) && (
-              <TabsTrigger value="histoire" className="gap-2"><ScrollText className="w-4 h-4" /> Histoire</TabsTrigger>
+              <>
+                <TabsTrigger value="stripe" className="gap-2"><CreditCard className="w-4 h-4" /> Stripe</TabsTrigger>
+                <TabsTrigger value="commissions" className="gap-2"><TrendingUp className="w-4 h-4" /> Commissions</TabsTrigger>
+              </>
             )}
           </TabsList>
 
