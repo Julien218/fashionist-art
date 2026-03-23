@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
-import { Plus, Pencil, Trash2, Loader2, Eye, EyeOff } from 'lucide-react';
+import { Plus, Pencil, Trash2, Loader2, Eye, EyeOff, Zap, Share2 } from 'lucide-react';
 import { format } from 'date-fns';
 
 const CATEGORIES = [
