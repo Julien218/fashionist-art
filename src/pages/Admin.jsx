@@ -177,16 +177,19 @@ function AdminCRUD({ entity, queryClient, fields }) {
   const createMutation = useMutation({
     mutationFn: (data) => base44.entities[entity].create(data),
     onSuccess: () => { queryClient.invalidateQueries({ queryKey: [entity] }); setDialogOpen(false); toast.success('Créé !'); },
+    onError: (e) => toast.error('Erreur : ' + (e?.message || 'Impossible d\'enregistrer')),
   });
 
   const updateMutation = useMutation({
     mutationFn: ({ id, data }) => base44.entities[entity].update(id, data),
     onSuccess: () => { queryClient.invalidateQueries({ queryKey: [entity] }); setDialogOpen(false); toast.success('Mis à jour !'); },
+    onError: (e) => toast.error('Erreur : ' + (e?.message || 'Impossible d\'enregistrer')),
   });
 
   const deleteMutation = useMutation({
     mutationFn: (id) => base44.entities[entity].delete(id),
     onSuccess: () => { queryClient.invalidateQueries({ queryKey: [entity] }); toast.success('Supprimé !'); },
+    onError: (e) => toast.error('Erreur : ' + (e?.message || 'Impossible de supprimer')),
   });
 
   const openCreate = () => { setEditItem(null); setFormData({}); setDialogOpen(true); };
