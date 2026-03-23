@@ -164,10 +164,10 @@ export default function SplashScreen({ onDone }) {
               </motion.div>
             </div>
           ) : (
-            /* === VIDÉO MP4 === */
+            /* === VIDÉO MP4 directe === */
             <video
               ref={videoRef}
-              src={videoUrl}
+              src={videoInfo.src}
               playsInline
               muted
               autoPlay
