@@ -157,6 +157,30 @@ export default function ArtistFormDialog({ open, onOpenChange, artist, onSaved }
             </div>
             {field("Ordre d'affichage", "display_order", "number")}
           </div>
+
+          {/* Heure de passage + affichage site */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 bg-white/5 rounded-xl border border-white/10">
+            <div>
+              <label className="text-xs text-white/40 mb-1 block">🕐 Heure de passage</label>
+              <Input
+                value={form.performance_time || ''}
+                onChange={e => set('performance_time', e.target.value)}
+                placeholder="ex: 14h30 – 15h15"
+                className="bg-white/5 border-white/10 text-white placeholder:text-white/20 h-9 text-sm"
+              />
+            </div>
+            <div className="flex items-center gap-3 mt-5">
+              <Checkbox
+                id="show_on_site"
+                checked={form.show_on_site || false}
+                onCheckedChange={v => set('show_on_site', v)}
+                className="border-white/20"
+              />
+              <label htmlFor="show_on_site" className="text-sm text-white/70 cursor-pointer">
+                Afficher sur le site public
+              </label>
+            </div>
+          </div>
           {/* Œuvres */}
           <div>
             <div className="flex items-center justify-between mb-2">
