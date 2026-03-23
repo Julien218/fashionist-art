@@ -9,26 +9,41 @@ const BG_URL = "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/publi
 // URL par défaut hardcodée (vidéo intro officielle)
 const DEFAULT_INTRO_EMBED = "https://www.youtube-nocookie.com/embed/Ti8_bJHM8VM?si=dGJBhskALwNHsXtK&start=1&autoplay=1&mute=1&controls=1&modestbranding=1&playsinline=1&rel=0";
 
-// Convertir YouTube URL en embed URL
-const getEmbedUrl = (url) => {
-  if (!url) return null;
+// Détermine si une URL est un embed iframe (YouTube/Vimeo) ou un fichier vidéo direct
+const getVideoInfo = (url) => {
+  if (!url) return { type: 'none', src: null };
 
-  // Si c'est déjà un embed URL youtube
+  // Déjà un embed YouTube
   const embedMatch = url.match(/youtube(?:-nocookie)?\.com\/embed\/([^?&]+)/);
   if (embedMatch) {
-    // Ajouter autoplay+mute s'ils ne sont pas déjà présents
     const base = url.split('?')[0];
-    return `${base}?autoplay=1&mute=1&controls=1&modestbranding=1&playsinline=1&rel=0`;
+    return { type: 'youtube', src: `${base}?autoplay=1&mute=1&controls=1&modestbranding=1&playsinline=1&rel=0` };
   }
 
-  // youtube.com/watch?v=... ou youtu.be/...
+  // youtube.com/watch ou youtu.be
   const youtubeMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
   if (youtubeMatch) {
-    return `https://www.youtube-nocookie.com/embed/${youtubeMatch[1]}?autoplay=1&mute=1&controls=1&modestbranding=1&playsinline=1&rel=0`;
+    return { type: 'youtube', src: `https://www.youtube-nocookie.com/embed/${youtubeMatch[1]}?autoplay=1&mute=1&controls=1&modestbranding=1&playsinline=1&rel=0` };
   }
 
-  return url;
+  // Vimeo
+  const vimeoMatch = url.match(/vimeo\.com\/(\d+)/);
+  if (vimeoMatch) {
+    return { type: 'iframe', src: `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=1&muted=1&loop=0` };
+  }
+
+  // Google Drive
+  const driveMatch = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
+  if (driveMatch) {
+    return { type: 'iframe', src: `https://drive.google.com/file/d/${driveMatch[1]}/preview` };
+  }
+
+  // Fichier vidéo direct (mp4, webm, etc.)
+  return { type: 'video', src: url };
 };
+
+// Compat : conservé pour éviter d'autres refs éventuelles
+const getEmbedUrl = (url) => getVideoInfo(url).src;
 
 export default function SplashScreen({ onDone }) {
   const [visible, setVisible] = useState(true);
