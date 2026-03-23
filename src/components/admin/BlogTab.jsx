@@ -30,6 +30,11 @@ export default function BlogTab() {
   const [editItem, setEditItem] = useState(null);
   const [form, setForm] = useState(EMPTY_FORM);
   const [tagsInput, setTagsInput] = useState('');
+  const [aiDialogOpen, setAiDialogOpen] = useState(false);
+  const [aiTopic, setAiTopic] = useState('');
+  const [aiCategory, setAiCategory] = useState('actualites');
+  const [aiGenerating, setAiGenerating] = useState(false);
+  const [toFacebookId, setToFacebookId] = useState(null);
   const queryClient = useQueryClient();
 
   const { data: posts = [], isLoading } = useQuery({
