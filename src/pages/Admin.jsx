@@ -45,7 +45,10 @@ export default function Admin() {
   }, []);
 
   if (loading) return <div className="min-h-screen flex items-center justify-center"><Loader2 className="w-8 h-8 animate-spin text-[#C2185B]" /></div>;
-  if (!user || !['super_admin', 'admin'].includes(user.role)) {
+  const isSuperAdmin = user?.role === 'super_admin';
+  const isAdmin = user?.role === 'admin' || isSuperAdmin;
+
+  if (!user || !isAdmin) {
     return (
       <div className="min-h-screen flex items-center justify-center px-4">
         <div className="glass-dark neon-border rounded-3xl p-10 text-center max-w-md">
