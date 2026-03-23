@@ -302,9 +302,9 @@ function AdminUsers({ user }) {
   });
 
   // Les admins ne voient pas les super_admin, seulement super_admin voit tout
-  const users = user.role === 'super_admin'
+  const users = isSuperAdmin
     ? allUsers
-    : allUsers.filter((u) => u.role !== 'super_admin' && u.role !== 'admin');
+    : allUsers.filter((u) => u.role !== 'super_admin');
 
   const handleInvite = async () => {
     if (!inviteEmail) return;
