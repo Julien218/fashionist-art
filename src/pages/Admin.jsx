@@ -89,6 +89,7 @@ export default function Admin() {
       <div className="max-w-7xl mx-auto px-4 py-8">
         <Tabs defaultValue="participants">
           <TabsList className="bg-[#12121A] border border-white/10 mb-8 flex flex-wrap gap-1 h-auto p-1.5">
+            {/* Commun à tous les admins */}
             <TabsTrigger value="home" className="gap-2"><Sparkles className="w-4 h-4" /> Accueil</TabsTrigger>
             <TabsTrigger value="participants" className="gap-2"><ClipboardList className="w-4 h-4" /> Participants</TabsTrigger>
             <TabsTrigger value="artists" className="gap-2"><Palette className="w-4 h-4" /> Artistes</TabsTrigger>
@@ -96,20 +97,17 @@ export default function Admin() {
             <TabsTrigger value="partners" className="gap-2"><Handshake className="w-4 h-4" /> Partenaires</TabsTrigger>
             <TabsTrigger value="media" className="gap-2"><Image className="w-4 h-4" /> Médias</TabsTrigger>
             <TabsTrigger value="registrations" className="gap-2"><Mail className="w-4 h-4" /> Inscriptions</TabsTrigger>
-            <TabsTrigger value="users" className="gap-2"><Users className="w-4 h-4" /> Utilisateurs</TabsTrigger>
             <TabsTrigger value="newsletter" className="gap-2"><Send className="w-4 h-4" /> Newsletter</TabsTrigger>
             <TabsTrigger value="blog" className="gap-2"><BookOpen className="w-4 h-4" /> Blog</TabsTrigger>
-            <TabsTrigger value="spotlight" className="gap-2"><Zap className="w-4 h-4" /> Spotlight</TabsTrigger>
             <TabsTrigger value="marketing" className="gap-2"><Rocket className="w-4 h-4" /> Marketing</TabsTrigger>
             <TabsTrigger value="social" className="gap-2"><Megaphone className="w-4 h-4" /> Posts</TabsTrigger>
-              {['admin', 'super_admin'].includes(user.role) && (
-              <>
-                <TabsTrigger value="bar" className="gap-2"><Zap className="w-4 h-4" /> Bar</TabsTrigger>
-                <TabsTrigger value="sales" className="gap-2"><BarChart3 className="w-4 h-4" /> Ventes</TabsTrigger>
-                <TabsTrigger value="histoire" className="gap-2"><ScrollText className="w-4 h-4" /> Histoire</TabsTrigger>
-              </>
-            )}
-            {user.role === 'super_admin' && (
+            <TabsTrigger value="bar" className="gap-2"><Zap className="w-4 h-4" /> Bar</TabsTrigger>
+            <TabsTrigger value="sales" className="gap-2"><BarChart3 className="w-4 h-4" /> Ventes</TabsTrigger>
+            <TabsTrigger value="histoire" className="gap-2"><ScrollText className="w-4 h-4" /> Histoire</TabsTrigger>
+            <TabsTrigger value="spotlight" className="gap-2"><Zap className="w-4 h-4" /> Spotlight</TabsTrigger>
+            <TabsTrigger value="users" className="gap-2"><Users className="w-4 h-4" /> Utilisateurs</TabsTrigger>
+            {/* Super Admin uniquement */}
+            {isSuperAdmin && (
               <>
                 <TabsTrigger value="stripe" className="gap-2"><CreditCard className="w-4 h-4" /> Stripe</TabsTrigger>
                 <TabsTrigger value="commissions" className="gap-2"><TrendingUp className="w-4 h-4" /> Commissions</TabsTrigger>
