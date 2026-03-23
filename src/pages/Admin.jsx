@@ -27,10 +27,11 @@ import HistoryTab from '@/components/admin/HistoryTab';
 import HomePageTab from '@/components/admin/HomePageTab';
 import MarketingTab from '@/components/admin/MarketingTab';
 import ArtistSpotlightTab from '@/components/admin/ArtistSpotlightTab';
+import AIGeneratorTab from '@/components/admin/AIGeneratorTab';
 import { 
   Users, Calendar, Palette, Handshake, Image, Mail, 
   Plus, Pencil, Trash2, LogOut, Shield, Loader2,
-  Eye, UserPlus, Home, ChevronRight, CreditCard, ClipboardList, Send, BookOpen, Megaphone, Zap, BarChart3, TrendingUp, ScrollText, Sparkles, Rocket
+  Eye, UserPlus, Home, ChevronRight, CreditCard, ClipboardList, Send, BookOpen, Megaphone, Zap, BarChart3, TrendingUp, ScrollText, Sparkles, Rocket, Film
 } from 'lucide-react';
 
 export default function Admin() {
