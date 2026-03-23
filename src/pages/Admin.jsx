@@ -142,6 +142,7 @@ export default function Admin() {
           <TabsContent value="users"><AdminUsers user={user} /></TabsContent>
           {isSuperAdmin && (
             <>
+              <TabsContent value="ai"><AIGeneratorTab /></TabsContent>
               <TabsContent value="stripe"><StripeTab user={user} /></TabsContent>
               <TabsContent value="commissions"><CommissionsTab /></TabsContent>
             </>
