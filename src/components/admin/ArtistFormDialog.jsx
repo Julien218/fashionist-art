@@ -14,7 +14,8 @@ const EMPTY = {
   name: '', first_name: '', last_name: '', stage_name: '', email: '', phone: '',
   category: '', discipline: '', photo_url: '', short_bio: '', full_bio: '',
   website: '', instagram: '', facebook: '', tiktok: '', youtube: '', linkedin: '',
-  consent_diffusion: false, status: 'active', display_order: '', works: [],
+  consent_diffusion: false, show_on_site: false, status: 'active', display_order: '',
+  performance_time: '', works: [],
 };
 
 export default function ArtistFormDialog({ open, onOpenChange, artist, onSaved }) {
