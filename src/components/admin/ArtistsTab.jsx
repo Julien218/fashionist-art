@@ -222,7 +222,7 @@ export default function ArtistsTab({ user }) {
                   <td className="py-3 px-3">
                     <div className="flex items-center gap-3">
                       {artist.photo_url ? (
-                        <img src={artist.photo_url} alt={artist.name} className="w-8 h-8 rounded-full object-cover flex-shrink-0" />
+                        <img src={artist.photo_url} alt={artist.name} className="w-8 h-8 rounded-full object-cover object-top flex-shrink-0" />
                       ) : (
                         <div className="w-8 h-8 rounded-full bg-[#FF2D8A]/10 flex items-center justify-center flex-shrink-0">
                           <span className="text-[#FF2D8A] font-bold text-xs">{(artist.name || '?')[0]}</span>
