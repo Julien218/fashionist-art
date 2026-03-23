@@ -116,11 +116,8 @@ export default function Admin() {
           </TabsList>
 
           <TabsContent value="home"><HomePageTab /></TabsContent>
-
           <TabsContent value="participants"><ParticipantsTab user={user} /></TabsContent>
-
           <TabsContent value="artists"><ArtistsTab user={user} /></TabsContent>
-
           <TabsContent value="program"><AdminCRUD entity="ProgramEvent" queryClient={queryClient} fields={[
             { key: 'title', label: 'Titre', type: 'text', required: true },
             { key: 'category', label: 'Catégorie', type: 'select', options: ['performance', 'atelier', 'exposition', 'conference'], required: true },
@@ -129,27 +126,19 @@ export default function Admin() {
             { key: 'location', label: 'Lieu', type: 'text' },
             { key: 'description', label: 'Description', type: 'textarea' },
           ]} /></TabsContent>
-
           <TabsContent value="partners"><PartnerTab user={user} /></TabsContent>
-
           <TabsContent value="media"><GalleryMediaTab /></TabsContent>
-
           <TabsContent value="registrations"><AdminReadOnly entity="Registration" queryClient={queryClient} columns={['first_name', 'last_name', 'email', 'accepts_terms', 'accepts_contact', 'created_date']} /></TabsContent>
-
-          <TabsContent value="users"><AdminUsers user={user} /></TabsContent>
           <TabsContent value="newsletter"><NewsletterTab user={user} /></TabsContent>
           <TabsContent value="blog"><BlogTab /></TabsContent>
-          <TabsContent value="spotlight"><ArtistSpotlightTab user={user} /></TabsContent>
           <TabsContent value="marketing"><MarketingTab user={user} /></TabsContent>
           <TabsContent value="social"><SocialPostsTab user={user} /></TabsContent>
-          {['admin', 'super_admin'].includes(user.role) && (
-            <>
-              <TabsContent value="bar"><BarTab user={user} /></TabsContent>
-              <TabsContent value="sales"><SalesTab user={user} /></TabsContent>
-              <TabsContent value="histoire"><HistoryTab user={user} /></TabsContent>
-            </>
-          )}
-          {user.role === 'super_admin' && (
+          <TabsContent value="bar"><BarTab user={user} /></TabsContent>
+          <TabsContent value="sales"><SalesTab user={user} /></TabsContent>
+          <TabsContent value="histoire"><HistoryTab user={user} /></TabsContent>
+          <TabsContent value="spotlight"><ArtistSpotlightTab user={user} /></TabsContent>
+          <TabsContent value="users"><AdminUsers user={user} /></TabsContent>
+          {isSuperAdmin && (
             <>
               <TabsContent value="stripe"><StripeTab user={user} /></TabsContent>
               <TabsContent value="commissions"><CommissionsTab /></TabsContent>
