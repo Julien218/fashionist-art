@@ -168,6 +168,34 @@ export default function BlogTab() {
         </div>
       )}
 
+      {/* Dialog IA */}
+      <Dialog open={aiDialogOpen} onOpenChange={setAiDialogOpen}>
+        <DialogContent className="bg-[#12121A] border border-white/10 text-white max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-white flex items-center gap-2"><Zap className="w-5 h-5 text-[#FF2D8A]" /> Générer un article avec l'IA</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 mt-2">
+            <div>
+              <label className="text-xs text-white/50 mb-1 block">Sujet / thème de l'article *</label>
+              <Input value={aiTopic} onChange={e => setAiTopic(e.target.value)} placeholder="ex: Les artistes de mode de Fashionist'ART..." className="bg-white/5 border-white/10 text-white placeholder:text-white/30 rounded-xl" />
+            </div>
+            <div>
+              <label className="text-xs text-white/50 mb-1 block">Catégorie</label>
+              <Select value={aiCategory} onValueChange={setAiCategory}>
+                <SelectTrigger className="bg-white/5 border-white/10 text-white rounded-xl"><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  {CATEGORIES.map(c => <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>)}
+                </SelectContent>
+              </Select>
+            </div>
+            <p className="text-xs text-white/30">L'article sera créé en brouillon. Vous pourrez le modifier avant publication.</p>
+            <Button onClick={handleAiGenerate} disabled={aiGenerating} className="bg-[#FF2D8A] hover:bg-[#C2185B] text-white w-full gap-2">
+              {aiGenerating ? <><Loader2 className="w-4 h-4 animate-spin" /> Génération en cours...</> : <><Zap className="w-4 h-4" /> Générer</>}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent className="bg-[#12121A] border border-white/10 text-white max-w-2xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
