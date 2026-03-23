@@ -142,19 +142,17 @@ export default function Admin() {
           <TabsContent value="marketing"><MarketingTab user={user} /></TabsContent>
           <TabsContent value="social"><SocialPostsTab user={user} /></TabsContent>
           {['admin', 'super_admin'].includes(user.role) && (
-            <TabsContent value="stripe"><StripeTab user={user} /></TabsContent>
-          )}
-          {['admin', 'super_admin'].includes(user.role) && (
             <>
               <TabsContent value="bar"><BarTab user={user} /></TabsContent>
               <TabsContent value="sales"><SalesTab user={user} /></TabsContent>
+              <TabsContent value="histoire"><HistoryTab user={user} /></TabsContent>
             </>
           )}
           {user.role === 'super_admin' && (
-            <TabsContent value="commissions"><CommissionsTab /></TabsContent>
-          )}
-          {['admin', 'super_admin'].includes(user.role) && (
-            <TabsContent value="histoire"><HistoryTab user={user} /></TabsContent>
+            <>
+              <TabsContent value="stripe"><StripeTab user={user} /></TabsContent>
+              <TabsContent value="commissions"><CommissionsTab /></TabsContent>
+            </>
           )}
         </Tabs>
       </div>
