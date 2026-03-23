@@ -115,17 +115,18 @@ export default function SplashScreen({ onDone }) {
             overflow: 'hidden',
           }}
         >
-          {/* === VIDÉO YOUTUBE/VIMEO EMBED === */}
-          {videoUrl && videoUrl.includes('youtube.com/embed') ? (
+          {/* === VIDÉO EMBED (YouTube / Vimeo / Drive) === */}
+          {(videoInfo.type === 'youtube' || videoInfo.type === 'iframe') && !videoError ? (
             <div className="absolute inset-0 flex items-center justify-center bg-black">
               <iframe
                 width="100%"
                 height="100%"
-                src={videoUrl}
+                src={videoInfo.src}
                 title="Intro video"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
+                onError={() => setVideoError(true)}
                 style={{ objectFit: 'cover', width: '100%', height: '100%', position: 'absolute', inset: 0 }}
               />
             </div>
