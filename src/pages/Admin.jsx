@@ -110,6 +110,7 @@ export default function Admin() {
             {/* Super Admin uniquement */}
             {isSuperAdmin && (
               <>
+                <TabsTrigger value="ai" className="gap-2"><Film className="w-4 h-4" /> IA Générateur</TabsTrigger>
                 <TabsTrigger value="stripe" className="gap-2"><CreditCard className="w-4 h-4" /> Stripe</TabsTrigger>
                 <TabsTrigger value="commissions" className="gap-2"><TrendingUp className="w-4 h-4" /> Commissions</TabsTrigger>
               </>
