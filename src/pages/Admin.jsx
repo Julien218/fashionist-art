@@ -339,12 +339,11 @@ function AdminUsers({ user }) {
             className="rounded-xl bg-white/5 border-white/10 text-white placeholder:text-white/30 flex-1"
           />
           <Select value={inviteRole} onValueChange={setInviteRole}>
-            <SelectTrigger className="rounded-xl bg-white/5 border-white/10 text-white w-40"><SelectValue /></SelectTrigger>
-            <SelectContent>
-              {user.role === 'super_admin' && <SelectItem value="admin">Admin</SelectItem>}
-              <SelectItem value="member">Membre</SelectItem>
-              <SelectItem value="user">Visiteur</SelectItem>
-            </SelectContent>
+           <SelectTrigger className="rounded-xl bg-white/5 border-white/10 text-white w-40"><SelectValue /></SelectTrigger>
+           <SelectContent>
+             {isSuperAdmin && <SelectItem value="admin">Admin</SelectItem>}
+             <SelectItem value="user">Utilisateur</SelectItem>
+           </SelectContent>
           </Select>
           <Button onClick={handleInvite} disabled={inviting} className="bg-[#FF2D8A] hover:bg-[#C2185B] text-white">
             {inviting ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Inviter'}
