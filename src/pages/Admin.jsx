@@ -292,8 +292,9 @@ function AdminReadOnly({ entity, columns }) {
 }
 
 function AdminUsers({ user }) {
+  const isSuperAdmin = user?.role === 'super_admin';
   const [inviteEmail, setInviteEmail] = useState('');
-  const [inviteRole, setInviteRole] = useState('member');
+  const [inviteRole, setInviteRole] = useState('user');
   const [inviting, setInviting] = useState(false);
 
   const { data: allUsers = [], isLoading } = useQuery({
