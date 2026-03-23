@@ -200,7 +200,7 @@ export default function SocialPostsTab({ user }) {
                       </span>
                       <span className="text-xs text-white/40">{post.post_type}</span>
                       <div className="flex items-center gap-1">{STATUS_ICONS[post.status]}</div>
-                      <span className="text-xs text-white/40">{post.status}</span>
+                      <span className="text-xs text-white/40">{STATUS_LABELS[post.status] || post.status}</span>
                     </div>
                     {post.title && <p className="text-sm font-semibold text-white mb-1">{post.title}</p>}
                     <p className="text-sm text-white/80 line-clamp-3">{post.content}</p>
