@@ -195,6 +195,13 @@ function AdminCRUD({ entity, queryClient, fields }) {
   const openCreate = () => { setEditItem(null); setFormData({}); setDialogOpen(true); };
   const openEdit = (item) => { setEditItem(item); setFormData(item); setDialogOpen(true); };
   const handleSave = () => {
+    const required = fields.filter(f => f.required);
+    for (const f of required) {
+      if (!formData[f.key] || String(formData[f.key]).trim() === '') {
+        toast.error(`Le champ "${f.label}" est obligatoire`);
+        return;
+      }
+    }
     if (editItem) { updateMutation.mutate({ id: editItem.id, data: formData }); }
     else { createMutation.mutate(formData); }
   };
