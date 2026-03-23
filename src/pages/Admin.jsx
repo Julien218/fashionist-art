@@ -70,7 +70,7 @@ export default function Admin() {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Logo size="sm" />
-            <Badge className="bg-[#D4AF37]/20 text-[#D4AF37] border-[#D4AF37]/30">{user.role === 'super_admin' ? 'Super Admin' : 'Admin'}</Badge>
+            <Badge className="bg-[#D4AF37]/20 text-[#D4AF37] border-[#D4AF37]/30">{isSuperAdmin ? 'Super Admin' : 'Admin'}</Badge>
           </div>
           <div className="flex items-center gap-3">
             <Link to={createPageUrl('Home')} className="text-sm text-white/60 hover:text-[#FF2D8A] flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 hover:border-[#FF2D8A]/30 transition-all">
