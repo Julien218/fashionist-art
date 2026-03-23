@@ -77,7 +77,7 @@ export default function SplashScreen({ onDone }) {
 
   // Ne pas afficher si config désactivée
   const shouldShow = !config || config.intro_enabled !== false;
-  const videoUrl = config?.intro_video_url ? getEmbedUrl(config.intro_video_url) : null;
+  const videoUrl = config?.intro_video_url ? getEmbedUrl(config.intro_video_url) : DEFAULT_INTRO_EMBED;
   const imageUrl = config?.intro_image_url;
 
   if (!shouldShow) return null;
