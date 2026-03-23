@@ -6,17 +6,27 @@ import { base44 } from '@/api/base44Client';
 const LOGO_URL = "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_68ae1c019dacc474a322f2b2/742499905_Capturedecran2026-02-26a175005.png";
 const BG_URL = "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a460cb984c65f748b49e7d/ef497c4fd_artisteimageb.jpg";
 
+// URL par défaut hardcodée (vidéo intro officielle)
+const DEFAULT_INTRO_EMBED = "https://www.youtube-nocookie.com/embed/Ti8_bJHM8VM?si=dGJBhskALwNHsXtK&start=1&autoplay=1&mute=1&controls=1&modestbranding=1&playsinline=1&rel=0";
+
 // Convertir YouTube URL en embed URL
 const getEmbedUrl = (url) => {
   if (!url) return null;
-  
-  // youtube.com/watch?v=...
+
+  // Si c'est déjà un embed URL youtube
+  const embedMatch = url.match(/youtube(?:-nocookie)?\.com\/embed\/([^?&]+)/);
+  if (embedMatch) {
+    // Ajouter autoplay+mute s'ils ne sont pas déjà présents
+    const base = url.split('?')[0];
+    return `${base}?autoplay=1&mute=1&controls=1&modestbranding=1&playsinline=1&rel=0`;
+  }
+
+  // youtube.com/watch?v=... ou youtu.be/...
   const youtubeMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
   if (youtubeMatch) {
     return `https://www.youtube-nocookie.com/embed/${youtubeMatch[1]}?autoplay=1&mute=1&controls=1&modestbranding=1&playsinline=1&rel=0`;
   }
-  
-  // Si c'est déjà un embed ou une URL directe, retourner tel quel
+
   return url;
 };
 
