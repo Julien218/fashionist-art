@@ -110,7 +110,7 @@ export default function ArtistFormDialog({ open, onOpenChange, artist, onSaved }
             <label className="text-xs text-white/40 mb-2 block">Photo portrait</label>
             <div className="flex items-center gap-3">
               {form.photo_url
-                ? <img src={form.photo_url} className="w-16 h-16 rounded-full object-cover border border-white/10 flex-shrink-0" alt="portrait" />
+                ? <img src={form.photo_url} className="w-16 h-16 rounded-full object-cover object-top border border-white/10 flex-shrink-0" alt="portrait" />
                 : <div className="w-16 h-16 rounded-full bg-white/5 border border-dashed border-white/10 flex items-center justify-center flex-shrink-0"><Image className="w-6 h-6 text-white/20" /></div>
               }
               <div className="flex flex-col gap-1.5 flex-1">
