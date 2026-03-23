@@ -23,6 +23,14 @@ const STATUS_ICONS = {
   REJECTED: <AlertCircle className="w-4 h-4 text-red-500" />,
 };
 
+const STATUS_LABELS = {
+  DRAFT: 'Brouillon',
+  PENDING_APPROVAL: 'En validation',
+  APPROVED: 'Approuvé',
+  PUBLISHED: 'Publié',
+  REJECTED: 'Rejeté',
+};
+
 export default function SocialPostsTab({ user }) {
   const queryClient = useQueryClient();
   const [statusFilter, setStatusFilter] = useState('all');
