@@ -194,8 +194,8 @@ export default function SplashScreen({ onDone }) {
             <X className="w-4 h-4" /> Passer
           </button>
 
-          {/* === BOUTON SON (masqué si YouTube ou fallback) === */}
-          {!videoError && !videoUrl?.includes('youtube') && (
+          {/* === BOUTON SON (masqué si YouTube/iframe ou fallback) === */}
+          {!videoError && videoInfo.type === 'video' && (
             <button
               onClick={toggleMute}
               style={{ position: 'absolute', bottom: '24px', right: '24px', zIndex: 100000 }}
