@@ -89,13 +89,44 @@ export default function BlogTab() {
 
   const set = (key, val) => setForm(f => ({ ...f, [key]: val }));
 
+  const handleAiGenerate = async () => {
+    if (!aiTopic.trim()) { toast.error('Entrez un sujet'); return; }
+    setAiGenerating(true);
+    try {
+      const res = await base44.functions.invoke('generateBlogAndPost', { action: 'generateBlogArticle', topic: aiTopic, category: aiCategory });
+      queryClient.invalidateQueries({ queryKey: ['blog-admin'] });
+      toast.success('Article généré et sauvegardé en brouillon !');
+      setAiDialogOpen(false);
+      setAiTopic('');
+    } catch (e) {
+      toast.error('Erreur génération : ' + e.message);
+    }
+    setAiGenerating(false);
+  };
+
+  const handleToFacebook = async (post) => {
+    setToFacebookId(post.id);
+    try {
+      await base44.functions.invoke('generateBlogAndPost', { action: 'generatePostFromBlog', article_id: post.id, article_title: post.title, article_content: post.content });
+      toast.success('Post Facebook créé en brouillon dans "Posts" !');
+    } catch (e) {
+      toast.error('Erreur : ' + e.message);
+    }
+    setToFacebookId(null);
+  };
+
   return (
     <div>
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex flex-wrap justify-between items-center mb-6 gap-3">
         <h2 className="font-display font-bold text-xl text-white">Blog ({posts.length})</h2>
-        <Button onClick={openCreate} className="bg-[#FF2D8A] hover:bg-[#C2185B] text-white text-sm gap-2">
-          <Plus className="w-4 h-4" /> Nouvel article
-        </Button>
+        <div className="flex gap-2">
+          <Button onClick={() => setAiDialogOpen(true)} variant="outline" className="border-[#FF2D8A]/30 text-[#FF2D8A] hover:bg-[#FF2D8A]/10 text-sm gap-2">
+            <Zap className="w-4 h-4" /> Générer (IA)
+          </Button>
+          <Button onClick={openCreate} className="bg-[#FF2D8A] hover:bg-[#C2185B] text-white text-sm gap-2">
+            <Plus className="w-4 h-4" /> Nouvel article
+          </Button>
+        </div>
       </div>
 
       {isLoading ? <Loader2 className="w-6 h-6 animate-spin mx-auto text-white" /> : (
