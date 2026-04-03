@@ -166,7 +166,7 @@ export default function MissMister() {
         <div className="relative z-10 max-w-4xl mx-auto px-4 pt-12 pb-16 text-center">
           {/* Logo */}
           <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8 }}>
-            <img src={LOGO_URL} alt="Miss & Mister Dour 2026" className="w-48 h-48 md:w-64 md:h-64 object-contain mx-auto drop-shadow-2xl" />
+            <img src={LOGO_URL} alt="Miss & Mister Dour 2026" className="w-48 h-48 md:w-64 md:h-64 object-contain mx-auto drop-shadow-2xl" style={{mixBlendMode: 'screen'}} />
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
