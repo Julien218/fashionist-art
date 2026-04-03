@@ -98,16 +98,17 @@ FORMAT JSON :
         batch_index: i + 1,
       });
 
-      // Message WhatsApp pour Olivier
-      const waMessage = `🎨 *SPOTLIGHT ARTISTE ${i + 1}/2 – ${today}*\n*Fashionist'ART 2026*\n\n👤 *${artist.name}* (${artist.discipline || 'artiste'})\n\n📝 *POST GÉNÉRÉ :*\n${postContent}\n\n---\n✅ *Répondre :*\n• *VALIDER ${spotlight.id}* → publication\n• *REFUSER ${spotlight.id}* → annuler\n\n💻 _JS-Innov.IA × JY-TrixAI_`;
+      // Envoi email aux admins enregistrés dans l'app
+      const allUsers = await base44.asServiceRole.entities.User.list();
+      const admins = allUsers.filter(u => u.role === 'admin' || u.role === 'super_admin');
+      const adminEmails = admins.map(u => u.email).filter(Boolean);
 
-      // Envoi WhatsApp via email (fallback si API WhatsApp non dispo)
-      // On utilise l'email comme canal de notification avec le lien WhatsApp
-      await base44.asServiceRole.integrations.Core.SendEmail({
-        to: 'oliviertrevis@gmail.com',
-        from_name: "Fashionist'ART – Bot Automatique",
-        subject: `🎨 Artiste Spotlight ${i + 1}/2 – ${artist.name} – ${today} | Action requise`,
-        body: `<!DOCTYPE html>
+      // Si aucun admin trouvé, on log et on continue
+      if (adminEmails.length === 0) {
+        console.log('Aucun admin trouvé pour notification email.');
+      }
+
+      const emailBody = `<!DOCTYPE html>
 <html lang="fr">
 <head><meta charset="UTF-8"/><style>
 body{font-family:Arial,sans-serif;background:#0A0A0F;color:#fff;margin:0;padding:20px;}
@@ -124,33 +125,34 @@ h2{color:#FF2D8A;font-size:20px;margin-bottom:4px;}
 <div class="card">
   <h2>🎨 Spotlight Artiste ${i + 1}/2 — ${today}</h2>
   <p style="color:#aaa;font-size:13px;">Fashionist'ART 2026 – Validation requise</p>
-  
   <div class="artist">
     <strong style="color:#D4AF37;">👤 ${artist.name}</strong><br/>
     <span style="color:#888;font-size:13px;">${artist.discipline || 'Artiste'}</span>
   </div>
-
   <p style="color:#FF2D8A;font-weight:bold;margin-bottom:8px;">📝 Post généré :</p>
   <div class="post">${postContent}</div>
-
   <div style="margin-top:20px;text-align:center;">
     <a href="https://fashionistart.base44.app/Admin?validate_spotlight=${spotlight.id}" class="btn btn-validate">✅ VALIDER & PUBLIER</a>
     <a href="https://fashionistart.base44.app/Admin?reject_spotlight=${spotlight.id}" class="btn btn-reject">❌ REFUSER</a>
   </div>
-
-  <p style="margin-top:16px;color:#555;font-size:12px;text-align:center;">
-    Ou répondez par WhatsApp :<br/>
-    <strong style="color:#25D366;">VALIDER ${spotlight.id}</strong> ou <strong>REFUSER ${spotlight.id}</strong>
-  </p>
-
-  <div class="footer">
-    💻 JS-Innov.IA × 🤖 JY-TrixAI<br/>
-    Système automatisé Fashionist'ART
-  </div>
+  <div class="footer">💻 JS-Innov.IA × 🤖 JY-TrixAI<br/>Système automatisé Fashionist'ART</div>
 </div>
 </body>
-</html>`,
-      });
+</html>`;
+
+      for (const adminEmail of adminEmails) {
+        try {
+          await base44.asServiceRole.integrations.Core.SendEmail({
+            to: adminEmail,
+            from_name: "Fashionist'ART – Bot Automatique",
+            subject: `🎨 Artiste Spotlight ${i + 1}/2 – ${artist.name} – ${today} | Action requise`,
+            body: emailBody,
+          });
+          console.log(`Email envoyé à ${adminEmail}`);
+        } catch (emailErr) {
+          console.error(`Erreur envoi email à ${adminEmail}:`, emailErr.message);
+        }
+      }
 
       console.log(`✅ Spotlight ${i + 1} créé pour ${artist.name} (ID: ${spotlight.id})`);
       results.push({ artist: artist.name, spotlight_id: spotlight.id, status: 'PENDING' });
