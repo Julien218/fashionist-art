@@ -4,9 +4,9 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { toast } from 'sonner';
 
 const BASE_URL = 'https://fashionistart.base44.app';
-const OG_IMAGE = 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a460cb984c65f748b49e7d/ef497c4fd_artisteimageb.jpg';
-const HASHTAGS = 'FashionistART FashionistART2026 ModeArt Dour Belgique EventGratuit';
-const HASHTAGS_FR = '#FashionistART #ModeArt #Dour #Belgique #EventGratuit #FestivalMode #Art2026';
+const VIDEO_URL = 'https://youtu.be/Ti8_bJHM8VM?si=ITO8EMGq4VnxcFg2';
+const HASHTAGS_FR = '#FashionistART #ModeArt #Dour #Belgique #EventGratuit #FestivalMode #Art2026 #JSInnovIA #JYTrixAI';
+const SIGNATURE = '💻 Plateforme développée par JS-Innov.IA (Pagin Julien) & JY-TrixAI';
 
 // Génère le texte pré-rédigé selon la page / contexte
 function buildShareText({ title, description, pageUrl }) {
@@ -14,10 +14,10 @@ function buildShareText({ title, description, pageUrl }) {
   const desc = description || "Une fusion unique entre mode et art — entrée GRATUITE !";
 
   return {
-    short: `✨ ${title || "Fashionist'ART"} — ${desc}\n📅 18 avril 2026 | Centre Sportif d'Élouges, Dour 🇧🇪\n🎟️ Entrée gratuite !\n👉 ${url}\n${HASHTAGS_FR}`,
-    facebook: `🎨✨ ${title || "Fashionist'ART 2026"} ✨🎨\n\n${desc}\n\n📅 Date : Samedi 18 avril 2026\n📍 Lieu : Centre Sportif d'Élouges, Dour, Belgique\n🎟️ Entrée GRATUITE — places limitées !\n\n🔗 Réservez votre place : ${url}\n\n${HASHTAGS_FR}\n\n💻 Développé par JS-Innov.IA & JY-TrixAI`,
-    twitter: `✨ ${title || "Fashionist'ART 2026"} — Mode & Art à Dour 🇧🇪\n📅 18 avril 2026 | Entrée GRATUITE !\n🎟️ ${url}\n#FashionistART #ModeArt #Dour #Belgique`,
-    whatsapp: `🎨 *${title || "Fashionist'ART 2026"}* 🎨\n\n${desc}\n\n📅 *18 avril 2026*\n📍 Centre Sportif d'Élouges, Dour, Belgique\n🎟️ Entrée *gratuite* !\n\n👉 ${url}\n\n${HASHTAGS_FR}`,
+    short: `✨ ${title || "Fashionist'ART"} — ${desc}\n📅 18 avril 2026 | Centre Sportif d'Élouges, Dour 🇧🇪\n🎟️ Entrée gratuite !\n🎬 Vidéo : ${VIDEO_URL}\n👉 ${url}\n${HASHTAGS_FR}\n\n${SIGNATURE}`,
+    facebook: `🎨✨ ${title || "Fashionist'ART 2026"} ✨🎨\n\n${desc}\n\n📅 Date : Samedi 18 avril 2026\n📍 Lieu : Centre Sportif d'Élouges, Dour, Belgique\n🎟️ Entrée GRATUITE — places limitées !\n\n🎬 Découvrez la vidéo officielle : ${VIDEO_URL}\n🔗 Réservez votre place : ${url}\n\n${HASHTAGS_FR}\n\n${SIGNATURE}`,
+    twitter: `✨ ${title || "Fashionist'ART 2026"} — Mode & Art à Dour 🇧🇪\n📅 18 avril 2026 | Entrée GRATUITE !\n🎬 ${VIDEO_URL}\n🎟️ ${url}\n#FashionistART #ModeArt #Dour #Belgique #JSInnovIA`,
+    whatsapp: `🎨 *${title || "Fashionist'ART 2026"}* 🎨\n\n${desc}\n\n📅 *18 avril 2026*\n📍 Centre Sportif d'Élouges, Dour, Belgique\n🎟️ Entrée *gratuite* !\n\n🎬 Vidéo officielle : ${VIDEO_URL}\n👉 ${url}\n\n${HASHTAGS_FR}\n\n_${SIGNATURE}_`,
   };
 }
 

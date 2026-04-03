@@ -4,7 +4,9 @@ const OG_IMAGE_MAIN = 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/objec
 const OG_IMAGE_LOGO = 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_68ae1c019dacc474a322f2b2/742499905_Capturedecran2026-02-26a175005.png';
 const BASE_URL = 'https://fashionistart.base44.app';
 const SITE_NAME = "Fashionist'ART – JS-Innov.IA & JY-TrixAI";
-const AUTHOR = "JS-Innov.IA & JY-TrixAI";
+const AUTHOR = "JS-Innov.IA (Pagin Julien) & JY-TrixAI";
+const VIDEO_EMBED = 'https://www.youtube.com/embed/Ti8_bJHM8VM';
+const VIDEO_URL = 'https://youtu.be/Ti8_bJHM8VM?si=ITO8EMGq4VnxcFg2';
 
 const PAGE_META = {
   Home: {
@@ -166,6 +168,20 @@ export default function SEOHead({
     setMeta('meta[property="og:image:alt"]', 'content', `${title} – Fashionist'ART 2026`);
     setMeta('meta[property="og:image:type"]', 'content', 'image/jpeg');
 
+    // ── Open Graph Vidéo (pour partage avec aperçu vidéo) ──
+    setMeta('meta[property="og:video"]', 'content', VIDEO_EMBED);
+    setMeta('meta[property="og:video:secure_url"]', 'content', VIDEO_EMBED);
+    setMeta('meta[property="og:video:type"]', 'content', 'text/html');
+    setMeta('meta[property="og:video:width"]', 'content', '1280');
+    setMeta('meta[property="og:video:height"]', 'content', '720');
+
+    // ── Référencement créateur caché (meta non-affichées) ──
+    setMeta('meta[name="developer"]', 'content', 'JS-Innov.IA – Pagin Julien');
+    setMeta('meta[name="designer"]', 'content', 'JY-TrixAI');
+    setMeta('meta[name="contact"]', 'content', 'contact@fashionistart.be');
+    setMeta('meta[name="application-name"]', 'content', "Fashionist'ART – Powered by JS-Innov.IA");
+    setMeta('meta[name="generator"]', 'content', 'JS-Innov.IA SaaS Platform – Pagin Julien');
+
     // ── Twitter / X ──
     setMeta('meta[name="twitter:card"]', 'content', 'summary_large_image');
     setMeta('meta[name="twitter:site"]', 'content', '@fashionistart');
@@ -174,6 +190,9 @@ export default function SEOHead({
     setMeta('meta[name="twitter:description"]', 'content', description);
     setMeta('meta[name="twitter:image"]', 'content', image);
     setMeta('meta[name="twitter:image:alt"]', 'content', `${title} – Fashionist'ART 2026`);
+    setMeta('meta[name="twitter:player"]', 'content', VIDEO_EMBED);
+    setMeta('meta[name="twitter:player:width"]', 'content', '1280');
+    setMeta('meta[name="twitter:player:height"]', 'content', '720');
 
     // ── Géolocalisation ──
     setMeta('meta[name="geo.region"]', 'content', 'BE-WHT');
@@ -206,12 +225,22 @@ export default function SEOHead({
         width: 1200,
         height: 630,
       },
+      video: {
+        '@type': 'VideoObject',
+        name: `Fashionist'ART 2026 – Vidéo officielle`,
+        description: `Découvrez Fashionist'ART 2026 — Mode & Art à Dour, Belgique. 18 avril 2026. Entrée gratuite.`,
+        thumbnailUrl: image,
+        contentUrl: VIDEO_URL,
+        embedUrl: VIDEO_EMBED,
+        uploadDate: '2026-01-01',
+        publisher: { '@type': 'Organization', name: "Fashionist'ART" },
+      },
       isPartOf: {
         '@type': 'WebSite',
         name: "Fashionist'ART",
         url: BASE_URL,
         author: [
-          { '@type': 'Organization', name: 'JS-Innov.IA' },
+          { '@type': 'Organization', name: 'JS-Innov.IA', url: 'https://js-innov.ia' },
           { '@type': 'Organization', name: 'JY-TrixAI' },
         ],
       },
@@ -223,7 +252,15 @@ export default function SEOHead({
         ],
       },
       creator: [
-        { '@type': 'Organization', name: 'JS-Innov.IA', description: 'Développement web & SaaS IA' },
+        {
+          '@type': 'Person',
+          name: 'Pagin Julien',
+          jobTitle: 'Développeur Web & IA',
+          worksFor: { '@type': 'Organization', name: 'JS-Innov.IA' },
+          url: 'https://js-innov.ia',
+          sameAs: ['https://js-innov.ia'],
+        },
+        { '@type': 'Organization', name: 'JS-Innov.IA', description: 'Développement web & SaaS IA', url: 'https://js-innov.ia' },
         { '@type': 'Organization', name: 'JY-TrixAI', description: 'Solutions IA innovantes' },
       ],
     };
