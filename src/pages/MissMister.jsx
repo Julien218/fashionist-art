@@ -5,7 +5,7 @@ import { Calendar, MapPin, Ticket, CheckCircle, AlertCircle, Loader2, QrCode, Cl
 import { Input } from '@/components/ui/input';
 
 const PRICE = 15;
-const LOGO_URL = "https://media.base44.com/images/public/69a460cb984c65f748b49e7d/3625fe1d4_Logo_MISSETMISTERDOURBE.png";
+const LOGO_URL = "https://media.base44.com/images/public/69a460cb984c65f748b49e7d/2db995f80_454009299_122112677468384538_2558620218814362312_n.jpg";
 const POSTER_URL = "https://media.base44.com/images/public/69a460cb984c65f748b49e7d/5baf7f039_grok-image-7dcac967-c0bd-4390-8ae0-3d285ca4549f.png";
 
 // Ornement doré SVG
@@ -166,7 +166,7 @@ export default function MissMister() {
         <div className="relative z-10 max-w-4xl mx-auto px-4 pt-12 pb-16 text-center">
           {/* Logo */}
           <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8 }}>
-            <img src={LOGO_URL} alt="Miss & Mister Dour 2026" className="w-48 h-48 md:w-64 md:h-64 object-contain mx-auto drop-shadow-2xl" style={{mixBlendMode: 'screen'}} />
+            <img src={LOGO_URL} alt="Miss & Mister Dour 2026" className="w-48 h-48 md:w-64 md:h-64 object-contain mx-auto drop-shadow-2xl" style={{borderRadius: '12px'}} />
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
