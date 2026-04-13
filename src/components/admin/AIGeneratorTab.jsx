@@ -8,7 +8,8 @@ import { Loader2, Image, Film, Download, Copy, Sparkles, RefreshCw, Clapperboard
 import VideoEditorAgent from './VideoEditorAgent';
 import { toast } from 'sonner';
 
-export default function AIGeneratorTab() {
+export default function AIGeneratorTab({ user }) {
+  const isSuperAdmin = user?.role === 'super_admin';
   const [activeTab, setActiveTab] = useState('image');
 
   return (
@@ -41,21 +42,23 @@ export default function AIGeneratorTab() {
         >
           <Film className="w-4 h-4" /> Prompt vidéo IA
         </button>
-        <button
-          onClick={() => setActiveTab('editor')}
-          className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${
-            activeTab === 'editor'
-              ? 'bg-[#00BCD4] text-white shadow-lg'
-              : 'text-white/60 hover:text-white'
-          }`}
-        >
-          <Clapperboard className="w-4 h-4" /> Monteur Vidéo IA
-        </button>
+        {isSuperAdmin && (
+          <button
+            onClick={() => setActiveTab('editor')}
+            className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${
+              activeTab === 'editor'
+                ? 'bg-[#00BCD4] text-white shadow-lg'
+                : 'text-white/60 hover:text-white'
+            }`}
+          >
+            <Clapperboard className="w-4 h-4" /> Monteur Vidéo IA
+          </button>
+        )}
       </div>
 
       {activeTab === 'image' && <ImageGenerator />}
       {activeTab === 'video' && <VideoPromptGenerator />}
-      {activeTab === 'editor' && <VideoEditorAgent />}
+      {activeTab === 'editor' && isSuperAdmin && <VideoEditorAgent />}
     </div>
   );
 }
