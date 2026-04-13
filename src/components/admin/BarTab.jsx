@@ -197,12 +197,9 @@ export default function BarTab({ user }) {
               <CheckCircle2 className="w-16 h-16 text-green-400 mx-auto" />
               <h3 className="font-display font-bold text-2xl text-green-400">✅ PAIEMENT VALIDÉ</h3>
               <p className="text-white text-lg font-semibold">{((paidData.amount_cents || 0) / 100).toFixed(2)} €</p>
-              {paidData.paid_at && (
-                <p className="text-white/50 text-sm">
-                  {new Date(paidData.paid_at).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
-                </p>
+              {user.role === 'super_admin' && paidData.stripe_fee_cents > 0 && (
+                <p className="text-white/40 text-xs">Frais Stripe : {(paidData.stripe_fee_cents / 100).toFixed(2)} €</p>
               )}
-
               <Button onClick={handleNewSale} className="bg-[#FF2D8A] hover:bg-[#C2185B] text-white gap-2 mt-4">
                 <Plus className="w-4 h-4" /> Nouvelle vente
               </Button>
@@ -324,7 +321,7 @@ export default function BarTab({ user }) {
                       <th className="text-left py-2 px-2 text-xs text-white/40 font-display uppercase">Heure</th>
                       <th className="text-left py-2 px-2 text-xs text-white/40 font-display uppercase">Montant</th>
                       <th className="text-left py-2 px-2 text-xs text-white/40 font-display uppercase">Note</th>
-
+                      {user.role === 'super_admin' && <th className="text-left py-2 px-2 text-xs text-white/40 font-display uppercase">Comm.</th>}
                       <th className="text-left py-2 px-2 text-xs text-white/40 font-display uppercase">Statut</th>
                     </tr>
                   </thead>
@@ -336,7 +333,11 @@ export default function BarTab({ user }) {
                         </td>
                         <td className="py-2 px-2 font-semibold text-white">{((s.amount_total_cents || 0) / 100).toFixed(2)} €</td>
                         <td className="py-2 px-2 text-white/50 text-xs">{s.note || '—'}</td>
-
+                        {user.role === 'super_admin' && (
+                          <td className="py-2 px-2 text-orange-400 text-xs">
+                            {s.status === 'PAID' ? `${((s.platform_fee_cents || 0) / 100).toFixed(2)} €` : '—'}
+                          </td>
+                        )}
                         <td className="py-2 px-2">
                           <Badge className={STATUS_COLORS[s.status] || 'bg-gray-500/10 text-gray-400'}>{s.status}</Badge>
                         </td>
