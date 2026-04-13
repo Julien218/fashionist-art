@@ -13,7 +13,6 @@ const NAV_ITEMS = [
   { label: 'Artistes', page: 'Artists' },
   { label: 'Galerie', page: 'Gallery' },
   { label: 'Histoire', page: 'Histoire' },
-  { label: 'Services', page: 'Services' },
   { label: 'Infos pratiques', page: 'Infos' },
   { label: 'Blog', page: 'Blog' },
 ];
