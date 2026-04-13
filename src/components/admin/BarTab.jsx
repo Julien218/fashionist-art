@@ -202,9 +202,7 @@ export default function BarTab({ user }) {
                   {new Date(paidData.paid_at).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
                 </p>
               )}
-              {paidData.stripe_fee_cents > 0 && (
-                <p className="text-white/40 text-xs">Frais Stripe : {(paidData.stripe_fee_cents / 100).toFixed(2)} €</p>
-              )}
+
               <Button onClick={handleNewSale} className="bg-[#FF2D8A] hover:bg-[#C2185B] text-white gap-2 mt-4">
                 <Plus className="w-4 h-4" /> Nouvelle vente
               </Button>
@@ -326,7 +324,7 @@ export default function BarTab({ user }) {
                       <th className="text-left py-2 px-2 text-xs text-white/40 font-display uppercase">Heure</th>
                       <th className="text-left py-2 px-2 text-xs text-white/40 font-display uppercase">Montant</th>
                       <th className="text-left py-2 px-2 text-xs text-white/40 font-display uppercase">Note</th>
-                      <th className="text-left py-2 px-2 text-xs text-white/40 font-display uppercase">Frais Stripe</th>
+
                       <th className="text-left py-2 px-2 text-xs text-white/40 font-display uppercase">Statut</th>
                     </tr>
                   </thead>
@@ -338,9 +336,7 @@ export default function BarTab({ user }) {
                         </td>
                         <td className="py-2 px-2 font-semibold text-white">{((s.amount_total_cents || 0) / 100).toFixed(2)} €</td>
                         <td className="py-2 px-2 text-white/50 text-xs">{s.note || '—'}</td>
-                        <td className="py-2 px-2 text-red-400 text-xs">
-                          {s.status === 'PAID' ? `${((s.stripe_fee_cents || 0) / 100).toFixed(2)} €` : '—'}
-                        </td>
+
                         <td className="py-2 px-2">
                           <Badge className={STATUS_COLORS[s.status] || 'bg-gray-500/10 text-gray-400'}>{s.status}</Badge>
                         </td>
