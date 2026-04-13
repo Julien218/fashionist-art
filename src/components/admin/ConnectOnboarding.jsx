@@ -33,11 +33,17 @@ export default function ConnectOnboarding({ user }) {
   const createOrg = async () => {
     if (!orgName.trim()) return toast.error('Nom requis');
     setCreating(true);
-    await base44.entities.Organization.create({ name: orgName, owner_user_id: user.id });
-    await qc.invalidateQueries({ queryKey: ['my-organizations'] });
-    setOrgName('');
-    setCreating(false);
-    toast.success('Organisation créée !');
+    try {
+      const res = await base44.functions.invoke('createOrganization', { name: orgName });
+      if (res.data?.error) throw new Error(res.data.error);
+      await qc.invalidateQueries({ queryKey: ['my-organizations'] });
+      setOrgName('');
+      toast.success('Organisation créée !');
+    } catch (err) {
+      toast.error(err.message || 'Erreur création');
+    } finally {
+      setCreating(false);
+    }
   };
 
   const connectMutation = useMutation({
