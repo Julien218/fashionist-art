@@ -4,7 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Loader2, Image, Film, Download, Copy, Sparkles, RefreshCw } from 'lucide-react';
+import { Loader2, Image, Film, Download, Copy, Sparkles, RefreshCw, Clapperboard } from 'lucide-react';
+import VideoEditorAgent from './VideoEditorAgent';
 import { toast } from 'sonner';
 
 export default function AIGeneratorTab() {
@@ -19,7 +20,7 @@ export default function AIGeneratorTab() {
       </div>
 
       {/* Tab switch */}
-      <div className="flex gap-2 p-1 bg-white/5 rounded-xl w-fit">
+      <div className="flex gap-2 p-1 bg-white/5 rounded-xl w-fit flex-wrap">
         <button
           onClick={() => setActiveTab('image')}
           className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${
@@ -40,10 +41,21 @@ export default function AIGeneratorTab() {
         >
           <Film className="w-4 h-4" /> Prompt vidéo IA
         </button>
+        <button
+          onClick={() => setActiveTab('editor')}
+          className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${
+            activeTab === 'editor'
+              ? 'bg-[#00BCD4] text-white shadow-lg'
+              : 'text-white/60 hover:text-white'
+          }`}
+        >
+          <Clapperboard className="w-4 h-4" /> Monteur Vidéo IA
+        </button>
       </div>
 
       {activeTab === 'image' && <ImageGenerator />}
       {activeTab === 'video' && <VideoPromptGenerator />}
+      {activeTab === 'editor' && <VideoEditorAgent />}
     </div>
   );
 }
