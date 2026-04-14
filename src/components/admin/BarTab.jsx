@@ -34,9 +34,8 @@ export default function BarTab({ user }) {
   const { data: orgs = [], isLoading: orgsLoading } = useQuery({
     queryKey: ['my-organizations'],
     queryFn: async () => {
-      const all = await base44.entities.Organization.list('-created_date', 20);
-      if (user.role === 'super_admin') return all;
-      return all.filter((o) => o.owner_user_id === user.id);
+      const res = await base44.functions.invoke('listOrganizations', {});
+      return res.data?.orgs || [];
     },
   });
 

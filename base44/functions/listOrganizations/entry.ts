@@ -8,17 +8,16 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Unauthorized' }, { status: 403 });
     }
 
-    const { name, owner_user_id } = await req.json();
-    if (!name?.trim()) return Response.json({ error: 'Nom requis' }, { status: 400 });
+    const all = await base44.asServiceRole.entities.Organization.list('-created_date', 50);
 
-    const org = await base44.asServiceRole.entities.Organization.create({
-      name: name.trim(),
-      owner_user_id: owner_user_id || user.id,
-    });
+    // super_admin voit tout, admin voit seulement les siennes
+    const orgs = user.role === 'super_admin'
+      ? all
+      : all.filter((o) => o.owner_user_id === user.id);
 
-    return Response.json({ success: true, org });
+    return Response.json({ orgs });
   } catch (error) {
-    console.error('createOrganization error:', error.message);
+    console.error('listOrganizations error:', error.message);
     return Response.json({ error: error.message }, { status: 500 });
   }
 });
