@@ -3,6 +3,24 @@ import { createClientFromRequest } from 'npm:@base44/sdk@0.8.25';
 
 const stripe = new Stripe(Deno.env.get('STRIPE_SECRET_KEY'));
 
+// Calcule la commission plateforme selon les règles PlatformFeeRule
+async function calcPlatformFee(base44, amountCents, saleType) {
+  try {
+    const rules = await base44.asServiceRole.entities.PlatformFeeRule.filter({ sale_type: saleType, active: true });
+    const rule = rules?.[0];
+    if (!rule) return 0;
+    if (rule.mode === 'percent') {
+      return Math.round(amountCents * rule.value / 100);
+    } else if (rule.mode === 'fixed') {
+      return Math.round(rule.value); // en centimes
+    }
+    return 0;
+  } catch (err) {
+    console.warn('calcPlatformFee error:', err.message);
+    return 0;
+  }
+}
+
 Deno.serve(async (req) => {
   try {
     if (req.method !== 'POST') {
@@ -25,7 +43,10 @@ Deno.serve(async (req) => {
     const baseUrl = app_url || 'https://fashionistart.be';
     const title = `Bar Fashionist'ART${note ? ` — ${note}` : ''}`;
 
-    console.log(`Bar checkout: ${amount_cents} cents, user=${user.email}`);
+    // Calculer commission plateforme (cachée à l'admin)
+    const platformFeeCents = await calcPlatformFee(base44, amount_cents, 'bar');
+
+    console.log(`Bar checkout: ${amount_cents} cents, commission=${platformFeeCents} cents, user=${user.email}`);
 
     // Créer Checkout Session Stripe sur le compte principal
     const session = await stripe.checkout.sessions.create({
@@ -47,12 +68,13 @@ Deno.serve(async (req) => {
         base44_app_id: Deno.env.get('BASE44_APP_ID'),
         sale_type: 'bar',
         created_by_user_id: user.id,
+        platform_fee_cents: String(platformFeeCents),
       },
     });
 
     console.log(`Stripe session created: ${session.id}`);
 
-    // Créer Sale en PENDING
+    // Créer Sale en PENDING avec commission stockée
     const sale = await base44.asServiceRole.entities.Sale.create({
       sale_type: 'bar',
       title,
@@ -60,14 +82,14 @@ Deno.serve(async (req) => {
       currency: 'eur',
       status: 'PENDING',
       stripe_session_id: session.id,
-      platform_fee_cents: 0,
+      platform_fee_cents: platformFeeCents,
       stripe_fee_cents: 0,
       created_by_user_id: user.id,
       note: note || null,
       created_at: new Date().toISOString(),
     });
 
-    console.log(`Sale created: ${sale.id}`);
+    console.log(`Sale created: ${sale.id}, platform_fee=${platformFeeCents}`);
 
     return Response.json({
       success: true,
