@@ -32,7 +32,7 @@ export default function SalesTab({ user }) {
 
   const { data: sales = [], isLoading } = useQuery({
     queryKey: ['sales'],
-    queryFn: () => base44.asServiceRole.entities.Sale.list('-created_at', 100),
+    queryFn: () => base44.entities.Sale.list('-created_date', 200),
     initialData: [],
   });
 
@@ -230,7 +230,7 @@ export default function SalesTab({ user }) {
               {filteredSales.map((sale) => (
                 <tr key={sale.id} className="border-b border-white/5 hover:bg-white/3">
                   <td className="py-2 px-3 text-white/70">
-                    {new Date(sale.created_at).toLocaleDateString('fr-FR')}
+                    {new Date(sale.created_at || sale.created_date).toLocaleDateString('fr-FR')}
                   </td>
                   <td className="py-2 px-3 text-white/70">{SALE_TYPE_LABELS[sale.sale_type]}</td>
                   <td className="py-2 px-3 font-semibold text-white">
