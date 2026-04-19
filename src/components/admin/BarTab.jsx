@@ -241,14 +241,14 @@ export default function BarTab({ user }) {
                 Montant : <span className="font-semibold text-white">{parseFloat(amount || 0).toFixed(2)} €</span>
                 {note && <> — <span className="text-white/50">{note}</span></>}
               </p>
-              <div className="flex gap-2 justify-center">
-                <Button onClick={copyLink} variant="outline" className="border-white/20 text-white/70 hover:text-white gap-2">
+              <div className="flex gap-2 justify-center flex-wrap">
+                <Button onClick={copyLink} className="bg-white/10 border border-white/30 text-white hover:bg-white/20 gap-2">
                   <Copy className="w-4 h-4" /> Copier le lien
                 </Button>
-                <Button onClick={() => window.open(checkoutUrl, '_blank')} variant="outline" className="border-white/20 text-white/70 hover:text-white gap-2">
+                <Button onClick={() => window.open(checkoutUrl, '_blank')} className="bg-white/10 border border-white/30 text-white hover:bg-white/20 gap-2">
                   <ExternalLink className="w-4 h-4" /> Ouvrir
                 </Button>
-                <Button onClick={handleNewSale} variant="outline" className="border-white/20 text-white/70 hover:text-white gap-2">
+                <Button onClick={handleNewSale} className="bg-red-500/20 border border-red-500/40 text-red-300 hover:bg-red-500/30 gap-2">
                   Annuler
                 </Button>
               </div>
