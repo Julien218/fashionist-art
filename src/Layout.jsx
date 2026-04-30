@@ -263,13 +263,13 @@ export default function Layout({ children, currentPageName }) {
                 <motion.div
                   whileHover={{ y: -4, scale: 1.03 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                  className="flex items-center justify-center px-5 py-3 rounded-2xl bg-white/5 border border-white/10 hover:border-[#FF2D8A]/30 transition-colors shadow-lg"
+                  className="flex items-center justify-center px-5 py-3 rounded-2xl bg-black border border-white/10 hover:border-[#FF2D8A]/30 transition-colors shadow-lg"
                 >
                   <img
-                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a460cb984c65f748b49e7d/40b06e5fb_JY-TrixAI_Logo_Transparent.png"
-                    alt="JY-Trix.AI"
-                    className="h-20 object-contain"
-                    style={{ mixBlendMode: 'screen', opacity: 0.92 }}
+                    src="https://media.base44.com/images/public/69a460cb984c65f748b49e7d/93bbd3861_logo_1_big.png"
+                    alt="Coronado Web Studio"
+                    className="h-16 object-contain rounded-xl"
+                    style={{ opacity: 0.92 }}
                   />
                 </motion.div>
                 <motion.div
