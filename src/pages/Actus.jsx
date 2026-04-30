@@ -16,6 +16,22 @@ export default function ActusPage() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <SectionTitle tag="ACTUALITÉS" title="Dernières nouvelles" align="center" />
 
+        {/* Photo de l'équipe */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mt-10 rounded-2xl overflow-hidden border border-white/10"
+        >
+          <img
+            src="https://media.base44.com/images/public/69a460cb984c65f748b49e7d/1f5bf5809_485181187_1038038855012811_2701450841738634994_n.jpg"
+            alt="L'équipe Fashionist'ART"
+            className="w-full object-cover max-h-[420px]"
+          />
+          <div className="bg-white/5 px-6 py-4 text-center">
+            <p className="text-white/70 text-sm">Notre équipe passionnée — les personnes qui font vivre Fashionist'ART au quotidien 💪</p>
+          </div>
+        </motion.div>
+
         <div className="mt-12 space-y-6">
           {isLoading ? (
             <div className="text-center text-white/40 py-12">Chargement...</div>
