@@ -263,10 +263,10 @@ export default function Layout({ children, currentPageName }) {
                 <motion.div
                   whileHover={{ y: -4, scale: 1.03 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                  className="flex items-center justify-center px-5 py-3 rounded-2xl bg-black border border-white/10 hover:border-[#FF2D8A]/30 transition-colors shadow-lg"
+                  className="flex items-center justify-center px-5 py-3 rounded-2xl bg-transparent border border-white/10 hover:border-[#FF2D8A]/30 transition-colors shadow-lg"
                 >
                   <img
-                    src="https://media.base44.com/images/public/69a460cb984c65f748b49e7d/9f0433d94_image.png"
+                    src="https://media.base44.com/images/public/69a460cb984c65f748b49e7d/8945f542e_main_card.png"
                     alt="Coronado Web Studio"
                     className="h-16 object-contain rounded-xl"
                     style={{ opacity: 0.92 }}
