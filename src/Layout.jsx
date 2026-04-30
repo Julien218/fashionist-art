@@ -266,7 +266,7 @@ export default function Layout({ children, currentPageName }) {
                   className="flex items-center justify-center px-5 py-3 rounded-2xl bg-black border border-white/10 hover:border-[#FF2D8A]/30 transition-colors shadow-lg"
                 >
                   <img
-                    src="https://media.base44.com/images/public/69a460cb984c65f748b49e7d/93bbd3861_logo_1_big.png"
+                    src="https://media.base44.com/images/public/69a460cb984c65f748b49e7d/9f0433d94_image.png"
                     alt="Coronado Web Studio"
                     className="h-16 object-contain rounded-xl"
                     style={{ opacity: 0.92 }}
