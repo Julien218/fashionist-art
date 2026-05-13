@@ -1,0 +1,75 @@
+{
+  "name": "ArtistWork",
+  "type": "object",
+  "properties": {
+    "artist_id": {
+      "type": "string",
+      "description": "ID de l'artiste propri\u00e9taire"
+    },
+    "title": {
+      "type": "string",
+      "description": "Titre de l'\u0153uvre"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description de l'\u0153uvre"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "URL de l'image"
+    },
+    "display_order": {
+      "type": "number",
+      "description": "Ordre d'affichage",
+      "default": 0
+    }
+  },
+  "required": [
+    "artist_id",
+    "title",
+    "image_url"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "created_by": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "created_by": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
