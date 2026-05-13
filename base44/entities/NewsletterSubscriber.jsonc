@@ -1,0 +1,57 @@
+{
+  "name": "NewsletterSubscriber",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "first_name": {
+      "type": "string"
+    },
+    "consent": {
+      "type": "boolean"
+    },
+    "consent_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "unsubscribed": {
+      "type": "boolean",
+      "default": false
+    },
+    "unsubscribed_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "unsubscribe_token": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string",
+      "default": "website"
+    }
+  },
+  "required": [
+    "email",
+    "consent"
+  ],
+  "rls": {
+    "create": null,
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
