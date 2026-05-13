@@ -1,0 +1,45 @@
+{
+  "name": "Registration",
+  "type": "object",
+  "properties": {
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "accepts_terms": {
+      "type": "boolean"
+    },
+    "accepts_contact": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "first_name",
+    "last_name",
+    "email"
+  ],
+  "rls": {
+    "create": null,
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
