@@ -7,8 +7,8 @@ on:
     branches: [main, master]
 
 jobs:
-  build:
-    name: 🏗️ Build & Lint
+  build-and-deploy:
+    name: 🏗️ Build & Deploy FTP
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout
@@ -32,23 +32,15 @@ jobs:
         env:
           NODE_ENV: production
 
-      - name: ✅ Build OK
-        run: echo "🎨 Fashionist ART Dour — build réussi"
-
-  deploy:
-    name: 🚂 Deploy to Railway
-    runs-on: ubuntu-latest
-    needs: build
-    if: github.ref == "refs/heads/main" || github.ref == "refs/heads/master"
-    steps:
-      - name: 📥 Checkout
-        uses: actions/checkout@v4
-
-      - name: 🚂 Deploy to Railway
-        uses: bervProject/railway-deploy@main
+      - name: 🚀 Deploy via FTP to one.com
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          railway_token: ${{ secrets.RAILWAY_TOKEN }}
-          service: fashionist-art
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: /public_html/
+          dangerous-clean-slate: false
 
       - name: ✅ Deployed
-        run: echo "🚀 Fashionist ART Dour déployé sur Railway — Js-Innov.IA"
+        run: echo "🎨 Fashionist ART Dour déployé sur one.com — Js-Innov.IA"
