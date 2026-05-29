@@ -6,10 +6,15 @@ import SectionTitle from '@/components/shared/SectionTitle';
 import { Play, X, ChevronLeft, ChevronRight, Camera, Film, Filter, Upload, Plus, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 
+const EDITIONS = [
+  { key: '2026', label: 'Édition 2026', color: 'from-[#FF2D8A] to-[#ff6600]' },
+  { key: '2025', label: 'Édition 2025', color: 'from-[#D4AF37] to-[#ff6600]' },
+];
+
 export default function Gallery() {
   const [activeTab, setActiveTab] = useState('all');
   const [lightbox, setLightbox] = useState(null);
-  const [selectedEdition, setSelectedEdition] = useState('2025');
+  const [selectedEdition, setSelectedEdition] = useState('2026');
   const [uploading, setUploading] = useState(false);
   const queryClient = useQueryClient();
 
@@ -36,7 +41,7 @@ export default function Gallery() {
   const { data: media = [] } = useQuery({
     queryKey: ['gallery-media', selectedEdition],
     queryFn: () => base44.entities.GalleryMedia.filter(
-      selectedEdition === 'all' ? {} : { edition: selectedEdition },
+      { edition: selectedEdition },
       'display_order'
     ),
   });
@@ -48,7 +53,6 @@ export default function Gallery() {
 
   const photos = filtered.filter(m => m.type === 'photo');
   const videos = filtered.filter(m => m.type === 'video');
-  const displayList = activeTab === 'all' ? filtered : filtered;
 
   const openLightbox = (item, list) => setLightbox({ item, list });
   const closeLightbox = () => setLightbox(null);
@@ -59,24 +63,38 @@ export default function Gallery() {
     setLightbox({ item: next, list: lightbox.list });
   };
 
+  const currentEdition = EDITIONS.find(e => e.key === selectedEdition);
+
   return (
     <div className="py-12 px-4">
       <div className="max-w-6xl mx-auto">
+
         <SectionTitle
-          title="Les Talents de l'Édition 2025"
-          subtitle="Revivez les moments forts de la première édition Fashionist'ART"
+          title="Médias & Galerie"
+          subtitle="Revivez les moments forts de chaque édition Fashionist'ART"
         />
 
-        {/* Upload button */}
-        <div className="flex justify-center mb-6">
-          <label className={`cursor-pointer inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-display font-semibold transition-all border border-[#FF2D8A]/40 text-[#FF2D8A] hover:bg-[#FF2D8A]/10 ${uploading ? 'opacity-60 pointer-events-none' : ''}`}>
-            {uploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
-            {uploading ? 'Upload en cours...' : 'Ajouter des photos'}
-            <input type="file" accept="image/*" multiple className="hidden" onChange={handleUpload} disabled={uploading} />
-          </label>
+        {/* ====== SÉLECTEUR ÉDITION ====== */}
+        <div className="flex flex-wrap justify-center gap-4 mb-8">
+          {EDITIONS.map(ed => (
+            <button
+              key={ed.key}
+              onClick={() => { setSelectedEdition(ed.key); setActiveTab('all'); }}
+              className={`relative px-8 py-3 rounded-full font-display font-bold text-sm uppercase tracking-widest transition-all duration-300 ${
+                selectedEdition === ed.key
+                  ? `bg-gradient-to-r ${ed.color} text-white shadow-lg scale-105`
+                  : 'bg-white/5 border border-white/10 text-white/50 hover:text-white hover:border-white/30'
+              }`}
+            >
+              {ed.label}
+              {selectedEdition === ed.key && (
+                <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-white" />
+              )}
+            </button>
+          ))}
         </div>
 
-        {/* Tabs */}
+        {/* ====== TABS TYPE ====== */}
         <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
           {[
             { key: 'all', label: 'Tout voir', icon: Filter },
@@ -98,52 +116,63 @@ export default function Gallery() {
           ))}
         </div>
 
-        {/* Empty state */}
-        {displayList.length === 0 && (
+        {/* ====== UPLOAD BUTTON ====== */}
+        <div className="flex justify-center mb-8">
+          <label className={`cursor-pointer inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-display font-semibold transition-all border border-[#FF2D8A]/40 text-[#FF2D8A] hover:bg-[#FF2D8A]/10 ${uploading ? 'opacity-60 pointer-events-none' : ''}`}>
+            {uploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
+            {uploading ? 'Upload en cours...' : `Ajouter des photos — ${currentEdition?.label}`}
+            <input type="file" accept="image/*" multiple className="hidden" onChange={handleUpload} disabled={uploading} />
+          </label>
+        </div>
+
+        {/* ====== EMPTY STATE ====== */}
+        {filtered.length === 0 && (
           <div className="text-center py-20 text-white/30">
             <Camera className="w-12 h-12 mx-auto mb-4 opacity-30" />
-            <p className="font-display">Galerie en cours de construction…</p>
+            <p className="font-display text-lg">Galerie {selectedEdition} en cours de construction…</p>
             <p className="text-xs mt-2">Les médias seront disponibles prochainement.</p>
           </div>
         )}
 
-        {/* Videos section */}
+        {/* ====== VIDÉOS ====== */}
         {(activeTab === 'all' || activeTab === 'video') && videos.length > 0 && (
           <div className="mb-12">
             {activeTab === 'all' && (
               <h3 className="font-display font-bold text-white/70 text-xs uppercase tracking-widest mb-5 flex items-center gap-2">
-                <Film className="w-4 h-4 text-[#FF2D8A]" /> Vidéos
+                <Film className="w-4 h-4 text-[#FF2D8A]" /> Vidéos — {currentEdition?.label}
               </h3>
             )}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {videos.map((item, i) => (
                 <motion.div
                   key={item.id}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.05 }}
-                  className="glass-dark neon-border rounded-2xl overflow-hidden group cursor-pointer"
-                  onClick={() => openLightbox(item, videos)}
+                  transition={{ delay: i * 0.08 }}
+                  className="rounded-2xl overflow-hidden border border-white/10 hover:border-[#FF2D8A]/50 transition-all duration-300 bg-black/40 group"
                 >
-                  <div className="relative aspect-video bg-black/40">
-                    {item.thumbnail_url ? (
-                      <img src={item.thumbnail_url} alt={item.title} className="w-full h-full object-cover" />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#FF2D8A]/10 to-purple-900/20">
-                        <Film className="w-10 h-10 text-white/20" />
-                      </div>
-                    )}
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/10 transition-colors">
-                      <div className="w-14 h-14 rounded-full bg-[#FF2D8A]/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                        <Play className="w-6 h-6 text-white ml-1" fill="white" />
-                      </div>
-                    </div>
+                  {/* Embed YouTube directement */}
+                  <div className="relative aspect-video">
+                    <iframe
+                      src={item.url}
+                      title={item.title}
+                      className="w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
                   </div>
-                  <div className="p-4">
-                    <p className="font-display font-semibold text-white text-sm truncate">{item.title}</p>
-                    {item.artist_name && <p className="text-xs text-[#FF2D8A]/70 mt-0.5">{item.artist_name}</p>}
-                    {item.category && <p className="text-xs text-white/30 mt-0.5">{item.category}</p>}
+                  <div className="p-4 flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-[#FF2D8A]/20 flex items-center justify-center flex-shrink-0">
+                      <Film className="w-4 h-4 text-[#FF2D8A]" />
+                    </div>
+                    <div>
+                      <p className="font-display font-semibold text-white text-sm">{item.title}</p>
+                      {item.category && <p className="text-xs text-white/40 mt-0.5">{item.category}</p>}
+                    </div>
+                    <span className="ml-auto text-xs font-bold px-3 py-1 rounded-full bg-[#FF2D8A]/20 text-[#FF2D8A]">
+                      {item.edition}
+                    </span>
                   </div>
                 </motion.div>
               ))}
@@ -151,12 +180,12 @@ export default function Gallery() {
           </div>
         )}
 
-        {/* Photos section */}
+        {/* ====== PHOTOS ====== */}
         {(activeTab === 'all' || activeTab === 'photo') && photos.length > 0 && (
           <div>
             {activeTab === 'all' && (
               <h3 className="font-display font-bold text-white/70 text-xs uppercase tracking-widest mb-5 flex items-center gap-2">
-                <Camera className="w-4 h-4 text-[#D4AF37]" /> Photos
+                <Camera className="w-4 h-4 text-[#D4AF37]" /> Photos — {currentEdition?.label}
               </h3>
             )}
             <div className="columns-2 sm:columns-3 lg:columns-4 gap-3 space-y-3">
@@ -182,11 +211,12 @@ export default function Gallery() {
             </div>
           </div>
         )}
+
       </div>
 
-      {/* Lightbox */}
+      {/* ====== LIGHTBOX PHOTOS ====== */}
       <AnimatePresence>
-        {lightbox && (
+        {lightbox && lightbox.item.type === 'photo' && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -203,7 +233,6 @@ export default function Gallery() {
             <button onClick={(e) => { e.stopPropagation(); navLightbox(1); }} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/60 hover:text-white z-10 p-3">
               <ChevronRight className="w-8 h-8" />
             </button>
-
             <motion.div
               key={lightbox.item.id}
               initial={{ scale: 0.9, opacity: 0 }}
@@ -211,19 +240,7 @@ export default function Gallery() {
               className="max-w-5xl w-full mx-8"
               onClick={e => e.stopPropagation()}
             >
-              {lightbox.item.type === 'video' ? (
-                <div className="aspect-video w-full rounded-2xl overflow-hidden">
-                  <iframe
-                    src={lightbox.item.url}
-                    className="w-full h-full"
-                    allow="autoplay; fullscreen"
-                    allowFullScreen
-                    title={lightbox.item.title}
-                  />
-                </div>
-              ) : (
-                <img src={lightbox.item.url} alt={lightbox.item.title} className="max-h-[80vh] w-full object-contain rounded-2xl" />
-              )}
+              <img src={lightbox.item.url} alt={lightbox.item.title} className="max-h-[80vh] w-full object-contain rounded-2xl" />
               <div className="mt-4 text-center">
                 <p className="font-display font-bold text-white">{lightbox.item.title}</p>
                 {lightbox.item.artist_name && <p className="text-[#FF2D8A] text-sm mt-1">{lightbox.item.artist_name}</p>}
