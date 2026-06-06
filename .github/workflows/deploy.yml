@@ -3,44 +3,29 @@ name: 🚀 CI/CD — Fashionist ART Dour
 on:
   push:
     branches: [main, master]
-  pull_request:
-    branches: [main, master]
 
 jobs:
   build-and-deploy:
-    name: 🏗️ Build & Deploy FTP
+    name: 🏗️ Build & Deploy SFTP
     runs-on: ubuntu-latest
     steps:
-      - name: 📥 Checkout
-        uses: actions/checkout@v4
-
-      - name: 📦 Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: "npm"
-
-      - name: 📚 Install dependencies
-        run: npm ci
-
-      - name: 🔍 Lint
-        run: npm run lint
+      - run: npm ci
+      - run: npm run lint
         continue-on-error: true
-
-      - name: 🏗️ Build
-        run: npm run build
+      - run: npm run build
         env:
           NODE_ENV: production
-
-      - name: 🚀 Deploy via FTP to one.com
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/
-          server-dir: /public_html/
-          dangerous-clean-slate: false
-
-      - name: ✅ Deployed
-        run: echo "🎨 Fashionist ART Dour déployé sur one.com — Js-Innov.IA"
+          server: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          port: 22
+          local_path: ./dist/*
+          remote_path: /public_html/
+          sftp_only: true
