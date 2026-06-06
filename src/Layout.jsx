@@ -289,7 +289,7 @@ export default function Layout({ children, currentPageName }) {
               </div>
             </div>
 
-            <p className="text-white/20 text-[11px] text-center leading-relaxed">SaaS développé par <span className="text-white/35">Coronado Web Studio</span> & <span className="text-white/35">JS-Innov.IA</span><br />Création de site web et créateur visuel<br />© 2026 JS-Innov.IA. Tous droits réservés.</p>
+            <p className="text-white/20 text-[11px] text-center leading-relaxed">SaaS développé par <span className="text-white/35">Coronado Web Studio</span> &amp; <span className="text-white/35">JS-Innov.IA</span><br />Création de site web et créateur visuel<br />© 2026 JS-Innov.IA. Tous droits réservés.</p>
           </div>
         </div>
       </footer>

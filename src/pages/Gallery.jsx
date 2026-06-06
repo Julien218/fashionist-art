@@ -3,8 +3,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { motion, AnimatePresence } from 'framer-motion';
 import SectionTitle from '@/components/shared/SectionTitle';
-import { Play, X, ChevronLeft, ChevronRight, Camera, Film, Filter, Upload, Plus, Loader2 } from 'lucide-react';
-import { toast } from 'sonner';
+import { Play, X, ChevronLeft, ChevronRight, Camera, Film, Filter, Loader2 } from 'lucide-react';
 
 const EDITIONS = [
   { key: '2026', label: 'Édition 2026', color: 'from-[#FF2D8A] to-[#ff6600]' },
@@ -15,28 +14,6 @@ export default function Gallery() {
   const [activeTab, setActiveTab] = useState('all');
   const [lightbox, setLightbox] = useState(null);
   const [selectedEdition, setSelectedEdition] = useState('2026');
-  const [uploading, setUploading] = useState(false);
-  const queryClient = useQueryClient();
-
-  const handleUpload = async (e) => {
-    const files = Array.from(e.target.files);
-    if (!files.length) return;
-    setUploading(true);
-    for (const file of files) {
-      const { file_url } = await base44.integrations.Core.UploadFile({ file });
-      await base44.entities.GalleryMedia.create({
-        title: file.name.replace(/\.[^/.]+$/, ''),
-        type: 'photo',
-        url: file_url,
-        edition: selectedEdition,
-        display_order: 0,
-      });
-    }
-    queryClient.invalidateQueries({ queryKey: ['gallery-media'] });
-    toast.success(`${files.length} photo(s) ajoutée(s) !`);
-    setUploading(false);
-    e.target.value = '';
-  };
 
   const { data: media = [] } = useQuery({
     queryKey: ['gallery-media', selectedEdition],
@@ -116,15 +93,6 @@ export default function Gallery() {
           ))}
         </div>
 
-        {/* ====== UPLOAD BUTTON ====== */}
-        <div className="flex justify-center mb-8">
-          <label className={`cursor-pointer inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-display font-semibold transition-all border border-[#FF2D8A]/40 text-[#FF2D8A] hover:bg-[#FF2D8A]/10 ${uploading ? 'opacity-60 pointer-events-none' : ''}`}>
-            {uploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
-            {uploading ? 'Upload en cours...' : `Ajouter des photos — ${currentEdition?.label}`}
-            <input type="file" accept="image/*" multiple className="hidden" onChange={handleUpload} disabled={uploading} />
-          </label>
-        </div>
-
         {/* ====== EMPTY STATE ====== */}
         {filtered.length === 0 && (
           <div className="text-center py-20 text-white/30">
@@ -152,7 +120,6 @@ export default function Gallery() {
                   transition={{ delay: i * 0.08 }}
                   className="rounded-2xl overflow-hidden border border-white/10 hover:border-[#FF2D8A]/50 transition-all duration-300 bg-black/40 group"
                 >
-                  {/* Embed YouTube directement */}
                   <div className="relative aspect-video">
                     <iframe
                       src={item.url}
@@ -214,36 +181,55 @@ export default function Gallery() {
 
       </div>
 
-      {/* ====== LIGHTBOX PHOTOS ====== */}
+      {/* ====== LIGHTBOX ====== */}
       <AnimatePresence>
-        {lightbox && lightbox.item.type === 'photo' && (
+        {lightbox && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex items-center justify-center"
+            className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
             onClick={closeLightbox}
           >
-            <button onClick={closeLightbox} className="absolute top-5 right-5 text-white/60 hover:text-white z-10 p-2">
-              <X className="w-7 h-7" />
-            </button>
-            <button onClick={(e) => { e.stopPropagation(); navLightbox(-1); }} className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 hover:text-white z-10 p-3">
-              <ChevronLeft className="w-8 h-8" />
-            </button>
-            <button onClick={(e) => { e.stopPropagation(); navLightbox(1); }} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/60 hover:text-white z-10 p-3">
-              <ChevronRight className="w-8 h-8" />
-            </button>
             <motion.div
-              key={lightbox.item.id}
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              className="max-w-5xl w-full mx-8"
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
+              className="relative max-w-4xl w-full"
               onClick={e => e.stopPropagation()}
             >
-              <img src={lightbox.item.url} alt={lightbox.item.title} className="max-h-[80vh] w-full object-contain rounded-2xl" />
-              <div className="mt-4 text-center">
-                <p className="font-display font-bold text-white">{lightbox.item.title}</p>
-                {lightbox.item.artist_name && <p className="text-[#FF2D8A] text-sm mt-1">{lightbox.item.artist_name}</p>}
+              <button
+                onClick={closeLightbox}
+                className="absolute -top-10 right-0 text-white/60 hover:text-white transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+              <img
+                src={lightbox.item.url}
+                alt={lightbox.item.title}
+                className="max-h-[80vh] w-full object-contain rounded-2xl"
+              />
+              <div className="mt-4 flex items-center justify-between">
+                <div>
+                  <p className="font-display font-bold text-white">{lightbox.item.title}</p>
+                  {lightbox.item.artist_name && (
+                    <p className="text-[#FF2D8A] text-sm mt-1">{lightbox.item.artist_name}</p>
+                  )}
+                </div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => navLightbox(-1)}
+                    className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                  >
+                    <ChevronLeft className="w-5 h-5 text-white" />
+                  </button>
+                  <button
+                    onClick={() => navLightbox(1)}
+                    className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                  >
+                    <ChevronRight className="w-5 h-5 text-white" />
+                  </button>
+                </div>
               </div>
             </motion.div>
           </motion.div>
