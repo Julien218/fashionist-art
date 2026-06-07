@@ -1,12 +1,14 @@
-name: 🚀 CI/CD — Fashionist ART Dour
+name: 🔍 CI — Fashionist ART Dour
 
 on:
   push:
     branches: [main, master]
+  pull_request:
+    branches: [main, master]
 
 jobs:
-  build-and-deploy:
-    name: 🏗️ Build & Deploy SFTP
+  build:
+    name: 🏗️ Build & Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,12 +22,5 @@ jobs:
       - run: npm run build
         env:
           NODE_ENV: production
-      - uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-        with:
-          server: ${{ secrets.SFTP_HOST }}
-          username: ${{ secrets.SFTP_USERNAME }}
-          password: ${{ secrets.SFTP_PASSWORD }}
-          port: 22
-          local_path: ./dist/*
-          remote_path: /public_html/
-          sftp_only: true
+      - name: ✅ Build réussi
+        run: echo "Build OK — Railway déploie automatiquement depuis GitHub"
