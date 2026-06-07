@@ -1,14 +1,19 @@
-import { createClient } from '@base44/sdk';
-import { appParams } from '@/lib/app-params';
+// Migration Base44 → Supabase
+// Ce fichier est maintenu pour la compatibilité des imports existants
+// Tous les appels base44.entities.* sont redirigés vers Supabase
 
-const { appId, token, functionsVersion, appBaseUrl } = appParams;
+import { entities } from './entities';
+import { supabase } from './supabaseClient';
 
-//Create a client with authentication required
-export const base44 = createClient({
-  appId,
-  token,
-  functionsVersion,
-  serverUrl: '',
-  requiresAuth: false,
-  appBaseUrl
-});
+export const base44 = {
+  entities,
+  auth: {
+    // Pas d'auth Base44 — admin via Supabase ou variables d'environnement
+    me: async () => null,
+    logout: () => {},
+    redirectToLogin: () => {},
+  },
+  supabase, // accès direct si besoin
+};
+
+export default base44;
