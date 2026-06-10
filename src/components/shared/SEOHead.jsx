@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 const OG_IMAGE_MAIN = 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a460cb984c65f748b49e7d/ef497c4fd_artisteimageb.jpg';
-const OG_IMAGE_LOGO = 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_68ae1c019dacc474a322f2b2/742499905_Capturedecran2026-02-26a175005.png';
+const OG_IMAGE_LOGO = 'https://media.base44.com/images/public/6a035427dca907aa03b71398/30db7f0e0_logoFashionistArtLogo.png';
 const BASE_URL = 'https://fashionistart.base44.app';
 const SITE_NAME = "Fashionist'ART – JS-Innov.IA & JY-TrixAI";
 const AUTHOR = "JS-Innov.IA (Pagin Julien) & JY-TrixAI";

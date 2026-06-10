@@ -8,7 +8,7 @@ export default function SchemaOrgOrganization() {
       "name": "Fashionist'ART",
       "description": "Une fusion unique entre mode et art au Centre Sportif d'Élouges (Dour), Belgique",
       "url": "https://fashionistart.base44.app",
-      "logo": "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_68ae1c019dacc474a322f2b2/742499905_Capturedecran2026-02-26a175005.png",
+      "logo": "https://media.base44.com/images/public/6a035427dca907aa03b71398/30db7f0e0_logoFashionistArtLogo.png",
       "sameAs": [
         "https://www.instagram.com/fashionist.art.dour/",
         "https://www.facebook.com/61575203516618/",

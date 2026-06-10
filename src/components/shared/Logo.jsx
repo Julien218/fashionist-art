@@ -1,23 +1,21 @@
 import React from 'react';
 
+const LOGO_URL = "https://media.base44.com/images/public/6a035427dca907aa03b71398/30db7f0e0_logoFashionistArtLogo.png";
+
 export default function Logo({ size = "md" }) {
-  const sizes = {
-    sm: { script: "text-xl", bold: "text-lg" },
-    md: { script: "text-3xl", bold: "text-2xl" },
-    lg: { script: "text-5xl", bold: "text-4xl" },
-    xl: { script: "text-7xl", bold: "text-6xl" }
+  const heights = {
+    sm: "h-8",
+    md: "h-12",
+    lg: "h-16",
+    xl: "h-24"
   };
-  
-  const s = sizes[size] || sizes.md;
 
   return (
-    <div className="flex items-baseline gap-0">
-      <span className={`font-script ${s.script} text-[#C2185B] leading-none`}>
-        Fashionist'
-      </span>
-      <span className={`font-display font-black ${s.bold} text-[#2D2024] leading-none`}>
-        ART
-      </span>
-    </div>
+    <img
+      src={LOGO_URL}
+      alt="Fashionist'ART — Logo officiel"
+      className={`${heights[size] || heights.md} w-auto object-contain`}
+      style={{ filter: 'drop-shadow(0 2px 12px rgba(212,175,55,0.3))' }}
+    />
   );
 }

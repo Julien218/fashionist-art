@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Volume2, VolumeX } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 
-const LOGO_URL = "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_68ae1c019dacc474a322f2b2/742499905_Capturedecran2026-02-26a175005.png";
+const LOGO_URL = "https://media.base44.com/images/public/6a035427dca907aa03b71398/30db7f0e0_logoFashionistArtLogo.png";
 const BG_URL = "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a460cb984c65f748b49e7d/ef497c4fd_artisteimageb.jpg";
 
 // URL par défaut hardcodée (vidéo intro officielle)
@@ -146,7 +146,12 @@ export default function SplashScreen({ onDone }) {
                 transition={{ duration: 0.8 }}
                 className="relative z-10 flex flex-col items-center gap-6 text-center px-8"
               >
-                <img src={LOGO_URL} alt="Fashionist'ART" className="w-24 h-24 rounded-full object-cover ring-4 ring-[#FF2D8A]/50 shadow-2xl" />
+                <img
+                  src={LOGO_URL}
+                  alt="Fashionist'ART — Logo officiel"
+                  className="h-20 w-auto object-contain"
+                  style={{ filter: 'drop-shadow(0 0 24px rgba(212,175,55,0.5))' }}
+                />
                 <div>
                   <div className="text-4xl md:text-6xl">
                     <span className="font-script text-[#FF2D8A]">Fashionist'</span>

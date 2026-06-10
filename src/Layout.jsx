@@ -68,7 +68,14 @@ export default function Layout({ children, currentPageName }) {
       <header className="fixed top-0 left-0 right-0 z-40 bg-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-[72px]">
-            <Link to={createPageUrl('Home')} />
+            <Link to={createPageUrl('Home')} className="flex items-center">
+              <img
+                src="https://media.base44.com/images/public/6a035427dca907aa03b71398/30db7f0e0_logoFashionistArtLogo.png"
+                alt="Fashionist'ART"
+                className="h-10 w-auto object-contain"
+                style={{ filter: 'drop-shadow(0 2px 10px rgba(212,175,55,0.35))' }}
+              />
+            </Link>
 
             <nav className="hidden lg:flex items-center gap-1">
               {NAV_ITEMS.map((item) => (
@@ -193,13 +200,14 @@ export default function Layout({ children, currentPageName }) {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
             <div className="md:col-span-1">
-              <div className="flex items-center gap-3 mb-4">
-                <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_68ae1c019dacc474a322f2b2/742499905_Capturedecran2026-02-26a175005.png"
-                  alt="" className="w-10 h-10 rounded-full object-cover ring-2 ring-[#FF2D8A]/30" />
-                <div>
-                  <div><span className="font-script text-lg text-[#FF2D8A]">Fashionist'</span><span className="font-display font-black text-base text-white">ART</span></div>
-                  <p className="text-[10px] text-white/30 font-display">Dour, Belgique</p>
-                </div>
+              <div className="flex flex-col gap-3 mb-4">
+                <img
+                  src="https://media.base44.com/images/public/6a035427dca907aa03b71398/30db7f0e0_logoFashionistArtLogo.png"
+                  alt="Fashionist'ART — Logo officiel"
+                  className="h-14 w-auto object-contain"
+                  style={{ filter: 'drop-shadow(0 2px 12px rgba(212,175,55,0.25))' }}
+                />
+                <p className="text-[10px] text-white/30 font-display">Dour, Belgique</p>
               </div>
               <p className="text-white/40 text-xs leading-relaxed">Festival alliant mode et art contemporain. ASBL Starlight Dour — BCE 1012.267.056</p>
             </div>
