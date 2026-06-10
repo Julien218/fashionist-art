@@ -119,10 +119,10 @@ function QRCodeSection() {
                 color:'rgba(255,255,255,0.3)',
                 marginLeft:8,
                 flex:1,
-              }}>just-pixel-code-snap.base44.app</span>
+              }}>fashionistartdour.be</span>
             </div>
             <iframe
-              src="https://just-pixel-code-snap.base44.app"
+              src="https://fashionistartdour.be"
               style={{width:'100%',height:'360px',border:'none',display:'block'}}
               title="Générateur QR Code JS-Innov.IA"
               loading="lazy"
@@ -155,7 +155,7 @@ function QRCodeSection() {
 
             {/* CTA */}
             <a
-              href="https://just-pixel-code-snap.base44.app"
+              href="https://fashionistartdour.be"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary justify-center gap-3"
@@ -196,7 +196,7 @@ export default function Services() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    base44.functions.invoke('stripeGetProducts', {})
+    Promise.resolve([]) /* TODO: Stripe via Supabase Edge Function */
       .then(res => setProducts(res.data.items || []))
       .catch(() => setError('Impossible de charger les services.'))
       .finally(() => setLoading(false));
@@ -209,7 +209,7 @@ export default function Services() {
     }
     setPaying(priceId);
     try {
-      const res = await base44.functions.invoke('stripeGenericCheckout', { price_id: priceId });
+      const res = { url: null }; /* TODO: Stripe via Supabase Edge Function */ console.warn('Stripe checkout à configurer');
       if (res.data.url) window.location.href = res.data.url;
     } catch {
       setError('Erreur lors de la création du paiement.');

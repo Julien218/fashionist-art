@@ -72,11 +72,11 @@ export default function MissMister() {
     const qty = parseInt(form.quantity) || 1;
     if (qty < 1 || qty > 10) { setError('Quantité entre 1 et 10 places.'); return; }
     setLoading(true);
-    const res = await base44.functions.invoke('missMisterCheckout', {
-      ...form, quantity: qty,
-      success_url: `${window.location.origin}/MissMister?success=1&session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${window.location.origin}/MissMister?cancelled=1`,
-    });
+    // TODO: MissMister Stripe à configurer via Supabase Edge Function
+    const res = { data: null };
+    setError('Billetterie temporairement indisponible.');
+    setLoading(false);
+    return;
     if (res.data?.url) {
       window.location.href = res.data.url;
     } else {

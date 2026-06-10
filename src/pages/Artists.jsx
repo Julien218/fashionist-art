@@ -13,7 +13,7 @@ import { User, Globe, Instagram, Facebook as FacebookIcon, Search, X } from 'luc
 
 
 
-const BASE_URL = 'https://fashionistart.base44.app';
+
 
 export default function Artists() {
   const navigate = useNavigate();
