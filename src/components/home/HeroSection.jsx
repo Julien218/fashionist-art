@@ -6,11 +6,15 @@ import Countdown from '../shared/Countdown';
 import { CalendarPlus, ArrowRight, Facebook, Instagram, Link as LinkIcon, Check, Ticket, ChevronDown } from 'lucide-react';
 import { toast } from 'sonner';
 
+// ── Bannière officielle Fashionist'ART 2026 (JS-Innov.IA) ─────────────────
+const BANNER_URL = "https://media.base44.com/images/public/6a035427dca907aa03b71398/23a72b319_JS-InnovIA_Banniere_Officielle_FashionistART_2026.jpg";
+
 export default function HeroSection() {
   const [copied, setCopied] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false);
 
   const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent("Fashionist'ART")}&dates=20260418T080000Z/20260418T200000Z&details=${encodeURIComponent("Fashionist'ART — Exposition art & mode. Entrée gratuite.")}&location=${encodeURIComponent("Centre Sportif d'Élouges, Dour, Belgique")}`;
-  const shareUrl = 'https://fashionistart.base44.app';
+  const shareUrl = 'https://www.fashionistartdour.be';
   const shareText = encodeURIComponent("Fashionist'ART – 18 avril 2026, Centre Sportif d'Élouges (Dour). Mode & Art. Entrée gratuite ! 🎨👗");
 
   const copyLink = () => {
@@ -39,7 +43,9 @@ export default function HeroSection() {
   };
 
   const TikTokIcon = () => (
-    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/>
+    </svg>
   );
 
   const socialLinks = [
@@ -62,35 +68,105 @@ export default function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
-      {/* Background image with overlay */}
+
+      {/* ── BANNIÈRE OFFICIELLE en fond ─────────────────────────────── */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-transparent" />
-        {/* Ambient glows */}
-        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full bg-[#FF2D8A]/10 blur-[120px]" />
-        <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] rounded-full bg-purple-600/10 blur-[100px]" />
+        {/* Image bannière officielle */}
+        <motion.img
+          src={BANNER_URL}
+          alt="Bannière officielle Fashionist'ART 2026"
+          onLoad={() => setImgLoaded(true)}
+          initial={{ opacity: 0, scale: 1.04 }}
+          animate={{ opacity: imgLoaded ? 1 : 0, scale: imgLoaded ? 1 : 1.04 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          style={{ objectPosition: "center top" }}
+        />
+
+        {/* Fallback background pendant le chargement */}
+        {!imgLoaded && (
+          <div className="absolute inset-0 bg-gradient-to-br from-[#050810] via-[#0D0A1A] to-[#050810]" />
+        )}
+
+        {/* Overlay gradient pour lisibilité du texte */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/25 to-black/75" />
+        {/* Overlay latéraux */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30" />
+
+        {/* Halos lumineux ADN */}
+        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full bg-[#FF2D8A]/8 blur-[140px]" />
+        <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] rounded-full bg-purple-600/8 blur-[120px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full bg-[#D4AF37]/5 blur-[100px]" />
       </div>
 
-      {/* Content */}
+      {/* ── CONTENU HERO ─────────────────────────────────────────────── */}
       <div className="relative z-10 text-center max-w-3xl mx-auto px-4 py-20">
-        {/* Top badge */}
+
+        {/* Badge UNESCO */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-dark border border-white/10 mb-8 text-sm text-white/70"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-3 text-sm"
+          style={{
+            background: "rgba(212,175,55,0.12)",
+            border: "1px solid rgba(212,175,55,0.35)",
+            backdropFilter: "blur(12px)",
+            color: "#D4AF37",
+            letterSpacing: "0.12em",
+            fontSize: "0.7rem",
+            fontWeight: 600
+          }}
+        >
+          🌍 JOURNÉE MONDIALE DE L'ART — UNESCO / IAA-AIAP
+        </motion.div>
+
+        {/* Badge événement */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-dark border border-white/10 mb-8 text-sm text-white/70 ml-3"
         >
           <span className="w-2 h-2 rounded-full bg-[#FF2D8A] animate-pulse" />
           Événement gratuit • 18 avril 2026
         </motion.div>
 
-
+        {/* Titre principal — positionné sous la bannière */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
+          <h1 className="font-display font-black uppercase tracking-tight mb-2"
+            style={{
+              fontSize: "clamp(2.8rem, 7vw, 5.5rem)",
+              lineHeight: 1.0,
+              background: "linear-gradient(135deg, #FFFFFF 0%, #F0EDE6 40%, #D4AF37 80%, #A0780A 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              textShadow: "none",
+              filter: "drop-shadow(0 2px 20px rgba(212,175,55,0.3))"
+            }}>
+            Fashionist'ART
+          </h1>
+          <h2 className="font-display font-bold uppercase tracking-widest mb-4"
+            style={{
+              fontSize: "clamp(1rem, 2.5vw, 1.6rem)",
+              color: "#FF2D8A",
+              letterSpacing: "0.18em",
+              textShadow: "0 0 30px rgba(255,45,138,0.5)"
+            }}>
+            Dour 2026
+          </h2>
+        </motion.div>
 
         {/* Subtitle */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.35 }}
-          className="text-white/60 text-base md:text-lg mt-4 mb-6 font-display font-normal tracking-wide"
+          className="text-white/60 text-base md:text-lg mt-2 mb-6 font-display font-normal tracking-wide"
         >
           Quand la mode rencontre l'art
         </motion.p>
@@ -102,13 +178,9 @@ export default function HeroSection() {
           transition={{ duration: 0.5, delay: 0.45 }}
           className="flex flex-wrap items-center justify-center gap-3 mb-6 text-sm"
         >
-          <span className="flex items-center gap-2 text-white/70">
-            📅 18 avril 2026
-          </span>
+          <span className="flex items-center gap-2 text-white/70">📅 18 avril 2026</span>
           <span className="w-1 h-1 rounded-full bg-white/30" />
-          <span className="flex items-center gap-2 text-white/70">
-            📍 Centre Sportif d'Élouges, Dour
-          </span>
+          <span className="flex items-center gap-2 text-white/70">📍 Centre Sportif d'Élouges, Dour</span>
           <span className="w-1 h-1 rounded-full bg-white/30" />
           <span className="text-[#D4AF37] font-semibold">🎉 Entrée gratuite</span>
         </motion.div>
