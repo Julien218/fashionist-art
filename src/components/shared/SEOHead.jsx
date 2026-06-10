@@ -6,7 +6,7 @@ const BASE_URL = 'https://fashionistart.base44.app';
 const SITE_NAME = "Fashionist'ART – JS-Innov.IA & JY-TrixAI";
 const AUTHOR = "JS-Innov.IA (Pagin Julien) & JY-TrixAI";
 const VIDEO_EMBED = 'https://www.youtube.com/embed/Ti8_bJHM8VM';
-const VIDEO_URL = 'https://youtu.be/Ti8_bJHM8VM?si=ITO8EMGq4VnxcFg2';
+const VIDEO_URL = 'https://youtu.be/Ti8_bJHM8VM?si=yJ3jtYRkaF1GoI3U';
 
 const PAGE_META = {
   Home: {

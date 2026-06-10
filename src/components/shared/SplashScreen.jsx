@@ -7,7 +7,7 @@ const LOGO_URL = "https://media.base44.com/images/public/6a035427dca907aa03b7139
 const BG_URL = "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a460cb984c65f748b49e7d/ef497c4fd_artisteimageb.jpg";
 
 // URL par défaut hardcodée (vidéo intro officielle)
-const DEFAULT_INTRO_EMBED = "https://www.youtube-nocookie.com/embed/Ti8_bJHM8VM?si=dGJBhskALwNHsXtK&start=1&autoplay=1&mute=1&controls=1&modestbranding=1&playsinline=1&rel=0";
+const DEFAULT_INTRO_EMBED = "https://www.youtube-nocookie.com/embed/Ti8_bJHM8VM?autoplay=1&mute=1&controls=1&modestbranding=1&playsinline=1&rel=0";
 
 // Détermine si une URL est un embed iframe (YouTube/Vimeo) ou un fichier vidéo direct
 const getVideoInfo = (url) => {
@@ -92,7 +92,8 @@ export default function SplashScreen({ onDone }) {
 
   // Ne pas afficher si config désactivée
   const shouldShow = !config || config.intro_enabled !== false;
-  const rawVideoUrl = config?.intro_video_url || DEFAULT_INTRO_EMBED;
+  // Forcer la vidéo officielle Ti8_bJHM8VM — lien fourni par Julien Pagin
+  const rawVideoUrl = DEFAULT_INTRO_EMBED;
   const videoInfo = getVideoInfo(rawVideoUrl);
   const imageUrl = config?.intro_image_url;
 

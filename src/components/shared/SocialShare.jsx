@@ -4,7 +4,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { toast } from 'sonner';
 
 const BASE_URL = 'https://fashionistart.base44.app';
-const VIDEO_URL = 'https://youtu.be/Ti8_bJHM8VM?si=ITO8EMGq4VnxcFg2';
+const VIDEO_URL = 'https://youtu.be/Ti8_bJHM8VM?si=yJ3jtYRkaF1GoI3U';
 const HASHTAGS_FR = '#FashionistART #ModeArt #Dour #Belgique #EventGratuit #FestivalMode #Art2026 #JSInnovIA #JYTrixAI';
 const SIGNATURE = '💻 Plateforme développée par JS-Innov.IA (Pagin Julien) & JY-TrixAI';
 
@@ -111,7 +111,7 @@ export default function SocialShare({ title, description, pageUrl }) {
       icon: Youtube,
       label: 'Clip officiel',
       color: 'text-[#FF0000]',
-      href: `https://youtu.be/Ti8_bJHM8VM?si=ITO8EMGq4VnxcFg2`,
+      href: `https://youtu.be/Ti8_bJHM8VM?si=yJ3jtYRkaF1GoI3U`,
       draft: null,
     },
   ];
