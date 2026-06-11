@@ -7,12 +7,8 @@ import { CalendarPlus, ArrowRight, Facebook, Instagram, Link as LinkIcon, Check,
 import { toast } from 'sonner';
 
 // ── Bannière officielle Fashionist'ART 2026 (JS-Innov.IA) ─────────────────
-const BANNER_URL = "https://media.base44.com/images/public/6a035427dca907aa03b71398/23a72b319_JS-InnovIA_Banniere_Officielle_FashionistART_2026.jpg";
-
 export default function HeroSection() {
   const [copied, setCopied] = useState(false);
-  const [imgLoaded, setImgLoaded] = useState(false);
-
   const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent("Fashionist'ART")}&dates=20260418T080000Z/20260418T200000Z&details=${encodeURIComponent("Fashionist'ART — Exposition art & mode. Entrée gratuite.")}&location=${encodeURIComponent("Centre Sportif d'Élouges, Dour, Belgique")}`;
   const shareUrl = 'https://www.fashionistartdour.be';
   const shareText = encodeURIComponent("Fashionist'ART – 18 avril 2026, Centre Sportif d'Élouges (Dour). Mode & Art. Entrée gratuite ! 🎨👗");
@@ -69,34 +65,13 @@ export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
 
-      {/* ── BANNIÈRE OFFICIELLE en fond ─────────────────────────────── */}
+      {/* ── FOND NOIR + HALOS ─────────────────────────────────────────── */}
       <div className="absolute inset-0 z-0">
-        {/* Image bannière officielle */}
-        <motion.img
-          src={BANNER_URL}
-          alt="Bannière officielle Fashionist'ART 2026"
-          onLoad={() => setImgLoaded(true)}
-          initial={{ opacity: 0, scale: 1.04 }}
-          animate={{ opacity: imgLoaded ? 1 : 0, scale: imgLoaded ? 1 : 1.04 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          className="absolute inset-0 w-full h-full object-cover object-center"
-          style={{ objectPosition: "center top" }}
-        />
-
-        {/* Fallback background pendant le chargement */}
-        {!imgLoaded && (
-          <div className="absolute inset-0 bg-gradient-to-br from-[#050810] via-[#0D0A1A] to-[#050810]" />
-        )}
-
-        {/* Overlay gradient pour lisibilité du texte */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/25 to-black/75" />
-        {/* Overlay latéraux */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30" />
-
-        {/* Halos lumineux ADN */}
+        <div className="absolute inset-0 bg-[#050810]" />
+        {/* Halos lumineux */}
         <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full bg-[#FF2D8A]/8 blur-[140px]" />
         <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] rounded-full bg-purple-600/8 blur-[120px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full bg-[#D4AF37]/5 blur-[100px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full bg-[#D4AF37]/6 blur-[100px]" />
       </div>
 
       {/* ── CONTENU HERO ─────────────────────────────────────────────── */}

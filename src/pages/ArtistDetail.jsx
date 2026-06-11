@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { base44 } from '@/api/base44Client';
+import { ARTISTS_DATA } from '@/data/artists';
 import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
 import { ArrowLeft, User, Globe, Instagram, Facebook as FacebookIcon } from 'lucide-react';
@@ -25,13 +25,17 @@ export default function ArtistDetail() {
 
   const { data: artist, isLoading, error } = useQuery({
     queryKey: ['artist', artistId],
-    queryFn: () => base44.entities.Artist.get(artistId),
+    queryFn: () => {
+      const a = ARTISTS_DATA.find(a => a.id === artistId);
+      if (!a) throw new Error('Artiste non trouvé');
+      return a;
+    },
     enabled: !!artistId,
   });
 
   const { data: works = [] } = useQuery({
     queryKey: ['artistWorks', artistId],
-    queryFn: () => base44.entities.ArtistWork.filter({ artist_id: artistId }),
+    queryFn: () => [],
     enabled: !!artistId,
   });
 

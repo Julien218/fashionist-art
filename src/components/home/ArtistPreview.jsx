@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { base44 } from '@/api/base44Client';
+import { ARTISTS_DATA } from '@/data/artists';
 import { useQuery } from '@tanstack/react-query';
 
 export default function ArtistPreview() {
@@ -9,7 +9,7 @@ export default function ArtistPreview() {
 
   const { data: artists = [] } = useQuery({
     queryKey: ['artists-preview'],
-    queryFn: () => base44.entities.Artist.list('display_order'),
+    queryFn: () => ARTISTS_DATA,
   });
 
   const displayArtists = artists.length > 0 ? artists : Array.from({ length: 8 });
