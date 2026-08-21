@@ -1,0 +1,10 @@
+{
+  "rewrites": [
+    { "source": "/googleec667f8153ff16b65", "destination": "/googleec667f8153ff16b65.html" },
+    { "source": "/googleec667f8153ff16b65.html", "destination": "/googleec667f8153ff16b65.html" },
+    { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
+    { "source": "/robots.txt", "destination": "/robots.txt" },
+    { "source": "/manifest.json", "destination": "/manifest.json" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
