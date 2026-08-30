@@ -1,0 +1,64 @@
+{
+  "name": "ArtistBioGenerated",
+  "type": "object",
+  "properties": {
+    "artist_id": {
+      "type": "string",
+      "description": "ID de l'artiste"
+    },
+    "bio_website": {
+      "type": "string",
+      "description": "Biographie optimis\u00e9e site web (300-600 mots)"
+    },
+    "bio_short": {
+      "type": "string",
+      "description": "Version courte (100 mots max)"
+    },
+    "post_social": {
+      "type": "string",
+      "description": "Post r\u00e9seaux sociaux format\u00e9"
+    },
+    "text_newsletter": {
+      "type": "string",
+      "description": "Texte newsletter format\u00e9"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date de g\u00e9n\u00e9ration"
+    },
+    "source_bio": {
+      "type": "string",
+      "description": "Biographie source utilis\u00e9e pour la g\u00e9n\u00e9ration"
+    }
+  },
+  "required": [
+    "artist_id",
+    "bio_website",
+    "bio_short",
+    "post_social",
+    "text_newsletter"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

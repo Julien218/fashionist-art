@@ -1,0 +1,102 @@
+{
+  "name": "ArtistDailySpotlight",
+  "type": "object",
+  "properties": {
+    "artist_id": {
+      "type": "string",
+      "description": "ID de l'artiste mis en avant"
+    },
+    "artist_name": {
+      "type": "string",
+      "description": "Nom de l'artiste"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date de la s\u00e9lection"
+    },
+    "platform": {
+      "type": "string",
+      "enum": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "all"
+      ],
+      "default": "facebook",
+      "description": "Plateforme cible de publication"
+    },
+    "post_content": {
+      "type": "string",
+      "description": "Contenu du post g\u00e9n\u00e9r\u00e9"
+    },
+    "hashtags": {
+      "type": "string",
+      "description": "Hashtags du post"
+    },
+    "validation_status": {
+      "type": "string",
+      "enum": [
+        "PENDING",
+        "VALIDATED",
+        "REJECTED",
+        "PUBLISHED"
+      ],
+      "default": "PENDING",
+      "description": "Statut de validation par Olivier"
+    },
+    "social_post_id": {
+      "type": "string",
+      "description": "ID du SocialPostDraft cr\u00e9\u00e9 apr\u00e8s validation"
+    },
+    "whatsapp_sent_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date d'envoi WhatsApp"
+    },
+    "validated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date de validation"
+    },
+    "published_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date de publication"
+    },
+    "batch_index": {
+      "type": "number",
+      "default": 1,
+      "description": "1 ou 2 (premier ou deuxi\u00e8me artiste du jour)"
+    }
+  },
+  "required": [
+    "artist_id",
+    "artist_name",
+    "date",
+    "post_content",
+    "validation_status"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

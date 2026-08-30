@@ -1,0 +1,18 @@
+{
+  "name": "User",
+  "type": "object",
+  "properties": {
+    "role": {
+      "type": "string",
+      "enum": [
+        "super_admin",
+        "admin",
+        "member",
+        "user"
+      ],
+      "default": "user",
+      "description": "R\u00f4le de l'utilisateur"
+    }
+  },
+  "required": []
+}

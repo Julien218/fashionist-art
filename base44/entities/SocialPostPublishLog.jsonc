@@ -1,0 +1,70 @@
+{
+  "name": "SocialPostPublishLog",
+  "type": "object",
+  "properties": {
+    "post_id": {
+      "type": "string",
+      "description": "ID du SocialPostDraft"
+    },
+    "platform": {
+      "type": "string",
+      "enum": [
+        "website",
+        "facebook",
+        "instagram",
+        "linkedin",
+        "x"
+      ],
+      "description": "Plateforme"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "PUBLISHED",
+        "FAILED",
+        "SKIPPED"
+      ],
+      "description": "Statut de publication"
+    },
+    "provider_message_id": {
+      "type": "string",
+      "description": "ID message du provider (optionnel)"
+    },
+    "published_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date de publication"
+    },
+    "error": {
+      "type": "string",
+      "description": "D\u00e9tail erreur si \u00e9chec (optionnel)"
+    }
+  },
+  "required": [
+    "post_id",
+    "platform",
+    "status"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

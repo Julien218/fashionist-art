@@ -1,0 +1,89 @@
+{
+  "name": "Sale",
+  "type": "object",
+  "properties": {
+    "sale_type": {
+      "type": "string",
+      "enum": [
+        "bar",
+        "stand",
+        "sponsor",
+        "artist_contact",
+        "artist_sale",
+        "other"
+      ],
+      "description": "Type de vente"
+    },
+    "title": {
+      "type": "string",
+      "description": "Titre de la vente"
+    },
+    "amount_total_cents": {
+      "type": "number",
+      "description": "Montant total en centimes"
+    },
+    "currency": {
+      "type": "string",
+      "default": "eur",
+      "description": "Devise"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "PENDING",
+        "PAID",
+        "FAILED",
+        "CANCELLED",
+        "REFUNDED"
+      ],
+      "default": "PENDING"
+    },
+    "stripe_session_id": {
+      "type": "string"
+    },
+    "stripe_payment_intent_id": {
+      "type": "string"
+    },
+    "stripe_connected_account_id": {
+      "type": "string"
+    },
+    "stripe_fee_cents": {
+      "type": "number",
+      "default": 0
+    },
+    "platform_fee_cents": {
+      "type": "number",
+      "default": 0
+    },
+    "created_by_user_id": {
+      "type": "string"
+    },
+    "note": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "paid_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "sale_type",
+    "title",
+    "amount_total_cents",
+    "status"
+  ],
+  "rls": {
+    "read": {},
+    "create": {},
+    "update": {},
+    "delete": {
+      "user_condition": {
+        "role": "super_admin"
+      }
+    }
+  }
+}

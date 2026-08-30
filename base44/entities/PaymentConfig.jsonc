@@ -1,0 +1,67 @@
+{
+  "name": "PaymentConfig",
+  "type": "object",
+  "properties": {
+    "label": {
+      "type": "string",
+      "description": "Libell\u00e9 du produit / service"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description"
+    },
+    "amount": {
+      "type": "number",
+      "description": "Montant en centimes (ex: 1000 = 10\u20ac)"
+    },
+    "currency": {
+      "type": "string",
+      "default": "eur",
+      "description": "Devise (eur, usd...)"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Actif"
+    },
+    "stripe_price_id": {
+      "type": "string",
+      "description": "ID prix Stripe (optionnel)"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "one_time",
+        "subscription"
+      ],
+      "default": "one_time",
+      "description": "Type de paiement"
+    }
+  },
+  "required": [
+    "label",
+    "amount"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "super_admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "super_admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "super_admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "super_admin"
+      }
+    }
+  }
+}

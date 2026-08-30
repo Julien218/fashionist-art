@@ -1,0 +1,104 @@
+{
+  "name": "SocialPostDraft",
+  "type": "object",
+  "properties": {
+    "platform": {
+      "type": "string",
+      "enum": [
+        "facebook",
+        "instagram",
+        "linkedin",
+        "x",
+        "website"
+      ],
+      "description": "Plateforme cible"
+    },
+    "post_type": {
+      "type": "string",
+      "enum": [
+        "event",
+        "artist",
+        "countdown",
+        "behind_the_scenes",
+        "call_for_artists",
+        "newsletter_teaser"
+      ],
+      "description": "Type de post"
+    },
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "hashtags": {
+      "type": "string"
+    },
+    "media_url": {
+      "type": "string"
+    },
+    "link_url": {
+      "type": "string"
+    },
+    "scheduled_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "DRAFT",
+        "PENDING_APPROVAL",
+        "APPROVED",
+        "PUBLISHED",
+        "REJECTED"
+      ],
+      "default": "DRAFT"
+    },
+    "created_by_user_id": {
+      "type": "string"
+    },
+    "approved_by_user_id": {
+      "type": "string"
+    },
+    "approved_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "published_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "error": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "platform",
+    "post_type",
+    "content",
+    "status"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

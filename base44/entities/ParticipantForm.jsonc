@@ -1,0 +1,126 @@
+{
+  "name": "ParticipantForm",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email du participant"
+    },
+    "first_name": {
+      "type": "string",
+      "description": "Pr\u00e9nom"
+    },
+    "last_name": {
+      "type": "string",
+      "description": "Nom"
+    },
+    "phone": {
+      "type": "string",
+      "description": "T\u00e9l\u00e9phone"
+    },
+    "age": {
+      "type": "number",
+      "description": "\u00c2ge"
+    },
+    "city": {
+      "type": "string",
+      "description": "Ville"
+    },
+    "country": {
+      "type": "string",
+      "description": "Pays"
+    },
+    "discipline": {
+      "type": "string",
+      "description": "Discipline artistique / domaine"
+    },
+    "experience_level": {
+      "type": "string",
+      "enum": [
+        "debutant",
+        "intermediaire",
+        "avance",
+        "professionnel"
+      ],
+      "description": "Niveau d'exp\u00e9rience"
+    },
+    "motivation": {
+      "type": "string",
+      "description": "Motivation / pourquoi participer"
+    },
+    "portfolio_url": {
+      "type": "string",
+      "description": "Lien portfolio ou r\u00e9seaux"
+    },
+    "participation_type": {
+      "type": "string",
+      "enum": [
+        "exposant",
+        "performeur",
+        "visiteur",
+        "benevole",
+        "partenaire"
+      ],
+      "description": "Type de participation"
+    },
+    "special_needs": {
+      "type": "string",
+      "description": "Besoins sp\u00e9ciaux / accessibilit\u00e9"
+    },
+    "how_did_you_hear": {
+      "type": "string",
+      "description": "Comment avez-vous entendu parler de l'\u00e9v\u00e9nement ?"
+    },
+    "consent_rgpd": {
+      "type": "boolean",
+      "description": "Consentement RGPD"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "invite",
+        "en_attente",
+        "valide",
+        "refuse"
+      ],
+      "default": "invite",
+      "description": "Statut du formulaire"
+    },
+    "invitation_token": {
+      "type": "string",
+      "description": "Token unique d'invitation"
+    },
+    "invitation_sent_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date d'envoi invitation"
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date de soumission"
+    }
+  },
+  "required": [
+    "email"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

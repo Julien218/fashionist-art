@@ -1,0 +1,82 @@
+{
+  "name": "NewsletterCampaign",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Titre de la campagne"
+    },
+    "subject": {
+      "type": "string",
+      "description": "Objet de l'email"
+    },
+    "html": {
+      "type": "string",
+      "description": "Contenu HTML"
+    },
+    "text": {
+      "type": "string",
+      "description": "Contenu texte brut"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "DRAFT",
+        "PENDING_APPROVAL",
+        "APPROVED",
+        "SENT"
+      ],
+      "default": "DRAFT",
+      "description": "Statut de la campagne"
+    },
+    "scheduled_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date d'envoi planifi\u00e9e"
+    },
+    "created_by_user_id": {
+      "type": "string",
+      "description": "ID utilisateur cr\u00e9ateur"
+    },
+    "approved_by_user_id": {
+      "type": "string",
+      "description": "ID utilisateur approbateur"
+    },
+    "approved_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date d'approbation"
+    },
+    "sent_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date d'envoi effectif"
+    }
+  },
+  "required": [
+    "title",
+    "subject"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
