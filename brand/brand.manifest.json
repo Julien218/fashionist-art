@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "1.0",
+  "brand": "Fashionist'ART",
+  "status": "production",
+  "locale": "fr-BE",
+  "lastAligned": "2026-09-23",
+  "repository": {
+    "fullName": "Julien218/fashionist-art",
+    "productionBranch": "main"
+  },
+  "canonicalSources": {
+    "bible": "brand/BRAND_ADN.md",
+    "runtimeStyles": "src/globals.css",
+    "logoComponent": "src/components/shared/Logo.jsx"
+  },
+  "palette": {
+    "fuchsia": "#FF2D8A",
+    "fuchsiaLight": "#FF6BB3",
+    "gold": "#D4AF37",
+    "dark": "#0A0A0F",
+    "dark2": "#12121A",
+    "white": "#FFFFFF"
+  },
+  "typography": {
+    "body": "Inter",
+    "display": "Montserrat",
+    "heroEditorial": "Playfair Display",
+    "decorativeScript": "Dancing Script"
+  },
+  "assets": {
+    "logo": {
+      "type": "external-runtime-canonical",
+      "url": "https://media.base44.com/images/public/6a035427dca907aa03b71398/30db7f0e0_logoFashionistArtLogo.png",
+      "localMaster": false
+    }
+  },
+  "agentPolicy": {
+    "mode": "fail-closed",
+    "readOrder": [
+      "brand/brand.manifest.json",
+      "brand/BRAND_ADN.md",
+      "src/globals.css",
+      "src/components/shared/Logo.jsx"
+    ],
+    "forbidden": [
+      "generate-logo",
+      "redraw-logo",
+      "mix-miss-mister-adn",
+      "mix-jsinnovia-adn",
+      "replace-fuchsia-with-rainbow"
+    ],
+    "qualityGate": [
+      "canonical-logo-source-used",
+      "canonical-palette-used",
+      "typography-role-respected",
+      "no-cross-brand-contamination",
+      "contrast-readable"
+    ]
+  }
+}
