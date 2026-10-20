@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { base44 } from '@/api/base44Client';
+import { GALLERY_MEDIA } from '@/data/galleryMedia';
 import { motion, AnimatePresence } from 'framer-motion';
 import SectionTitle from '@/components/shared/SectionTitle';
 import { Play, X, ChevronLeft, ChevronRight, Camera, Film, Filter, Loader2 } from 'lucide-react';
@@ -15,13 +14,10 @@ export default function Gallery() {
   const [lightbox, setLightbox] = useState(null);
   const [selectedEdition, setSelectedEdition] = useState('2026');
 
-  const { data: media = [] } = useQuery({
-    queryKey: ['gallery-media', selectedEdition],
-    queryFn: () => base44.entities.GalleryMedia.filter(
-      { edition: selectedEdition },
-      'display_order'
-    ),
-  });
+  // Données galerie embarquées (src/data/galleryMedia.js) — générées par l'agent
+  const media = GALLERY_MEDIA
+    .filter(m => m.edition === selectedEdition)
+    .sort((a, b) => (a.display_order || 0) - (b.display_order || 0));
 
   const filtered = media.filter(m => {
     if (activeTab === 'all') return true;
