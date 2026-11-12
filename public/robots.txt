@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /Admin
+Disallow: /MyArtist
+Sitemap: https://www.fashionistartdour.be/sitemap.xml
