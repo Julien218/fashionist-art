@@ -23,4 +23,4 @@ jobs:
         env:
           NODE_ENV: production
       - name: ✅ Build réussi
-        run: echo "Build OK — Railway déploie automatiquement depuis GitHub"
+        run: echo "Build OK — déploiement IONOS géré séparément"
