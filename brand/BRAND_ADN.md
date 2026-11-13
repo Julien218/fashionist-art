@@ -1,7 +1,7 @@
 # Fashionist'ART — Bible ADN canonique
 
 Statut : **production / documenté depuis le site publié**  
-Dernier alignement : 2026-09-23
+Dernier alignement : 2026-11-14
 
 ## Identité
 - Nom public : **Fashionist'ART**
@@ -32,7 +32,7 @@ La barre arc-en-ciel visible dans le runtime est un élément décoratif seconda
 Le composant `src/components/shared/Logo.jsx` déclare comme logo officiel une image externe Base44 :
 `https://media.base44.com/images/public/6a035427dca907aa03b71398/30db7f0e0_logoFashionistArtLogo.png`
 
-Cette URL est actuellement la référence runtime, mais le master n'est pas versionné localement dans Git. Un agent ne doit jamais reconstruire le logo. À terme, le master validé devrait être copié dans le dépôt et le manifeste mis à jour.
+Cette URL est actuellement la référence runtime. Une copie de secours (200 × 200 px, JPEG) est versionnée dans `brand/assets/fashionist-art-logo-200.jpg` depuis le 2026-11-14 : elle sert de référence visuelle, mais elle est trop petite pour une vidéo HD ou l'impression. Le master haute résolution n'est toujours pas versionné. Un agent ne doit jamais reconstruire le logo. À terme, le master validé devrait être copié dans le dépôt et le manifeste mis à jour.
 
 ## Règles de composition
 - Fonds noirs dominants, respirants.
